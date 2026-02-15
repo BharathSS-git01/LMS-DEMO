@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate Management</title>
+
+<!-- SHARED ADMIN CSS -->
+
+<link rel="stylesheet" href="css/admin.css">
+
+<!-- PAGE CSS -->
+
+<link rel="stylesheet" href="css/certificates.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="admin-header">
+
+  <div class="header-left">
+    <img src="../assets/logo.png" class="logo">
+    <h2>VIDHYA VAARADHI</h2>
+  </div>
+
+  <nav class="header-center">
+    <a onclick="go('dashboard.html')">Dashboard</a>
+    <a onclick="go('students.html')">Students</a>
+    <a onclick="go('courses.html')">Courses</a>
+    <a onclick="go('assignments.html')">Assignments</a>
+    <a onclick="go('quizzes.html')">Quizzes</a>
+    <a class="active">Certificates</a>
+    <a onclick="go('../index.html')">Logout</a>
+  </nav>
+
+  <div class="header-right">
+    <img src="../assets/profile.jpg" class="profile">
+  </div>
+
+</header>
+
+<!-- ================= BODY ================= -->
+
+<section class="admin-body">
+
+  <!-- SIDEBAR -->
+
+  <aside class="admin-sidebar">
+
+```
+<ul>
+
+  <li onclick="go('dashboard.html')">Dashboard</li>
+  <li onclick="go('students.html')">Students</li>
+  <li onclick="go('courses.html')">Courses</li>
+  <li onclick="go('assignments.html')">Assignments</li>
+  <li onclick="go('quizzes.html')">Quizzes</li>
+  <li class="active">Certificates</li>
+  <li onclick="go('../index.html')">Logout</li>
+
+</ul>
+```
+
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+
+  <main class="admin-main">
+
+```
+<h2>Certificate Management</h2>
+
+
+
+<!-- ===== TEMPLATE SETTINGS ===== -->
+
+<div class="certificate-card">
+
+  <h3>Certificate Template</h3>
+
+  <input type="file">
+
+  <input type="text"
+         placeholder="Authorized Signatory Name">
+
+  <input type="text"
+         placeholder="Designation">
+
+  <button>Save Template</button>
+
+</div>
+
+
+
+<!-- ===== ISSUANCE RULES ===== -->
+
+<div class="certificate-card">
+
+  <h3>Issuance Rules</h3>
+
+  <input type="number"
+         placeholder="Minimum Completion %">
+
+  <input type="number"
+         placeholder="Minimum Quiz Pass %">
+
+  <select>
+    <option>Project Required?</option>
+    <option>Yes</option>
+    <option>No</option>
+  </select>
+
+  <button>Update Rules</button>
+
+</div>
+
+
+
+<!-- ===== ISSUED CERTIFICATES ===== -->
+
+<div class="certificate-table-card">
+
+  <h3>Issued Certificates</h3>
+
+  <table class="admin-table">
+
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Course</th>
+        <th>Date</th>
+        <th>Certificate ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>Rahul Sharma</td>
+        <td>Machine Learning</td>
+        <td>12 Feb 2026</td>
+        <td>VV-ML-1021</td>
+        <td>
+          <button class="view-btn">Download</button>
+          <button class="delete-btn">Revoke</button>
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+```
+
+  </main>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="admin-footer">
+
+  <p>Help Centre</p>
+  <p>Policy</p>
+  <p>© 2026 Vidhya Vaaradhi LMS</p>
+
+</footer>
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>

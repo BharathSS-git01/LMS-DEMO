@@ -1,0 +1,117 @@
+/* ================= TITLE ================= */
+
+.page-title{
+color:#0ea5e9;
+font-weight:700;
+margin-bottom:20px;
+}
+
+/* ================= HERO ================= */
+
+.student-hero{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:18px;
+margin-bottom:26px;
+}
+
+.hero-box{
+
+background:linear-gradient(120deg,#0ea5e9,#38bdf8);
+color:white;
+
+padding:20px;
+border-radius:18px;
+
+box-shadow:0 10px 26px rgba(0,0,0,0.08);
+}
+
+.hero-box h4{
+font-size:13px;
+opacity:.9;
+}
+
+.hero-box p{
+font-size:26px;
+font-weight:700;
+}
+
+/* ================= TABLE PANEL ================= */
+
+.student-panel{
+
+background:white;
+padding:24px;
+border-radius:18px;
+
+box-shadow:0 8px 22px rgba(0,0,0,0.05);
+margin-bottom:26px;
+}
+
+.student-panel h3{
+margin-bottom:14px;
+}
+
+/* STATUS */
+
+.active{
+color:#22c55e;
+font-weight:600;
+}
+
+.inactive{
+color:#ef4444;
+font-weight:600;
+}
+
+/* ================= ANALYTICS ================= */
+
+.analytics-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:18px;
+margin-bottom:26px;
+}
+
+.metric{
+
+background:white;
+padding:20px;
+
+border-radius:16px;
+text-align:center;
+
+box-shadow:0 6px 18px rgba(0,0,0,0.05);
+}
+
+.metric h4{
+color:#64748b;
+font-size:13px;
+}
+
+.metric p{
+color:#0ea5e9;
+font-size:24px;
+font-weight:700;
+}
+
+/* BUTTONS */
+
+.view-btn{
+background:#0ea5e9;
+color:white;
+border:none;
+padding:6px 14px;
+border-radius:18px;
+cursor:pointer;
+margin-right:6px;
+}
+
+.delete-btn{
+background:#ef4444;
+color:white;
+border:none;
+padding:6px 14px;
+border-radius:18px;
+cursor:pointer;
+}

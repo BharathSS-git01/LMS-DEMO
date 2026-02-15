@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Control Center</title>
+
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/quizzes.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="admin-header">
+
+  <div class="header-left">
+    <img src="../assets/logo.png" class="logo">
+    <h2>VIDHYA VAARADHI</h2>
+  </div>
+
+  <nav class="header-center">
+    <a onclick="go('dashboard.html')">Dashboard</a>
+    <a onclick="go('students.html')">Students</a>
+    <a onclick="go('courses.html')">Courses</a>
+    <a onclick="go('assignments.html')">Assignments</a>
+    <a class="active">Quizzes</a>
+    <a onclick="go('certificates.html')">Certificates</a>
+    <a onclick="go('../index.html')">Logout</a>
+  </nav>
+
+  <div class="header-right">
+    <img src="../assets/profile.jpg" class="profile">
+  </div>
+
+</header>
+
+<section class="admin-body">
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="admin-sidebar">
+<ul>
+<li onclick="go('dashboard.html')">Dashboard</li>
+<li onclick="go('students.html')">Students</li>
+<li onclick="go('courses.html')">Courses</li>
+<li onclick="go('assignments.html')">Assignments</li>
+<li class="active">Quizzes</li>
+<li onclick="go('certificates.html')">Certificates</li>
+<li onclick="go('../index.html')">Logout</li>
+</ul>
+</aside>
+
+<!-- ================= MAIN ================= -->
+
+<main class="admin-main">
+
+<!-- ===== HERO CONTROL ===== -->
+
+<div class="exam-hero">
+
+<h2>Exam Control Center</h2>
+
+<div class="hero-actions">
+<button class="start">Start Exam</button>
+<button class="pause">Pause</button>
+<button class="stop">Stop</button>
+</div>
+
+</div>
+
+<!-- ===== EXAM LIFECYCLE ===== -->
+
+<div class="exam-grid">
+
+<div class="exam-card">
+<h3>Scheduled Exams</h3>
+<p>12 Active</p>
+<button>Manage</button>
+</div>
+
+<div class="exam-card">
+<h3>Live Exams</h3>
+<p>3 Running</p>
+<button>Monitor</button>
+</div>
+
+<div class="exam-card">
+<h3>Completed Exams</h3>
+<p>48 Records</p>
+<button>View Reports</button>
+</div>
+
+<div class="exam-card">
+<h3>Question Banks</h3>
+<p>26 Uploaded</p>
+<button>Open Library</button>
+</div>
+
+</div>
+
+<!-- ===== QUESTION BANK ===== -->
+
+<div class="exam-panel">
+
+<h3>Upload Question Bank</h3>
+
+<input type="file">
+
+<select>
+<option>Select Course</option>
+<option>Machine Learning</option>
+<option>Deep Learning</option>
+</select>
+
+<button class="primary">Upload File</button>
+
+</div>
+
+<!-- ===== LIVE MONITORING ===== -->
+
+<div class="exam-panel">
+
+<h3>Live Student Monitoring</h3>
+
+<table class="admin-table">
+
+<thead>
+<tr>
+<th>Student</th>
+<th>Status</th>
+<th>Progress</th>
+<th>Flag</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Rahul Sharma</td>
+<td class="live">Active</td>
+<td>78%</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Anjali Verma</td>
+<td class="offline">Disconnected</td>
+<td>—</td>
+<td>⚠</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- ===== ANALYTICS ===== -->
+
+<div class="analytics-strip">
+
+<div class="metric">
+<h4>Total Attempts</h4>
+<p>1,240</p>
+</div>
+
+<div class="metric">
+<h4>Avg Score</h4>
+<p>74%</p>
+</div>
+
+<div class="metric">
+<h4>Pass Rate</h4>
+<p>81%</p>
+</div>
+
+<div class="metric">
+<h4>Malpractice Flags</h4>
+<p>6</p>
+</div>
+
+</div>
+
+</main>
+
+</section>
+
+<footer class="admin-footer">
+<p>Help Centre</p>
+<p>Policy</p>
+<p>© 2026 Vidhya Vaaradhi LMS</p>
+</footer>
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>

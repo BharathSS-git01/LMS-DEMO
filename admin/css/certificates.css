@@ -1,0 +1,123 @@
+/* ================= TITLE ================= */
+
+.admin-main h2{
+color:#1e3a8a;
+margin-bottom:20px;
+font-weight:700;
+}
+
+/* ================= CARDS ================= */
+
+.certificate-card{
+
+background:white;
+padding:24px;
+border-radius:18px;
+
+box-shadow:0 10px 28px rgba(0,0,0,0.06);
+
+display:flex;
+flex-direction:column;
+gap:14px;
+
+max-width:520px;
+margin-bottom:30px;
+}
+
+.certificate-card h3{
+color:#0f172a;
+font-weight:600;
+}
+
+/* INPUTS */
+
+.certificate-card input,
+.certificate-card select{
+
+padding:12px;
+border-radius:12px;
+border:1px solid #e2e8f0;
+
+font-size:13px;
+outline:none;
+}
+
+.certificate-card input:focus,
+.certificate-card select:focus{
+
+border-color:#2563eb;
+box-shadow:0 0 0 2px rgba(37,99,235,.15);
+}
+
+/* BUTTON */
+
+.certificate-card button{
+
+width:fit-content;
+
+background:linear-gradient(120deg,#2563eb,#4f6df5);
+
+color:white;
+border:none;
+
+padding:12px 22px;
+border-radius:24px;
+
+cursor:pointer;
+font-weight:600;
+}
+
+/* ================= TABLE ================= */
+
+.certificate-table-card{
+
+background:white;
+padding:24px;
+border-radius:18px;
+
+box-shadow:0 10px 28px rgba(0,0,0,0.06);
+}
+
+.certificate-table-card h3{
+margin-bottom:16px;
+}
+
+.admin-table{
+width:100%;
+border-collapse:collapse;
+font-size:13px;
+}
+
+.admin-table th{
+text-align:left;
+padding:14px;
+background:#f1f5f9;
+}
+
+.admin-table td{
+padding:14px;
+border-bottom:1px solid #e2e8f0;
+}
+
+.admin-table tr:hover
+
+/* BUTTONS */
+
+.view-btn{
+background:#22c55e;
+color:white;
+border:none;
+padding:6px 14px;
+border-radius:18px;
+cursor:pointer;
+margin-right:6px;
+}
+
+.delete-btn{
+background:#ef4444;
+color:white;
+border:none;
+padding:6px 14px;
+border-radius:18px;
+cursor:pointer;
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Player</title>
+
+<link rel="stylesheet" href="css/course-player.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+  <!-- LEFT SIDE -->
+  <div class="header-left">
+
+    <a href="my-courses.html"><img src="assets/crr logo.jpg" class="logo"></a>
+
+    <h2>VIDHYA VAARADHI</h2>
+
+  </div>
+
+
+  <!-- RIGHT SIDE -->
+  <div class="header-right">
+
+    <a href="my-courses.html" title="Back to My Courses">My Courses</a>
+    <a href="assignments.html" title="Assignments">Assignments</a>
+    <a href="certificates.html" title="Certificates">Certificates</a>
+    <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600; text-decoration: none;">Logout</a>
+    <img src="assets/TESTIMONIAL PROFILE.jpg" class="profile">
+
+  </div>
+
+</header>
+
+
+<!-- ================= PLAYER LAYOUT ================= -->
+
+<section class="player-layout">
+
+  <!-- ================= SIDEBAR ================= -->
+
+  <aside class="curriculum">
+
+```
+<h3>Course Content</h3>
+
+
+<!-- MODULE 1 -->
+
+<div class="module">
+
+  <h4>Week 1 — Introduction</h4>
+
+  <ul>
+
+    <li class="lesson active"
+        data-video="assets/sample-video.mp4"
+        data-title="Course Overview">
+        Course Overview
+    </li>
+
+    <li class="lesson"
+        data-video="assets/sample-video.mp4"
+        data-title="AI Foundations">
+        AI Foundations
+    </li>
+
+  </ul>
+
+</div>
+
+
+
+<!-- MODULE 2 -->
+
+<div class="module">
+
+  <h4>Week 2 — Deep Learning</h4>
+
+  <ul>
+
+    <li class="lesson"
+        data-video="assets/sample-video.mp4"
+        data-title="Neural Networks">
+        Neural Networks
+    </li>
+
+    <li class="lesson"
+        data-video="assets/sample-video.mp4"
+        data-title="CNN Basics">
+        CNN Basics
+    </li>
+
+  </ul>
+
+</div>
+
+
+
+<!-- ===== SIDEBAR FOOTER TOOLS ===== -->
+
+<div class="sidebar-tools">
+
+  <button class="tool-btn">📄 Assignments</button>
+  <button class="tool-btn">📝 Notes</button>
+  <button class="tool-btn">🚀 Projects</button>
+
+</div>
+```
+
+  </aside>
+
+  <!-- ================= VIDEO AREA ================= -->
+
+  <div class="video-area">
+
+```
+<h2 id="lessonTitle">
+  Course Overview
+</h2>
+
+
+
+<!-- VIDEO -->
+
+<div class="video-player">
+
+  <video id="videoPlayer" controls>
+    <source src="assets/sample-video.mp4" type="video/mp4">
+  </video>
+
+</div>
+
+
+
+<!-- ================= TABS ================= -->
+
+<div class="player-tabs">
+
+  <button class="tab active" data-tab="overview">
+    Overview
+  </button>
+
+  <button class="tab" data-tab="resources">
+    Resources
+  </button>
+
+  <button class="tab" data-tab="discussion">
+    Discussion
+  </button>
+
+  <button class="tab" data-tab="assignments">
+    Assignments
+  </button>
+
+</div>
+
+
+
+<!-- ================= TAB CONTENT ================= -->
+
+<div class="tab-content" id="tabContent">
+
+  <p>
+    This module introduces the course structure
+    and learning outcomes.
+  </p>
+
+</div>
+```
+
+  </div>
+
+</section>
+
+<script src="js/course-player.js"></script>
+
+<script>
+function logout() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

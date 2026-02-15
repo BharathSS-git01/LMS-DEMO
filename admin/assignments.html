@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignments Admin</title>
+
+<!-- SHARED CSS -->
+
+<link rel="stylesheet" href="css/admin.css">
+
+<!-- PAGE CSS -->
+
+<link rel="stylesheet" href="css/assignments.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="admin-header">
+
+  <div class="header-left">
+    <img src="../assets/logo.png" class="logo">
+    <h2>VIDHYA VAARADHI</h2>
+  </div>
+
+  <nav class="header-center">
+    <a onclick="go('dashboard.html')">Dashboard</a>
+    <a onclick="go('students.html')">Students</a>
+    <a onclick="go('courses.html')">Courses</a>
+    <a class="active">Assignments</a>
+    <a onclick="go('quizzes.html')">Quizzes</a>
+    <a onclick="go('certificates.html')">Certificates</a>
+    <a onclick="go('../index.html')">Logout</a>
+  </nav>
+
+  <div class="header-right">
+    <img src="../assets/profile.jpg" class="profile">
+  </div>
+
+</header>
+
+<!-- ================= BODY ================= -->
+
+<section class="admin-body">
+
+  <!-- SIDEBAR -->
+
+  <aside class="admin-sidebar">
+
+```
+<ul>
+
+  <li onclick="go('dashboard.html')">Dashboard</li>
+  <li onclick="go('students.html')">Students</li>
+  <li onclick="go('courses.html')">Courses</li>
+  <li class="active">Assignments</li>
+  <li onclick="go('quizzes.html')">Quizzes</li>
+  <li onclick="go('certificates.html')">Certificates</li>
+  <li onclick="go('../index.html')">Logout</li>
+
+</ul>
+```
+
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+
+  <main class="admin-main">
+
+```
+<h2>Assignment Management</h2>
+
+
+
+<!-- ===== CREATE ASSIGNMENT ===== -->
+
+<div class="form-card">
+
+  <h3>Create Assignment</h3>
+
+  <input type="text" placeholder="Assignment Title">
+
+  <select>
+    <option>Select Course</option>
+    <option>Machine Learning</option>
+    <option>Deep Learning</option>
+  </select>
+
+  <input type="date">
+
+  <input type="file">
+
+  <textarea placeholder="Assignment Description"></textarea>
+
+  <button>Create Assignment</button>
+
+</div>
+
+
+
+<!-- ===== ASSIGNMENT LIST ===== -->
+
+<div class="assignment-table-card">
+
+  <h3>Existing Assignments</h3>
+
+  <table class="admin-table">
+
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Course</th>
+        <th>Due Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>Linear Regression Task</td>
+        <td>Machine Learning</td>
+        <td>20 Feb 2026</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+```
+
+  </main>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="admin-footer">
+
+  <p>Help Centre</p>
+  <p>Policy</p>
+  <p>© 2026 Vidhya Vaaradhi LMS</p>
+
+</footer>
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>

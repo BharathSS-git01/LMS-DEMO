@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Students Manager</title>
+
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/students.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="admin-header">
+
+  <div class="header-left">
+    <img src="../assets/logo.png" class="logo">
+    <h2>VIDHYA VAARADHI</h2>
+  </div>
+
+  <nav class="header-center">
+    <a onclick="go('dashboard.html')">Dashboard</a>
+    <a onclick="go('students.html')">Students</a>
+    <a onclick="go('courses.html')">Courses</a>
+    <a onclick="go('assignments.html')">Assignments</a>
+    <a onclick="go('quizzes.html')">Quizzes</a>
+    <a onclick="go('certificates.html')">Certificates</a>
+    <a onclick="go('../index.html')">Logout</a>
+  </nav>
+
+  <div class="header-right">
+    <img src="../assets/profile.jpg" class="profile">
+  </div>
+
+</header>
+
+<section class="admin-body">
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="admin-sidebar">
+<ul>
+<li onclick="go('dashboard.html')">Dashboard</li>
+<li onclick="go('courses.html')">Courses</li>
+<li onclick="go('assignments.html')">Assignments</li>
+<li onclick="go('quizzes.html')">Exams</li>
+<li onclick="go('certificates.html')">Certificates</li>
+<li class="active">Students</li>
+</ul>
+</aside>
+
+<!-- ================= MAIN ================= -->
+
+<main class="admin-main">
+
+<h2 class="page-title">Students Management & Analytics</h2>
+
+<!-- ===== HERO ANALYTICS ===== -->
+
+<div class="student-hero">
+
+<div class="hero-box">
+<h4>Total Students</h4>
+<p>4,820</p>
+</div>
+
+<div class="hero-box">
+<h4>Active Learners</h4>
+<p>3,640</p>
+</div>
+
+<div class="hero-box">
+<h4>Certified</h4>
+<p>1,240</p>
+</div>
+
+<div class="hero-box">
+<h4>Dropout Rate</h4>
+<p>8%</p>
+</div>
+
+</div>
+
+<!-- ===== STUDENT TABLE ===== -->
+
+<div class="student-panel">
+
+<h3>Student Records</h3>
+
+<table class="admin-table">
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Courses</th>
+<th>Progress</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Rahul Sharma</td>
+<td>rahul@email.com</td>
+<td>3</td>
+<td>78%</td>
+<td class="active">Active</td>
+<td>
+<button class="view-btn">View</button>
+<button class="delete-btn">Block</button>
+</td>
+</tr>
+
+<tr>
+<td>Anjali Verma</td>
+<td>anjali@email.com</td>
+<td>2</td>
+<td>41%</td>
+<td class="inactive">Inactive</td>
+<td>
+<button class="view-btn">View</button>
+<button class="delete-btn">Block</button>
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- ===== PERFORMANCE ANALYTICS ===== -->
+
+<div class="analytics-grid">
+
+<div class="metric">
+<h4>Completion Rate</h4>
+<p>72%</p>
+</div>
+
+<div class="metric">
+<h4>Assignment Submission</h4>
+<p>68%</p>
+</div>
+
+<div class="metric">
+<h4>Quiz Pass Rate</h4>
+<p>81%</p>
+</div>
+
+</div>
+
+<!-- ===== ENGAGEMENT METRICS ===== -->
+
+<div class="analytics-grid">
+
+<div class="metric">
+<h4>Daily Logins</h4>
+<p>2,140</p>
+</div>
+
+<div class="metric">
+<h4>Avg Watch Time</h4>
+<p>46 min</p>
+</div>
+
+<div class="metric">
+<h4>Course Activity</h4>
+<p>High</p>
+</div>
+
+</div>
+
+</main>
+
+</section>
+
+<footer class="admin-footer">
+<p>Help Centre</p>
+<p>Policy</p>
+<p>© 2026 Vidhya Vaaradhi LMS</p>
+</footer>
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>

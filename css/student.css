@@ -1,0 +1,362 @@
+/* ================= GLOBAL ================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f8fafc;
+}
+
+/* ================= HEADER ================= */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 40px;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  color: #2563eb;
+}
+
+/* NAV LINKS */
+
+.nav-links a {
+  margin-left: 25px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ================= DROPDOWN ================= */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  cursor: pointer;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background: white;
+  min-width: 180px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  border-radius: 10px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: 0.25s;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+.dropdown-content a:hover {
+  background: #f1f5f9;
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ================= MAIN ================= */
+
+.main {
+  padding: 30px 40px;
+}
+
+/* ================= INSTITUTIONS ================= */
+
+.institutions {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.institutions h2 {
+  margin-bottom: 10px;
+}
+
+.institution-logos {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+.institution-logos img {
+  width: 80px;
+  object-fit: contain;
+}
+
+/* ================= WHY VAARADHI ================= */
+
+.why {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.why h2 {
+  margin-bottom: 10px;
+}
+
+.why-vertical {
+  max-width: 750px;
+  margin: auto;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* BORDER ONLY CARDS */
+
+.why-card {
+  padding: 22px;
+  border: 1px solid #cbd5f5;
+  border-radius: 12px;
+  background: transparent;
+  text-align: left;
+}
+
+.why-card h3 {
+  color: #2563eb;
+  margin-bottom: 6px;
+}
+
+.why-card p {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* ================= SEARCH ================= */
+
+.search-section {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.search-section input {
+  width: 600px;
+  padding: 16px 20px;
+  border: 2px solid #cbd5f5;
+  border-radius: 40px;
+  background: transparent;
+  outline: none;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.search-section input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 10px rgba(37,99,235,0.2);
+}
+
+/* ================= POPULAR COURSES ================= */
+
+.popular{
+  padding:40px 20px;
+}
+
+.popular h2{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+/* SIDE BY SIDE LAYOUT */
+
+.course-grid{
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  flex-wrap:nowrap;   /* keeps side by side */
+}
+
+/* CARD */
+
+.course-card{
+  width:260px;
+  border:1px solid #e2e8f0;
+  border-radius:12px;
+  overflow:hidden;
+  background:white;
+  transition:0.3s;
+}
+
+.course-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* IMAGE */
+
+.course-card img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+}
+
+/* TEXT */
+
+.course-card h4{
+  padding:10px;
+  font-size:15px;
+}
+
+.course-card p{
+  padding:0 10px 12px;
+  font-size:13px;
+  color:#64748b;
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer {
+  background: #0f172a;
+  color: white;
+  padding: 40px;
+}
+
+/* LAYOUT */
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* BRAND */
+
+.footer-brand {
+  max-width: 320px;
+}
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-header img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.brand-header h2 {
+  font-size: 22px;
+}
+
+.tagline {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #cbd5f5;
+}
+
+/* LINKS RIGHT */
+
+.footer-links {
+  display: flex;
+  gap: 60px;
+}
+
+.footer-links h4 {
+  margin-bottom: 10px;
+}
+
+.footer-links p {
+  font-size: 14px;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+/* COPYRIGHT */
+
+.copyright {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* ================= MOBILE SIDEBAR ================= */
+
+.menu-toggle {
+  display: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.mobile-sidebar {
+  position: fixed;
+  left: -240px;
+  top: 0;
+  width: 220px;
+  height: 100%;
+  background: #0f172a;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.mobile-sidebar a {
+  display: block;
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+  .nav-links {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .mobile-sidebar.active {
+    left: 0;
+  }
+
+  .institution-logos {
+    flex-wrap: wrap;
+  }
+
+  .search-section input {
+    width: 100%;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .footer-links {
+    gap: 30px;
+  }
+
+}

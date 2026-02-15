@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificates</title>
+
+<link rel="stylesheet" href="css/certificates.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+  <div class="header-left">
+    <a href="student-dashboard.html"><img src="assets/crr logo.jpg" class="logo"></a>
+    <h2>VIDHYA VAARADHI</h2>
+  </div>
+
+  <div class="header-right">
+    <a href="student-dashboard.html" title="Back to Dashboard">Dashboard</a>
+    <a href="my-courses.html" title="Back to My Courses">My Courses</a>
+    <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600; text-decoration: none;">Logout</a>
+    <img src="assets/TESTIMONIAL PROFILE.jpg" class="profile">
+  </div>
+
+</header>
+
+<!-- ================= HERO ================= -->
+
+<section class="cert-hero">
+
+  <h1>Your Certifications</h1>
+  <p>Recognizing your learning achievements</p>
+
+</section>
+
+<!-- ================= CERTIFICATE GRID ================= -->
+
+<section class="cert-grid">
+
+  <!-- CERT CARD -->
+
+  <div class="cert-card">
+
+```
+<img src="assets/Machine Learning Certificate.jpg">
+
+<h3>Machine Learning</h3>
+<p>CRR TRAINING PROGRAMME • CRR</p>
+<span>Issued: Jan 2026</span>
+
+<div class="cert-actions">
+
+  <button onclick="viewCert('assets/Machine Learning Certificate.jpg')">
+    View
+  </button>
+
+  <a href="assets/Machine Learning Certificate.jpg" download>
+    <button>Download</button>
+  </a>
+
+</div>
+```
+
+  </div>
+
+</section>
+
+<!-- ================= MODAL VIEWER ================= -->
+
+<div class="cert-modal" id="certModal">
+
+<span class="close" onclick="closeCert()">×</span>
+
+  <img id="certPreview">
+
+</div>
+
+<script src="js/certificates.js"></script>
+
+<script>
+function logout() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

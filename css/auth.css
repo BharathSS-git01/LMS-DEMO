@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #d0e9f8, #d3e8fd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CONTAINER */
+
+.auth-container {
+  width: 900px;
+  height: 550px;
+  background: white;
+  display: flex;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+/* LEFT */
+
+.auth-left {
+  flex: 1;
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: white;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-left h1 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.auth-left p {
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* RIGHT */
+
+.auth-right {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* TABS */
+
+.auth-tabs {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.auth-tabs button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: #f1f5f9;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.auth-tabs .active {
+  background: #2563eb;
+  color: white;
+}
+
+/* FORMS */
+
+.auth-form {
+  display: none;
+  flex-direction: column;
+}
+
+.auth-form.active {
+  display: flex;
+}
+
+.auth-form input,
+.auth-form select {
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5f5;
+}
+
+/* BUTTON */
+
+.auth-btn {
+  padding: 10px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 8px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+/* REMEMBER */
+
+.remember {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+/* DIVIDER */
+
+.divider {
+  text-align: center;
+  margin: 15px 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* GOOGLE BUTTON */
+
+.google-btn {
+  padding: 10px;
+  border: 1px solid #cbd5f5;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+/* PHONE BUTTON */
+
+.phone-btn {
+  padding: 10px;
+  border: 1px solid #cbd5f5;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+}

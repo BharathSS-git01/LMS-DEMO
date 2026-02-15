@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Login - VIDHYA VAARADHI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/auth.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="auth-container">
+
+  <!-- LEFT SIDE -->
+  <div class="auth-left">
+
+    <h1>Welcome to VIDHYA VAARADHI</h1>
+    <p>
+      A LEARNING platform beyond classrooms.
+      Access courses, certifications, and collaborative learning.
+    </p>
+
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="auth-right">
+
+    <!-- LOGIN FORM -->
+    <form id="loginForm" class="auth-form active">
+
+      <h2>Student Login</h2>
+
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+
+      <div class="remember">
+        <label><input type="checkbox"> Remember me</label>
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <button type="button" onclick="loginStudent()" class="auth-btn">Login</button>
+
+      <!-- Divider -->
+      <div class="divider">OR</div>
+
+      <!-- Google -->
+      <button type="button" class="google-btn">
+        Continue with Google
+      </button>
+
+      <!-- Phone -->
+      <button type="button" class="phone-btn">
+        Continue with Phone Number
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script>
+function loginStudent() {
+  window.location.href = "student-dashboard.html";
+}
+</script>
+
+</body>
+</html>

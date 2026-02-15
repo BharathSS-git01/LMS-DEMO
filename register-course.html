@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register for Course</title>
+
+  <link rel="stylesheet" href="css/student.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+  <div class="menu-toggle" id="menuToggle">☰</div>
+
+  <h2 class="logo">VIDHYA VAARADHI</h2>
+
+  <nav class="nav-links">
+
+  <a href="student-dashboard.html">Home</a>
+
+  <!-- COURSES DROPDOWN -->
+  <div class="dropdown">
+
+    <a class="dropbtn">Courses ▾</a>
+
+    <div class="dropdown-content">
+
+      <a href="student-dashboard.html">Top Courses</a>
+      <a href="my-courses.html">My Courses</a>
+      <a href="register-course.html">Register</a>
+      <a href="completed.html">Completed</a>
+      <a href="certificates.html">Certificates</a>
+
+    </div>
+
+  </div>
+
+  <a href="#">Institutions</a>
+  <a href="#">Community</a>
+  <a href="profile.html">Profile</a>
+  <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600;">Logout</a>
+
+</nav>
+
+</header>
+
+<!-- ================= MOBILE SIDEBAR ================= -->
+
+<aside class="mobile-sidebar" id="sidebar">
+
+  <a href="student-dashboard.html">Home</a>
+  <a href="my-courses.html">Courses</a>
+  <a href="#">Institutions</a>
+  <a href="#">Community</a>
+  <a href="profile.html">Profile</a>
+  <a href="index.html">Logout</a>
+
+</aside>
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+  <section class="register-courses">
+
+    <h2>Register for a Course</h2>
+    <p>Browse and register for available courses.</p>
+
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+  <div class="footer-container">
+
+    <!-- BRAND -->
+
+    <div class="footer-brand">
+
+      <div class="brand-header">
+        <img src="assets/crr logo.jpg">
+        <h2>VIDHYA VAARADHI</h2>
+      </div>
+
+      <p class="tagline">
+        A Platform of Education
+      </p>
+
+    </div>
+
+    <!-- LINKS -->
+
+    <div class="footer-links">
+
+      <div>
+        <h4>Community</h4>
+        <p>Forums</p>
+        <p>Events</p>
+        <p>Discussions</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <p>About</p>
+        <p>Courses</p>
+        <p>Support</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="copyright">
+    © 2026 Vidhya Vaaradhi • All Rights Reserved
+  </div>
+
+</footer>
+
+<script src="js/student.js"></script>
+
+<script>
+function logout() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

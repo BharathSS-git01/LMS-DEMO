@@ -1,0 +1,22 @@
+{
+  "routes": [
+    { "src": "/", "dest": "/" },
+    { "src": "/student-login", "dest": "/student-login.html" },
+    { "src": "/student-dashboard", "dest": "/student-dashboard.html" },
+    { "src": "/my-courses", "dest": "/my-courses.html" },
+    { "src": "/course-player", "dest": "/course-player.html" },
+    { "src": "/assignments", "dest": "/assignments.html" },
+    { "src": "/certificates", "dest": "/certificates.html" },
+    { "src": "/completed", "dest": "/completed.html" },
+    { "src": "/register-course", "dest": "/register-course.html" },
+    { "src": "/profile", "dest": "/profile.html" },
+    { "src": "/admin-login", "dest": "/admin/admin-login.html" },
+    { "src": "/admin-dashboard", "dest": "/admin/dashboard.html" },
+    { "src": "/admin-students", "dest": "/admin/students.html" },
+    { "src": "/admin-courses", "dest": "/admin/courses.html" },
+    { "src": "/admin-assignments", "dest": "/admin/assignments.html" },
+    { "src": "/admin-quizzes", "dest": "/admin/quizzes.html" },
+    { "src": "/admin-certificates", "dest": "/admin/certificates.html" },
+    { "src": "/(.*)", "status": 404, "dest": "/404.html" }
+  ]
+}

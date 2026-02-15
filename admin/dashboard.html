@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard</title>
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="css/admin.css">
+
+<!-- FONT -->
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">  
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="admin-header">
+
+  <!-- LEFT : LOGO + NAME -->
+
+  <div class="header-left">
+
+```
+<img src="../assets/crr logo.jpg" class="logo">
+<h2>VIDHYA VAARADHI</h2>
+```
+
+  </div>
+
+  <!-- CENTER : NAVIGATION -->
+
+  <nav class="header-center">
+
+```
+<a class="active">Dashboard</a>
+<a onclick="go('students.html')">Students</a>
+<a onclick="go('courses.html')">Courses</a>
+<a onclick="go('assignments.html')">Assignments</a>
+<a onclick="go('quizzes.html')">Quizzes</a>
+<a onclick="go('certificates.html')">Certificates</a>
+<a onclick="go('../index.html')">Logout</a>
+```
+
+  </nav>
+
+  <!-- RIGHT : PROFILE -->
+
+  <div class="header-right"></div>
+
+
+<img src="../assets/TESTIMONIAL PROFILE.jpg" class="profile">
+
+
+  </div>
+
+</header>
+
+<!-- ================= BODY ================= -->
+
+<section class="admin-body">
+
+  <!-- ===== SIDEBAR ===== -->
+
+  <aside class="admin-sidebar">
+
+```
+<ul>
+
+  <li class="active"
+      onclick="go('dashboard.html')">
+      Dashboard
+  </li>
+
+  <li onclick="go('students.html')">
+      Manage Students
+  </li>
+
+  <li onclick="go('courses.html')">
+      Manage Courses
+  </li>
+
+  <li onclick="go('assignments.html')">
+      Manage Assignments
+  </li>
+
+  <li onclick="go('quizzes.html')">
+      Manage Quizzes
+  </li>
+
+  <li onclick="go('certificates.html')">
+      Manage Certificates
+  </li>
+
+  <li onclick="go('../index.html')">
+      Logout
+  </li>
+
+</ul>
+```
+
+  </aside>
+
+  <!-- ===== MAIN CONTENT ===== -->
+
+  <main class="admin-main">
+
+```
+<!-- WELCOME -->
+
+<section class="admin-welcome">
+
+  <h2>Welcome, Admin 👋</h2>
+
+  <p>
+    Manage courses, monitor student progress,
+    issue certificates, and oversee platform
+    activities from this central dashboard.
+  </p>
+
+</section>
+
+
+
+<!-- STATS -->
+
+<section class="admin-stats">
+
+  <div class="stat-card">
+    <h3>Total Students</h3>
+    <h1>1,240</h1>
+    <p>+12% this month</p>
+  </div>
+
+  <div class="stat-card">
+    <h3>Total Courses</h3>
+    <h1>32</h1>
+    <p>4 new published</p>
+  </div>
+
+  <div class="stat-card">
+    <h3>Enrollments</h3>
+    <h1>5,421</h1>
+    <p>Active learners</p>
+  </div>
+
+  <div class="stat-card">
+    <h3>Certificates Issued</h3>
+    <h1>980</h1>
+    <p>Updated today</p>
+  </div>
+
+</section>
+
+
+
+<!-- ISSUES + UPDATES -->
+
+<section class="admin-panel-grid">
+
+
+
+  <!-- ISSUES -->
+
+  <div class="panel-card">
+
+    <h3>Issue Notifications</h3>
+
+    <ul class="issue-list">
+
+      <li>Server load spike detected — 10 Feb</li>
+      <li>Assignment upload delay reported</li>
+      <li>Video streaming lag — Week 2 AI</li>
+
+    </ul>
+
+  </div>
+
+
+
+  <!-- UPDATES -->
+
+  <div class="panel-card">
+
+    <h3>Website Updates</h3>
+
+    <ul class="update-list">
+
+      <li>New course: Generative AI added</li>
+      <li>Certificate design upgraded</li>
+      <li>Quiz engine optimized</li>
+
+    </ul>
+
+  </div>
+
+</section>
+
+
+
+<!-- PLATFORM STATS -->
+
+<section class="platform-stats">
+
+  <h3>Platform Statistics</h3>
+
+
+
+  <div class="bar">
+
+    <p>Course Completion Rate</p>
+
+    <div class="progress">
+      <span style="width:78%"></span>
+    </div>
+
+  </div>
+
+
+
+  <div class="bar">
+
+    <p>Assignment Submission</p>
+
+    <div class="progress">
+      <span style="width:64%"></span>
+    </div>
+
+  </div>
+
+
+
+  <div class="bar">
+
+    <p>Quiz Pass Percentage</p>
+
+    <div class="progress">
+      <span style="width:82%"></span>
+    </div>
+
+  </div>
+
+</section>
+```
+
+  </main>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="admin-footer">
+
+  <p>Help Centre</p>
+  <p>Policy</p>
+  <p>© 2026 Vidhya Vaaradhi LMS</p>
+
+</footer>
+
+<!-- JS -->
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Courses</title>
+
+<link rel="stylesheet" href="css/my-courses.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ================= MAIN HEADER ================= -->
+
+<header class="header">
+
+  <!-- LEFT -->
+  <div class="header-left">
+    <img src="assets/crr logo.jpg" class="logo">
+    <h2>VIDHYA VAARADHI</h2>
+  </div>
+
+  <!-- CENTER NAV -->
+  <nav class="header-center">
+    <a class="active">Home</a>
+    <a>Explore Courses</a>
+    <a>My Learning</a>
+    <a>Institutions</a>
+    <a>Community</a>
+  </nav>
+
+  <!-- RIGHT PROFILE -->
+  <div class="header-right">
+    <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600; text-decoration: none; margin-right: 20px;">Logout</a>
+    <img src="assets/TESTIMONIAL PROFILE.jpg" class="profile">
+  </div>
+
+</header>
+
+
+
+<!-- ================= SUB HEADER ================= -->
+
+<section class="sub-header">
+
+  <!-- LEFT TEXT BUTTONS -->
+  <div class="sub-left">
+
+    <button class="sub-btn active">Enrolled</button>
+    <button class="sub-btn">Ongoing</button>
+    <button class="sub-btn">Completed</button>
+    <button class="sub-btn">Certificates</button>
+
+  </div>
+
+
+  <!-- RIGHT SEARCH -->
+  <div class="sub-right">
+
+    <input
+      type="text"
+      placeholder="Search courses..."
+    >
+
+  </div>
+
+</section>
+
+
+
+
+
+<!-- ================= ONGOING ================= -->
+
+<section class="course-section">
+
+<h2 class="section-title">Ongoing Courses</h2>
+
+<div class="course-card-horizontal">
+
+  <div class="course-thumb">
+    <img src="assets/GEN AI.jpg">
+  </div>
+
+  <div class="course-details">
+    <h3>GENEREATIVE AI</h3>
+    <p class="institute">NPTEL •</p>
+    <p class="meta">12 Weeks • Jan–Apr 2026</p>
+
+    <div class="progress-bar">
+      <div class="progress-fill" style="width:70%"></div>
+    </div>
+
+    <span class="progress-text">70% Completed</span>
+  </div>
+
+  <div class="course-action">
+    <a href="course-player.html"><button class="continue-btn">Go to Course</button></a>
+    <a href="assignments.html"><button class="continue-btn">Assignments</button></a>
+    <a href="certificates.html"><button class="continue-btn">Certificates</button></a>
+  </div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= COMPLETED ================= -->
+
+<section class="course-section">
+
+<h2 class="section-title">Completed Courses</h2>
+
+<div class="course-card-horizontal">
+
+  <div class="course-thumb">
+    <img src="assets/ML.jpg">
+  </div>
+
+  <div class="course-details">
+    <h3>Machine Learning</h3>
+    <p class="institute">NPTEL • IIT Madras</p>
+    <p class="meta">Completed • 2025</p>
+
+    <div class="progress-bar">
+      <div class="progress-fill" style="width:100%"></div>
+    </div>
+
+    <span class="progress-text">100% Completed</span>
+  </div>
+
+  <div class="course-action">
+    <span class="cert-badge">Certified</span>
+    <a href="certificates.html"><button class="continue-btn">View Certificate</button></a>
+  </div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= CERTIFICATIONS ================= -->
+
+<section class="cert-section">
+
+<h2 class="section-title">Certifications</h2>
+
+<div class="cert-grid">
+
+  <div class="cert-card">
+    <h4>Machine Learning</h4>
+    <p>IIT Madras • NPTEL</p>
+  </div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+<div class="footer-grid">
+
+  <div>
+    <h4>Help Centre</h4>
+    <p>Support</p>
+    <p>FAQs</p>
+    <p>Contact</p>
+  </div>
+
+  <div>
+    <h4>Policy</h4>
+    <p>Privacy Policy</p>
+    <p>Terms</p>
+    <p>Refund</p>
+  </div>
+
+  <div>
+    <h4>Platform</h4>
+    <p>About</p>
+    <p>Careers</p>
+    <p>Partners</p>
+  </div>
+
+</div>
+
+</footer>
+
+<script>
+function logout() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

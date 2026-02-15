@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignments & Quiz</title>
+
+<link rel="stylesheet" href="css/assignments.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+  <div class="header-left">
+    <a href="my-courses.html"><img src="assets/logo.png" class="logo"></a>
+    <h2>VIDHYA VAARADHI</h2>
+  </div>
+
+  <div class="header-right">
+    <a href="course-player.html" title="Back to Course">Back to Course</a>
+    <a href="my-courses.html" title="Back to My Courses">My Courses</a>
+    <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600; text-decoration: none;">Logout</a>
+    <img src="assets/profile.jpg" class="profile">
+  </div>
+
+</header>
+
+<!-- ================= LAYOUT ================= -->
+
+<section class="assignment-layout">
+
+  <!-- ===== SIDEBAR ===== -->
+
+  <aside class="curriculum">
+
+```
+<h3>Course Content</h3>
+
+<div class="module">
+  <h4>Week 1</h4>
+  <ul>
+    <li class="lesson active">Assignment 1</li>
+    <li class="lesson">Quiz 1</li>
+  </ul>
+</div>
+
+<div class="module">
+  <h4>Week 2</h4>
+  <ul>
+    <li class="lesson">Assignment 2</li>
+    <li class="lesson">Quiz 2</li>
+  </ul>
+</div>
+```
+
+  </aside>
+
+  <!-- ===== MAIN AREA ===== -->
+
+  <div class="assignment-area">
+
+```
+<h2>Assignments</h2>
+
+<div class="assignment-card">
+  <h3>AI Foundations Assignment</h3>
+  <span class="due">Due: 20 Feb 2026</span>
+  <span class="status pending">Pending</span>
+  <button>Upload Assignment</button>
+</div>
+
+
+
+<!-- ================= QUIZ ================= -->
+
+<h2 class="quiz-title">Dummy Quiz</h2>
+
+<form id="quizForm">
+
+  <!-- 20 QUESTIONS -->
+
+  <div class="quiz-question">
+    <p>1. AI stands for?</p>
+    <label><input type="radio" name="q1" value="1"> Artificial Intelligence</label>
+    <label><input type="radio" name="q1" value="0"> Automated Input</label>
+  </div>
+
+  <div class="quiz-question">
+    <p>2. ML is a subset of?</p>
+    <label><input type="radio" name="q2" value="1"> AI</label>
+    <label><input type="radio" name="q2" value="0"> Networking</label>
+  </div>
+
+  <!-- Repeat pattern up to 20 -->
+
+  <!-- I’ll compress middle for readability -->
+
+  <div id="moreQuestions"></div>
+
+  <button type="button" onclick="submitQuiz()" class="submit-quiz">
+    Submit Quiz
+  </button>
+
+</form>
+
+<h3 id="quizScore"></h3>
+```
+
+  </div>
+
+</section>
+
+<script src="js/assignments.js"></script>
+
+<script>
+function logout() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

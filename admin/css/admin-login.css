@@ -1,0 +1,101 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#f1f5f9;
+}
+
+
+
+/* CONTAINER */
+
+.login-container{
+width:900px;
+height:520px;
+display:grid;
+grid-template-columns:1fr 1fr;
+background:white;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 12px 40px rgba(0,0,0,0.1);
+}
+
+
+
+/* LEFT PANEL */
+
+.login-left{
+background:linear-gradient(120deg,#1e3a8a,#2563eb);
+color:white;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:40px;
+text-align:center;
+}
+
+.login-left h1{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.login-left p{
+font-size:14px;
+opacity:.9;
+}
+
+
+
+/* RIGHT PANEL */
+
+.login-right{
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:40px;
+}
+
+.login-right h2{
+margin-bottom:20px;
+color:#1e293b;
+}
+
+
+
+/* INPUTS */
+
+.login-right input{
+margin-bottom:14px;
+padding:10px;
+border-radius:8px;
+border:1px solid #cbd5e1;
+outline:none;
+}
+
+
+
+/* BUTTON */
+
+.login-right button{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px;
+border-radius:20px;
+cursor:pointer;
+transition:.3s;
+}
+
+.login-right button:hover{
+box-shadow:0 0 12px rgba(37,99,235,.6);
+}
+ 
