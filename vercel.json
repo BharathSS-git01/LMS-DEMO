@@ -1,5 +1,11 @@
 {
   "routes": [
+    { "src": "/css/(.*)", "dest": "/css/$1" },
+    { "src": "/js/(.*)", "dest": "/js/$1" },
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/admin/css/(.*)", "dest": "/admin/css/$1" },
+    { "src": "/admin/js/(.*)", "dest": "/admin/js/$1" },
+    { "src": "/(.*)\\.(js|css|json|png|jpg|jpeg|gif|svg|webp|ico|ttf|woff|woff2)$", "dest": "/$1.$2" },
     { "src": "/", "dest": "/" },
     { "src": "/student-login", "dest": "/student-login.html" },
     { "src": "/student-dashboard", "dest": "/student-dashboard.html" },
