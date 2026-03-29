@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -12,180 +11,111 @@
 
 <body>
 
-<!-- ================= HEADER ================= -->
-
 <header class="header">
-
-  <!-- LEFT SIDE -->
-  <div class="header-left">
-
-    <a href="my-courses.html"><img src="assets/crr logo.jpg" class="logo"></a>
-
-    <h2>VIDHYA VAARADHI</h2>
-
+  <div class="menu-toggle" id="menuToggle">&#9776;</div>
+  <div class="brand-mark">
+    <img src="assets/crr logo.jpg" alt="Vaaradhi logo">
+    <h2 class="logo">VIDHYA VAARADHI</h2>
   </div>
-
-
-  <!-- RIGHT SIDE -->
-  <div class="header-right">
-
-    <a href="my-courses.html" title="Back to My Courses">My Courses</a>
-    <a href="assignments.html" title="Assignments">Assignments</a>
-    <a href="certificates.html" title="Certificates">Certificates</a>
-    <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600; text-decoration: none;">Logout</a>
-    <img src="assets/TESTIMONIAL PROFILE.jpg" class="profile">
-
-  </div>
-
+  <nav class="nav-links">
+    <a href="student.html">Home</a>
+    <a href="my-courses.html">My Learning</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="quiz.html">Quizzes</a>
+    <a href="certificates.html">Certificates</a>
+    <a href="profile.html">Profile</a>
+    <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600;">Logout</a>
+  </nav>
 </header>
 
-
-<!-- ================= PLAYER LAYOUT ================= -->
+<aside class="mobile-sidebar" id="sidebar">
+  <a href="student.html">Home</a>
+  <a href="my-courses.html">Courses</a>
+  <a href="assignments.html">Assignments</a>
+  <a href="quiz.html">Quizzes</a>
+  <a href="certificates.html">Certificates</a>
+  <a href="profile.html">Profile</a>
+  <a href="index.html" onclick="logout()">Logout</a>
+</aside>
 
 <section class="player-layout">
-
-  <!-- ================= SIDEBAR ================= -->
-
   <aside class="curriculum">
-
-```
-<h3>Course Content</h3>
-
-
-<!-- MODULE 1 -->
-
-<div class="module">
-
-  <h4>Week 1 — Introduction</h4>
-
-  <ul>
-
-    <li class="lesson active"
-        data-video="assets/sample-video.mp4"
-        data-title="Course Overview">
-        Course Overview
-    </li>
-
-    <li class="lesson"
-        data-video="assets/sample-video.mp4"
-        data-title="AI Foundations">
-        AI Foundations
-    </li>
-
-  </ul>
-
-</div>
-
-
-
-<!-- MODULE 2 -->
-
-<div class="module">
-
-  <h4>Week 2 — Deep Learning</h4>
-
-  <ul>
-
-    <li class="lesson"
-        data-video="assets/sample-video.mp4"
-        data-title="Neural Networks">
-        Neural Networks
-    </li>
-
-    <li class="lesson"
-        data-video="assets/sample-video.mp4"
-        data-title="CNN Basics">
-        CNN Basics
-    </li>
-
-  </ul>
-
-</div>
-
-
-
-<!-- ===== SIDEBAR FOOTER TOOLS ===== -->
-
-<div class="sidebar-tools">
-
-  <button class="tool-btn">📄 Assignments</button>
-  <button class="tool-btn">📝 Notes</button>
-  <button class="tool-btn">🚀 Projects</button>
-
-</div>
-```
-
+    <h3>Course Content</h3>
   </aside>
 
-  <!-- ================= VIDEO AREA ================= -->
-
   <div class="video-area">
+    <h2 id="lessonTitle">Lesson</h2>
 
-```
-<h2 id="lessonTitle">
-  Course Overview
-</h2>
+    <div class="video-player" id="lessonMediaShell">
+      <div class="media-header">
+        <span class="media-badge" id="mediaBadge">Lesson Media</span>
+        <span class="media-meta" id="mediaMeta">Image preview</span>
+      </div>
+      <div class="media-stage">
+        <video id="videoPlayer" controls playsinline poster="assets/DEVOPS.jpg"></video>
+        <div class="media-fallback" id="mediaFallback">
+          <img id="lessonMediaImage" src="assets/DEVOPS.jpg" alt="Lesson preview">
+        </div>
+      </div>
+    </div>
 
+    <div class="player-meta" id="playerMeta"></div>
+    <div class="lesson-controls" id="lessonControls"></div>
+    <div class="course-summary-panel" id="courseSummaryPanel"></div>
 
+    <div class="player-tabs">
+      <button class="tab active" data-tab="overview">Overview</button>
+      <button class="tab" data-tab="resources">Resources</button>
+      <button class="tab" data-tab="discussion">Discussion</button>
+      <button class="tab" data-tab="assignments">Assignments</button>
+    </div>
 
-<!-- VIDEO -->
-
-<div class="video-player">
-
-  <video id="videoPlayer" controls>
-    <source src="assets/sample-video.mp4" type="video/mp4">
-  </video>
-
-</div>
-
-
-
-<!-- ================= TABS ================= -->
-
-<div class="player-tabs">
-
-  <button class="tab active" data-tab="overview">
-    Overview
-  </button>
-
-  <button class="tab" data-tab="resources">
-    Resources
-  </button>
-
-  <button class="tab" data-tab="discussion">
-    Discussion
-  </button>
-
-  <button class="tab" data-tab="assignments">
-    Assignments
-  </button>
-
-</div>
-
-
-
-<!-- ================= TAB CONTENT ================= -->
-
-<div class="tab-content" id="tabContent">
-
-  <p>
-    This module introduces the course structure
-    and learning outcomes.
-  </p>
-
-</div>
-```
-
+    <div class="tab-content" id="tabContent">
+      <p>Lesson details appear here.</p>
+    </div>
   </div>
-
 </section>
 
+<button class="complete-course-btn" id="completeCourseBtn" onclick="completeEntireCourse()">
+  Mark Course as Completed
+</button>
+
+<script src="js/lms-data.js"></script>
 <script src="js/course-player.js"></script>
 
 <script>
 function logout() {
+  if (window.LMSDemo && LMSDemo.clearSession) {
+    LMSDemo.clearSession();
+  } else {
+    localStorage.removeItem("token");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("user");
+  }
   window.location.href = "index.html";
 }
+
+(function () {
+  var menuToggle = document.getElementById("menuToggle");
+  var sidebar = document.getElementById("sidebar");
+  if (!menuToggle || !sidebar) return;
+
+  var overlay = document.createElement("div");
+  overlay.className = "mobile-sidebar-overlay";
+  document.body.appendChild(overlay);
+
+  menuToggle.onclick = function () {
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.classList.toggle("mobile-nav-open");
+  };
+
+  overlay.onclick = function () {
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("mobile-nav-open");
+  };
+})();
 </script>
 
 </body>

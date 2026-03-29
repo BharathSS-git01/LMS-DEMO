@@ -1,126 +1,102 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Assignments & Quiz</title>
-
+<title>Assignments | Vaaradhi LMS</title>
 <link rel="stylesheet" href="css/assignments.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
-
 <header class="header">
-
-  <div class="header-left">
-    <a href="my-courses.html"><img src="assets/logo.png" class="logo"></a>
-    <h2>VIDHYA VAARADHI</h2>
+  <div class="menu-toggle" id="menuToggle">&#9776;</div>
+  <div class="brand-mark">
+    <img src="assets/crr logo.jpg" alt="Vaaradhi logo">
+    <h2 class="logo">VIDHYA VAARADHI</h2>
   </div>
-
-  <div class="header-right">
-    <a href="course-player.html" title="Back to Course">Back to Course</a>
-    <a href="my-courses.html" title="Back to My Courses">My Courses</a>
-    <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600; text-decoration: none;">Logout</a>
-    <img src="assets/profile.jpg" class="profile">
-  </div>
-
+  <nav class="nav-links">
+    <a href="student.html">Home</a>
+    <a href="my-courses.html">My Learning</a>
+    <a href="assignments.html" class="active">Assignments</a>
+    <a href="quiz.html">Quizzes</a>
+    <a href="certificates.html">Certificates</a>
+    <a href="profile.html">Profile</a>
+    <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600;">Logout</a>
+  </nav>
 </header>
 
-<!-- ================= LAYOUT ================= -->
+<aside class="mobile-sidebar" id="sidebar">
+  <a href="student.html">Home</a>
+  <a href="my-courses.html">Courses</a>
+  <a href="assignments.html">Assignments</a>
+  <a href="quiz.html">Quizzes</a>
+  <a href="certificates.html">Certificates</a>
+  <a href="profile.html">Profile</a>
+  <a href="index.html" onclick="logout()">Logout</a>
+</aside>
 
-<section class="assignment-layout">
-
-  <!-- ===== SIDEBAR ===== -->
-
-  <aside class="curriculum">
-
-```
-<h3>Course Content</h3>
-
-<div class="module">
-  <h4>Week 1</h4>
-  <ul>
-    <li class="lesson active">Assignment 1</li>
-    <li class="lesson">Quiz 1</li>
-  </ul>
-</div>
-
-<div class="module">
-  <h4>Week 2</h4>
-  <ul>
-    <li class="lesson">Assignment 2</li>
-    <li class="lesson">Quiz 2</li>
-  </ul>
-</div>
-```
-
-  </aside>
-
-  <!-- ===== MAIN AREA ===== -->
-
-  <div class="assignment-area">
-
-```
-<h2>Assignments</h2>
-
-<div class="assignment-card">
-  <h3>AI Foundations Assignment</h3>
-  <span class="due">Due: 20 Feb 2026</span>
-  <span class="status pending">Pending</span>
-  <button>Upload Assignment</button>
-</div>
-
-
-
-<!-- ================= QUIZ ================= -->
-
-<h2 class="quiz-title">Dummy Quiz</h2>
-
-<form id="quizForm">
-
-  <!-- 20 QUESTIONS -->
-
-  <div class="quiz-question">
-    <p>1. AI stands for?</p>
-    <label><input type="radio" name="q1" value="1"> Artificial Intelligence</label>
-    <label><input type="radio" name="q1" value="0"> Automated Input</label>
-  </div>
-
-  <div class="quiz-question">
-    <p>2. ML is a subset of?</p>
-    <label><input type="radio" name="q2" value="1"> AI</label>
-    <label><input type="radio" name="q2" value="0"> Networking</label>
-  </div>
-
-  <!-- Repeat pattern up to 20 -->
-
-  <!-- I’ll compress middle for readability -->
-
-  <div id="moreQuestions"></div>
-
-  <button type="button" onclick="submitQuiz()" class="submit-quiz">
-    Submit Quiz
-  </button>
-
-</form>
-
-<h3 id="quizScore"></h3>
-```
-
-  </div>
-
+<section class="page-hero">
+  <h1>Assignment Workspace</h1>
+  <p>Review pending work, submit structured responses, and keep your assessment workflow aligned with course progress.</p>
 </section>
 
-<script src="js/assignments.js"></script>
+<div class="assignment-wrapper">
+  <aside class="week-sidebar">
+    <h3>Assignments</h3>
+    <ul></ul>
+  </aside>
 
+  <section class="assignment-content">
+    <h2 id="weekTitle">Assignment details</h2>
+
+    <form id="assignmentForm"></form>
+
+    <div class="submission-message" id="submissionMessage">
+      Assignment submitted successfully. Results will be reflected in your profile and dashboard.
+    </div>
+  </section>
+</div>
+
+<footer class="main-footer">
+&copy; 2026 Vaaradhi LMS. All rights reserved.
+</footer>
+
+<script src="js/lms-data.js"></script>
+<script src="js/assignments.js"></script>
 <script>
 function logout() {
+  if (window.LMSDemo && LMSDemo.clearSession) {
+    LMSDemo.clearSession();
+  } else {
+    localStorage.removeItem("token");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("user");
+  }
   window.location.href = "index.html";
 }
+
+(function () {
+  var menuToggle = document.getElementById("menuToggle");
+  var sidebar = document.getElementById("sidebar");
+  if (!menuToggle || !sidebar) return;
+
+  var overlay = document.createElement("div");
+  overlay.className = "mobile-sidebar-overlay";
+  document.body.appendChild(overlay);
+
+  menuToggle.onclick = function () {
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.classList.toggle("mobile-nav-open");
+  };
+
+  overlay.onclick = function () {
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("mobile-nav-open");
+  };
+})();
 </script>
 
 </body>

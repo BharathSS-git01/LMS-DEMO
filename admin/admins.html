@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Management</title>
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/admins.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="admin-header">
+  <div class="header-left">
+    <img src="../assets/crr logo.jpg" class="logo" alt="Logo">
+    <h2>VIDHYA VAARADHI</h2>
+  </div>
+  <nav class="header-center">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="students.html">Students</a>
+    <a href="courses.html">Courses</a>
+    <a href="lessons.html">Lessons</a>
+    <a href="notes.html">Notes</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="quizzes.html">Quizzes</a>
+    <a href="projects.html">Projects</a>
+    <a href="certificates.html">Certificates</a>
+    <a href="announcements.html">Announcements</a>
+    <a href="reports.html">Reports</a>
+    <a href="admins.html" class="active">Admins</a>
+    <a href="#" onclick="adminLogout()">Logout</a>
+  </nav>
+  <img src="../assets/TESTIMONIAL PROFILE.jpg" class="profile" alt="Admin">
+</header>
+<section class="admin-body">
+  <aside class="admin-sidebar">
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="students.html">Students</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="assignments.html">Assignments</a></li>
+      <li><a href="quizzes.html">Quizzes</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="certificates.html">Certificates</a></li>
+      <li><a href="announcements.html">Announcements</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li class="active"><a href="admins.html">Admins</a></li>
+      <li><a href="#" onclick="adminLogout()">Logout</a></li>
+    </ul>
+  </aside>
+  <main class="admin-main">
+    <section class="page-head">
+      <div>
+        <h1>Admin Management</h1>
+        <p>Create additional admin accounts for internal LMS operations and keep access restricted to trusted administrators only.</p>
+      </div>
+    </section>
+    <section class="panel-grid admins-layout">
+      <div class="form-card">
+        <h3>Create New Admin</h3>
+        <form id="adminCreateForm" class="form-stack">
+          <div class="form-grid">
+            <input id="adminName" type="text" placeholder="Full Name" required>
+            <input id="adminEmail" type="email" placeholder="Email Address" required>
+            <input id="adminPhone" type="text" placeholder="Phone Number">
+            <input id="adminDepartment" type="text" placeholder="Department / Role Label">
+            <input id="adminPassword" type="password" placeholder="Password" required>
+            <input id="adminConfirmPassword" type="password" placeholder="Confirm Password" required>
+          </div>
+          <div id="adminFormMessage" class="empty-state">New admin users created here are always saved with the <strong>admin</strong> role.</div>
+          <div class="action-row">
+            <button type="submit">Create Admin</button>
+            <button type="button" class="btn btn-secondary" id="adminFormReset">Clear</button>
+          </div>
+        </form>
+      </div>
+      <div class="panel">
+        <h3>Access Notes</h3>
+        <ul class="list-stack">
+          <li>Only existing admins can create additional admin accounts from this workspace.</li>
+          <li>Duplicate email addresses are blocked automatically to avoid conflicting access.</li>
+          <li>Public signup remains student-only and cannot create admin users.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="table-card">
+      <div class="table-head">
+        <h3>Current Admin Accounts</h3>
+        <input id="adminSearch" type="text" placeholder="Search admins by name or email">
+      </div>
+      <table class="admin-table">
+        <thead>
+          <tr><th>Admin</th><th>Role</th><th>Department</th><th>Created</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="adminsTable"></tbody>
+      </table>
+    </section>
+  </main>
+</section>
+<footer class="admin-footer">
+  <p>Help Centre</p>
+  <p>Policy</p>
+  <p>&copy; 2026 Vidhya Vaaradhi LMS</p>
+</footer>
+<script src="../js/lms-data.js"></script>
+<script src="js/admin-data.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/admins.js"></script>
+</body>
+</html>

@@ -1,173 +1,146 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Courses Admin</title>
-
-<!-- SHARED ADMIN CSS -->
-
 <link rel="stylesheet" href="css/admin.css">
-
-<!-- PAGE CSS -->
-
 <link rel="stylesheet" href="css/courses.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
-
-<!-- ================= HEADER ================= -->
-
 <header class="admin-header">
-
   <div class="header-left">
-    <img src="../assets/crr logo.jpg" class="logo">
+    <img src="../assets/crr logo.jpg" class="logo" alt="Logo">
     <h2>VIDHYA VAARADHI</h2>
   </div>
-
   <nav class="header-center">
-    <a onclick="go('dashboard.html')">Dashboard</a>
-    <a onclick="go('students.html')">Students</a>
-    <a class="active">Courses</a>
-    <a onclick="go('assignments.html')">Assignments</a>
-    <a onclick="go('quizzes.html')">Quizzes</a>
-    <a onclick="go('certificates.html')">Certificates</a>
-    <a onclick="go('../index.html')">Logout</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="students.html">Students</a>
+    <a href="courses.html" class="active">Courses</a>
+    <a href="lessons.html">Lessons</a>
+    <a href="notes.html">Notes</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="quizzes.html">Quizzes</a>
+    <a href="projects.html">Projects</a>
+    <a href="certificates.html">Certificates</a>
+    <a href="announcements.html">Announcements</a>
+    <a href="reports.html">Reports</a>
+    <a href="#" onclick="adminLogout()">Logout</a>
   </nav>
-
-  <div class="header-right">
-    <img src="../assets/TESTIMONIAL PROFILE.jpg" class="profile">
-  </div>
-
+  <img src="../assets/TESTIMONIAL PROFILE.jpg" class="profile" alt="Admin">
 </header>
-
-<!-- ================= BODY ================= -->
-
 <section class="admin-body">
-
-  <!-- ===== SIDEBAR ===== -->
-
   <aside class="admin-sidebar">
-
-```
-<ul>
-
-  <li onclick="go('dashboard.html')">Dashboard</li>
-  <li onclick="go('students.html')">Students</li>
-  <li class="active">Courses</li>
-  <li onclick="go('assignments.html')">Assignments</li>
-  <li onclick="go('quizzes.html')">Quizzes</li>
-  <li onclick="go('certificates.html')">Certificates</li>
-  <li onclick="go('../index.html')">Logout</li>
-
-</ul>
-```
-
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="students.html">Students</a></li>
+      <li class="active"><a href="courses.html">Courses</a></li>
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="assignments.html">Assignments</a></li>
+      <li><a href="quizzes.html">Quizzes</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="certificates.html">Certificates</a></li>
+      <li><a href="announcements.html">Announcements</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="#" onclick="adminLogout()">Logout</a></li>
+    </ul>
   </aside>
-
-  <!-- ================= MAIN ================= -->
-
   <main class="admin-main">
-
-```
-<h2>Course Management</h2>
-
-
-
-<!-- ===== ADD COURSE FORM ===== -->
-
-<div class="form-card">
-
-  <h3>Add New Course</h3>
-
-  <input type="text" placeholder="Course Title">
-
-  <input type="text" placeholder="Instructor / Institution">
-
-  <input type="text" placeholder="Course Duration">
-
-  <input type="file">
-
-  <select>
-    <option>Status</option>
-    <option>Published</option>
-    <option>Draft</option>
-  </select>
-
-  <button>Add Course</button>
-
-</div>
-
-
-
-<!-- ===== COURSE TABLE ===== -->
-
-<div class="course-table-card">
-
-  <h3>Existing Courses</h3>
-
-  <table class="admin-table">
-
-    <thead>
-      <tr>
-        <th>Course</th>
-        <th>Instructor</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-
-    <tbody>
-
-      <tr>
-        <td>Machine Learning</td>
-        <td>IIT Madras</td>
-        <td>Published</td>
-        <td>
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </td>
-      </tr>
-
-      <tr>
-        <td>Deep Learning</td>
-        <td>IIT Ropar</td>
-        <td>Draft</td>
-        <td>
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </td>
-      </tr>
-
-    </tbody>
-
-  </table>
-
-</div>
-```
-
+    <section class="page-head">
+      <div>
+        <h1>Course Management</h1>
+        <p>Create or update the public course catalog used across the LMS. Keep instructor, metadata, and publishing state organized in one place.</p>
+      </div>
+    </section>
+    <section class="panel-grid courses-layout">
+      <div class="form-card">
+        <h3>Add or Edit Course</h3>
+        <form id="courseForm" class="form-stack">
+          <input type="hidden" id="courseId">
+          <div class="form-grid">
+            <input id="courseTitle" type="text" placeholder="Course Title" required>
+            <input id="courseSlug" type="text" placeholder="Course ID / Slug" required>
+            <input id="courseSubtitle" type="text" placeholder="Catalog subtitle / tagline" required>
+            <input id="courseCategory" type="text" placeholder="Category / Department" required>
+            <input id="courseInstructor" type="text" placeholder="Instructor" required>
+            <input id="courseDuration" type="number" placeholder="Duration in Weeks" required>
+            <select id="courseDifficulty" required>
+              <option value="">Select Level</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
+            </select>
+            <select id="courseStatus">
+              <option value="published">Published</option>
+              <option value="draft">Draft</option>
+            </select>
+          </div>
+          <div class="form-grid">
+            <div class="upload-field">
+              <label for="courseImageFile">Thumbnail Image</label>
+              <input id="courseImageFile" type="file" accept="image/*">
+              <div id="courseImageMeta" class="upload-meta">Used in the public course catalog and student course cards.</div>
+              <img id="courseImagePreview" class="preview-thumb" alt="Course thumbnail preview" hidden>
+            </div>
+            <div class="upload-field">
+              <label for="courseBannerImageFile">Banner Image</label>
+              <input id="courseBannerImageFile" type="file" accept="image/*">
+              <div id="courseBannerMeta" class="upload-meta">Used in course details and premium hero sections when available.</div>
+              <img id="courseBannerPreview" class="preview-thumb" alt="Course banner preview" hidden>
+            </div>
+          </div>
+          <textarea id="courseShortDescription" placeholder="Short Description / Catalog Summary" required></textarea>
+          <textarea id="courseDescription" placeholder="Full Description" required></textarea>
+          <div class="action-row">
+            <button type="submit">Save Course</button>
+            <button type="button" class="btn btn-secondary" id="courseReset">Clear</button>
+          </div>
+        </form>
+      </div>
+      <div class="panel">
+        <h3>Catalog Notes</h3>
+        <ul class="list-stack">
+          <li>Only keep catalog information that students actually see in course cards, details, and player context.</li>
+          <li>Thumbnail and banner uploads now feed the public catalog and course details experience directly.</li>
+          <li>Use the review modal to check content depth before publishing a course live.</li>
+        </ul>
+        <input id="courseSearch" type="text" placeholder="Search courses by title, category, or instructor">
+        <div class="form-grid compact-controls">
+          <select id="courseStatusFilter">
+            <option value="all">All Statuses</option>
+            <option value="published">Published</option>
+            <option value="draft">Draft</option>
+          </select>
+          <select id="courseSort">
+            <option value="updated">Sort by Recent</option>
+            <option value="title">Sort by Title</option>
+            <option value="category">Sort by Department</option>
+            <option value="content">Sort by Content Depth</option>
+          </select>
+        </div>
+      </div>
+    </section>
+    <section class="table-card">
+      <h3>Existing Courses</h3>
+      <table class="admin-table">
+        <thead>
+          <tr><th>Course</th><th>Instructor</th><th>Delivery</th><th>Content</th><th>Status</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="coursesTable"></tbody>
+      </table>
+    </section>
   </main>
-
 </section>
-
-<!-- ================= FOOTER ================= -->
-
 <footer class="admin-footer">
-
   <p>Help Centre</p>
   <p>Policy</p>
-  <p>© 2026 Vidhya Vaaradhi LMS</p>
-
+  <p>&copy; 2026 Vidhya Vaaradhi LMS</p>
 </footer>
-
-<!-- JS -->
-
+<script src="../js/lms-data.js"></script>
+<script src="js/admin-data.js"></script>
 <script src="js/admin.js"></script>
-
+<script src="js/courses.js"></script>
 </body>
 </html>

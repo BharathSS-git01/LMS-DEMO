@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Certificates</title>
+<title>Certificates | Vaaradhi LMS</title>
 
 <link rel="stylesheet" href="css/certificates.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,81 +11,91 @@
 
 <body>
 
-<!-- ================= HEADER ================= -->
-
 <header class="header">
-
-  <div class="header-left">
-    <a href="student-dashboard.html"><img src="assets/crr logo.jpg" class="logo"></a>
-    <h2>VIDHYA VAARADHI</h2>
+  <div class="menu-toggle" id="menuToggle">&#9776;</div>
+  <div class="brand-mark">
+    <img src="assets/crr logo.jpg" alt="Vaaradhi logo">
+    <h2 class="logo">VIDHYA VAARADHI</h2>
   </div>
-
-  <div class="header-right">
-    <a href="student-dashboard.html" title="Back to Dashboard">Dashboard</a>
-    <a href="my-courses.html" title="Back to My Courses">My Courses</a>
-    <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600; text-decoration: none;">Logout</a>
-    <img src="assets/TESTIMONIAL PROFILE.jpg" class="profile">
-  </div>
-
+  <nav class="nav-links">
+    <a href="student.html">Home</a>
+    <a href="my-courses.html">My Learning</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="quiz.html">Quizzes</a>
+    <a href="certificates.html" class="active">Certificates</a>
+    <a href="profile.html">Profile</a>
+    <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600;">Logout</a>
+  </nav>
 </header>
 
-<!-- ================= HERO ================= -->
+<aside class="mobile-sidebar" id="sidebar">
+  <a href="student.html">Home</a>
+  <a href="my-courses.html">Courses</a>
+  <a href="assignments.html">Assignments</a>
+  <a href="quiz.html">Quizzes</a>
+  <a href="certificates.html">Certificates</a>
+  <a href="profile.html">Profile</a>
+  <a href="index.html" onclick="logout()">Logout</a>
+</aside>
 
 <section class="cert-hero">
-
   <h1>Your Certifications</h1>
-  <p>Recognizing your learning achievements</p>
-
+  <p>Review earned certificates, track upcoming unlocks, and keep visible progress tied to completed learning paths.</p>
 </section>
 
-<!-- ================= CERTIFICATE GRID ================= -->
-
-<section class="cert-grid">
-
-  <!-- CERT CARD -->
-
-  <div class="cert-card">
-
-```
-<img src="assets/Machine Learning Certificate.jpg">
-
-<h3>Machine Learning</h3>
-<p>CRR TRAINING PROGRAMME • CRR</p>
-<span>Issued: Jan 2026</span>
-
-<div class="cert-actions">
-
-  <button onclick="viewCert('assets/Machine Learning Certificate.jpg')">
-    View
-  </button>
-
-  <a href="assets/Machine Learning Certificate.jpg" download>
-    <button>Download</button>
-  </a>
-
-</div>
-```
-
+<section class="completed-section">
+  <h2>Earned Certificates</h2>
+  <div class="cert-grid" id="certGrid">
+    <p style="text-align:center;color:#64748b;">Loading certificate history...</p>
   </div>
-
 </section>
 
-<!-- ================= MODAL VIEWER ================= -->
-
-<div class="cert-modal" id="certModal">
-
-<span class="close" onclick="closeCert()">×</span>
-
-  <img id="certPreview">
-
+<div class="cert-modal" id="certModal" aria-hidden="true">
+  <div class="cert-modal-card">
+    <span class="close" onclick="closeCert()">X</span>
+    <img id="certPreview">
+    <a id="modalDownload" href="#" download>
+      <button>Download</button>
+    </a>
+  </div>
 </div>
 
+<script src="js/lms-data.js"></script>
 <script src="js/certificates.js"></script>
 
 <script>
 function logout() {
+  if (window.LMSDemo && LMSDemo.clearSession) {
+    LMSDemo.clearSession();
+  } else {
+    localStorage.removeItem("token");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("user");
+  }
   window.location.href = "index.html";
 }
+
+(function () {
+  var menuToggle = document.getElementById("menuToggle");
+  var sidebar = document.getElementById("sidebar");
+  if (!menuToggle || !sidebar) return;
+
+  var overlay = document.createElement("div");
+  overlay.className = "mobile-sidebar-overlay";
+  document.body.appendChild(overlay);
+
+  menuToggle.onclick = function () {
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.classList.toggle("mobile-nav-open");
+  };
+
+  overlay.onclick = function () {
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("mobile-nav-open");
+  };
+})();
 </script>
 
 </body>

@@ -1,0 +1,23 @@
+﻿.content-layout {
+  grid-template-columns: 1.25fr 0.75fr;
+}
+
+.form-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.form-stack textarea {
+  min-height: 120px;
+}
+
+.helper-text {
+  color: #64748b;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .content-layout {
+    grid-template-columns: 1fr;
+  }
+}

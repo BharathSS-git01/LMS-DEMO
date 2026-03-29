@@ -1,56 +1,36 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Login</title>
-
 <link rel="stylesheet" href="css/admin-login.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
 <section class="login-container">
-
-  <!-- LEFT BRAND PANEL -->
-
   <div class="login-left">
-
-```
-<h1>VIDHYA VAARADHI</h1>
-
-<p>
-  Learning Management Administration Portal
-</p>
-```
-
+    <h1>VIDHYA VAARADHI</h1>
+    <p>Learning Management Administration Portal</p>
+    <div class="login-points">
+      <span>Manage academic content, courses, and learning structure</span>
+      <span>Track assessments, submissions, and course readiness</span>
+      <span>"Strong administration creates a smoother learning experience for everyone."</span>
+    </div>
   </div>
-
-  <!-- RIGHT LOGIN PANEL -->
-
   <div class="login-right">
-
-```
-<h2>Admin Login</h2>
-
-<input type="text"
-       placeholder="Admin ID">
-
-<input type="password"
-       placeholder="Password">
-
-<button onclick="loginAdmin()">
-  Login
-</button>
-```
-
+    <h2>Admin Login</h2>
+    <p>Use the admin workspace to manage the LMS in a structured, production-style flow.</p>
+    <input id="adminId" type="text" placeholder="Admin ID or Email">
+    <input id="password" type="password" placeholder="Password">
+    <button id="loginButton" type="button">Login</button>
+    <div class="login-hint">Demo access: <strong>admin@gmail.com</strong> / <strong>1234</strong></div>
+    <a class="back-home-link" href="../index.html">Back to Home</a>
   </div>
-
 </section>
-
+<script src="../js/lms-data.js"></script>
+<script src="../js/config.js"></script>
+<script src="js/admin-data.js"></script>
 <script src="js/admin-login.js"></script>
-
 </body>
 </html>

@@ -1,204 +1,133 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Exam Control Center</title>
-
+<title>Quiz Management</title>
 <link rel="stylesheet" href="css/admin.css">
 <link rel="stylesheet" href="css/quizzes.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
-
-<!-- ================= HEADER ================= -->
-
 <header class="admin-header">
-
   <div class="header-left">
-    <img src="../assets/logo.png" class="logo">
+    <img src="../assets/crr logo.jpg" class="logo" alt="Logo">
     <h2>VIDHYA VAARADHI</h2>
   </div>
-
   <nav class="header-center">
-    <a onclick="go('dashboard.html')">Dashboard</a>
-    <a onclick="go('students.html')">Students</a>
-    <a onclick="go('courses.html')">Courses</a>
-    <a onclick="go('assignments.html')">Assignments</a>
-    <a class="active">Quizzes</a>
-    <a onclick="go('certificates.html')">Certificates</a>
-    <a onclick="go('../index.html')">Logout</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="students.html">Students</a>
+    <a href="courses.html">Courses</a>
+    <a href="lessons.html">Lessons</a>
+    <a href="notes.html">Notes</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="quizzes.html" class="active">Quizzes</a>
+    <a href="projects.html">Projects</a>
+    <a href="certificates.html">Certificates</a>
+    <a href="announcements.html">Announcements</a>
+    <a href="reports.html">Reports</a>
+    <a href="#" onclick="adminLogout()">Logout</a>
   </nav>
-
-  <div class="header-right">
-    <img src="../assets/profile.jpg" class="profile">
-  </div>
-
+  <img src="../assets/TESTIMONIAL PROFILE.jpg" class="profile" alt="Admin">
 </header>
-
 <section class="admin-body">
-
-<!-- ================= SIDEBAR ================= -->
-
-<aside class="admin-sidebar">
-<ul>
-<li onclick="go('dashboard.html')">Dashboard</li>
-<li onclick="go('students.html')">Students</li>
-<li onclick="go('courses.html')">Courses</li>
-<li onclick="go('assignments.html')">Assignments</li>
-<li class="active">Quizzes</li>
-<li onclick="go('certificates.html')">Certificates</li>
-<li onclick="go('../index.html')">Logout</li>
-</ul>
-</aside>
-
-<!-- ================= MAIN ================= -->
-
-<main class="admin-main">
-
-<!-- ===== HERO CONTROL ===== -->
-
-<div class="exam-hero">
-
-<h2>Exam Control Center</h2>
-
-<div class="hero-actions">
-<button class="start">Start Exam</button>
-<button class="pause">Pause</button>
-<button class="stop">Stop</button>
-</div>
-
-</div>
-
-<!-- ===== EXAM LIFECYCLE ===== -->
-
-<div class="exam-grid">
-
-<div class="exam-card">
-<h3>Scheduled Exams</h3>
-<p>12 Active</p>
-<button>Manage</button>
-</div>
-
-<div class="exam-card">
-<h3>Live Exams</h3>
-<p>3 Running</p>
-<button>Monitor</button>
-</div>
-
-<div class="exam-card">
-<h3>Completed Exams</h3>
-<p>48 Records</p>
-<button>View Reports</button>
-</div>
-
-<div class="exam-card">
-<h3>Question Banks</h3>
-<p>26 Uploaded</p>
-<button>Open Library</button>
-</div>
-
-</div>
-
-<!-- ===== QUESTION BANK ===== -->
-
-<div class="exam-panel">
-
-<h3>Upload Question Bank</h3>
-
-<input type="file">
-
-<select>
-<option>Select Course</option>
-<option>Machine Learning</option>
-<option>Deep Learning</option>
-</select>
-
-<button class="primary">Upload File</button>
-
-</div>
-
-<!-- ===== LIVE MONITORING ===== -->
-
-<div class="exam-panel">
-
-<h3>Live Student Monitoring</h3>
-
-<table class="admin-table">
-
-<thead>
-<tr>
-<th>Student</th>
-<th>Status</th>
-<th>Progress</th>
-<th>Flag</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr>
-<td>Rahul Sharma</td>
-<td class="live">Active</td>
-<td>78%</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Anjali Verma</td>
-<td class="offline">Disconnected</td>
-<td>—</td>
-<td>⚠</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-<!-- ===== ANALYTICS ===== -->
-
-<div class="analytics-strip">
-
-<div class="metric">
-<h4>Total Attempts</h4>
-<p>1,240</p>
-</div>
-
-<div class="metric">
-<h4>Avg Score</h4>
-<p>74%</p>
-</div>
-
-<div class="metric">
-<h4>Pass Rate</h4>
-<p>81%</p>
-</div>
-
-<div class="metric">
-<h4>Malpractice Flags</h4>
-<p>6</p>
-</div>
-
-</div>
-
-</main>
-
+  <aside class="admin-sidebar">
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="students.html">Students</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="assignments.html">Assignments</a></li>
+      <li class="active"><a href="quizzes.html">Quizzes</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="certificates.html">Certificates</a></li>
+      <li><a href="announcements.html">Announcements</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="#" onclick="adminLogout()">Logout</a></li>
+    </ul>
+  </aside>
+  <main class="admin-main">
+    <section class="page-head">
+      <div>
+        <h1>Quiz Management</h1>
+        <p>Create quizzes that map directly to the learner exam experience, including time limits, questions, options, and correct answers.</p>
+      </div>
+    </section>
+    <section class="panel-grid">
+      <div class="form-card">
+        <h3>Create or Update Quiz</h3>
+        <form id="quizForm" class="form-stack">
+          <input type="hidden" id="quizId">
+          <div class="form-grid">
+            <input id="quizTitle" type="text" placeholder="Quiz Title" required>
+            <select id="quizCourse" required></select>
+            <input id="quizDuration" type="number" placeholder="Duration in Minutes" required>
+            <input id="quizPassScore" type="number" placeholder="Pass Score %" required>
+            <select id="quizStatus">
+              <option value="active">Active</option>
+              <option value="draft">Draft</option>
+            </select>
+          </div>
+          <textarea id="quizInstructions" placeholder="Quiz Instructions (one per line)"></textarea>
+          <div class="upload-field">
+            <label for="quizReferenceFile">Quiz Reference File</label>
+            <input id="quizReferenceFile" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,image/*">
+            <div id="quizReferenceMeta" class="upload-meta">Optional reference sheet or instructions file for the quiz setup.</div>
+          </div>
+          <div class="csv-upload">
+            <label for="quizCsvUpload">Bulk Upload Questions via CSV</label>
+            <input id="quizCsvUpload" type="file" accept=".csv">
+            <button type="button" class="btn btn-secondary" id="quizCsvImportBtn">Import CSV</button>
+          </div>
+          <div class="question-builder-head">
+            <h4>Questions</h4>
+            <button type="button" class="btn btn-secondary" id="addQuestionBtn">Add Question</button>
+          </div>
+          <div id="quizQuestions" class="question-builder"></div>
+          <div class="action-row">
+            <button type="submit">Save Quiz</button>
+            <button type="button" class="btn btn-secondary" id="quizReset">Clear</button>
+          </div>
+        </form>
+      </div>
+      <div class="panel">
+        <h3>Quiz Control Notes</h3>
+        <ul class="list-stack">
+          <li>Question structure here stays compatible with the learner quiz and exam experience.</li>
+          <li>Use simple multiple-choice prompts with one clear correct answer.</li>
+          <li>Reference uploads are optional and exist only to support meaningful quiz context.</li>
+        </ul>
+        <div class="form-grid compact-controls">
+          <input id="quizSearch" type="text" placeholder="Search quizzes by title or course">
+          <select id="quizStatusFilter">
+            <option value="all">All Statuses</option>
+            <option value="active">Active</option>
+            <option value="draft">Draft</option>
+            <option value="review-ready">Review Ready</option>
+          </select>
+        </div>
+      </div>
+    </section>
+    <section class="table-card">
+      <h3>Quiz Inventory</h3>
+      <table class="admin-table">
+        <thead>
+          <tr><th>Quiz</th><th>Course</th><th>Duration</th><th>Attempts</th><th>Status</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="quizzesTable"></tbody>
+      </table>
+    </section>
+  </main>
 </section>
-
 <footer class="admin-footer">
-<p>Help Centre</p>
-<p>Policy</p>
-<p>© 2026 Vidhya Vaaradhi LMS</p>
+  <p>Help Centre</p>
+  <p>Policy</p>
+  <p>&copy; 2026 Vidhya Vaaradhi LMS</p>
 </footer>
-
+<script src="../js/lms-data.js"></script>
+<script src="js/admin-data.js"></script>
 <script src="js/admin.js"></script>
-
+<script src="js/quizzes.js"></script>
 </body>
 </html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Course Catalog - Vaaradhi LMS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/courses.css">
+</head>
+
+<body>
+
+<!-- ================= TOP STRIP ================= -->
+<div class="top-strip">
+  Academic & Industry Skill Development Initiative
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="main-header">
+
+  <div class="header-left">
+    <img src="assets/crr logo.jpg" class="logo" alt="Logo">
+
+    <div>
+      <h2>Vaaradhi LMS</h2>
+      <div class="subtitle">Digital Academic Platform</div>
+    </div>
+  </div>
+
+  <nav class="header-nav">
+    <a href="index.html">Home</a>
+    <a href="courses.html">Courses</a>
+    <a href="#">Institutions</a>
+    <a href="#">FAQ</a>
+  </nav>
+
+</header>
+
+<!-- ================= CATALOG HEADER ================= -->
+<section class="catalog-header">
+
+  <div class="breadcrumb">Home > Course Catalog</div>
+  <h1>Course Catalog</h1>
+
+  <div class="catalog-controls">
+    <input type="text" id="searchInput" placeholder="Search courses...">
+  </div>
+
+</section>
+
+<!-- ================= MAIN WRAPPER ================= -->
+<section class="catalog-wrapper">
+
+  <!-- ========= SIDEBAR FILTERS ========= -->
+  <aside class="catalog-sidebar">
+
+    <h3>FILTERS</h3>
+
+    <div class="filter-group">
+      <label>Course Mode</label>
+      <select id="modeFilter">
+        <option value="All">All</option>
+        <option value="Online">Online</option>
+        <option value="Hybrid">Hybrid</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Duration</label>
+      <select id="durationFilter">
+        <option value="All">All</option>
+        <option value="4">4 Weeks</option>
+        <option value="8">8 Weeks</option>
+        <option value="12">12 Weeks</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Language</label>
+      <select id="languageFilter">
+        <option value="All">All</option>
+        <option value="English">English</option>
+        <option value="Telugu">Telugu</option>
+      </select>
+    </div>
+
+  </aside>
+
+  <!-- ========= CONTENT ========= -->
+  <div class="catalog-content">
+
+    <!-- TABS -->
+    <div class="tab-header">
+      <button class="tab active" data-tab="catalog">All Courses</button>
+      <button class="tab" data-tab="enrolled">Enrolled</button>
+    </div>
+
+    <!-- COURSE GRID -->
+    <div id="courseGrid" class="course-grid"></div>
+
+  </div>
+
+</section>
+
+<!-- ================= PAGINATION ================= -->
+<div id="pagination" class="pagination"></div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="main-footer">
+
+  <div class="footer-grid">
+
+    <div>
+      <h4>About</h4>
+      <p>
+        Vaaradhi LMS provides scalable digital academic infrastructure
+        for universities and enterprises.
+      </p>
+    </div>
+
+    <div>
+      <h4>Programs</h4>
+      <p>Artificial Intelligence</p>
+      <p>Machine Learning</p>
+      <p>Cloud Computing</p>
+      <p>DevOps</p>
+    </div>
+
+    <div>
+      <h4>Contact</h4>
+      <p>Email: info@vaaradhi.com</p>
+      <p>Phone: +91 90000 00000</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2026 Vaaradhi LMS. All rights reserved.
+  </div>
+
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script src="js/lms-data.js"></script>
+<script src="js/courses.js"></script>
+
+</body>
+</html>
+

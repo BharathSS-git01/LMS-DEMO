@@ -3,200 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Courses</title>
-
+<title>My Learning | Vaaradhi LMS</title>
 <link rel="stylesheet" href="css/my-courses.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- ================= MAIN HEADER ================= -->
-
+<!-- HEADER -->
 <header class="header">
-
-  <!-- LEFT -->
-  <div class="header-left">
-    <img src="assets/crr logo.jpg" class="logo">
-    <h2>VIDHYA VAARADHI</h2>
+  <div class="menu-toggle" id="menuToggle">&#9776;</div>
+  <div class="brand-mark">
+    <img src="assets/crr logo.jpg" alt="Vaaradhi logo">
+    <h2 class="logo">VIDHYA VAARADHI</h2>
   </div>
-
-  <!-- CENTER NAV -->
-  <nav class="header-center">
-    <a class="active">Home</a>
-    <a>Explore Courses</a>
-    <a>My Learning</a>
-    <a>Institutions</a>
-    <a>Community</a>
+  <nav class="nav-links">
+    <a href="student.html">Home</a>
+    <a href="my-courses.html" class="active">My Learning</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="quiz.html">Quizzes</a>
+    <a href="certificates.html">Certificates</a>
+    <a href="profile.html">Profile</a>
+    <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600;">Logout</a>
   </nav>
-
-  <!-- RIGHT PROFILE -->
-  <div class="header-right">
-    <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600; text-decoration: none; margin-right: 20px;">Logout</a>
-    <img src="assets/TESTIMONIAL PROFILE.jpg" class="profile">
-  </div>
-
 </header>
 
+<aside class="mobile-sidebar" id="sidebar">
+  <a href="student.html">Home</a>
+  <a href="my-courses.html">Courses</a>
+  <a href="assignments.html">Assignments</a>
+  <a href="quiz.html">Quizzes</a>
+  <a href="certificates.html">Certificates</a>
+  <a href="profile.html">Profile</a>
+  <a href="index.html" onclick="logout()">Logout</a>
+</aside>
 
 
-<!-- ================= SUB HEADER ================= -->
+<!-- HERO -->
+<section class="hero">
+  <h1>Your Learning Dashboard</h1>
+  <p>Review active enrollments, continue lessons, and move cleanly into assignments, quizzes, and certificate-ready course progress.</p>
+</section>
 
-<section class="sub-header">
 
-  <!-- LEFT TEXT BUTTONS -->
-  <div class="sub-left">
+<!-- STAT CARDS -->
+<section class="stats-section">
 
-    <button class="sub-btn active">Enrolled</button>
-    <button class="sub-btn">Ongoing</button>
-    <button class="sub-btn">Completed</button>
-    <button class="sub-btn">Certificates</button>
-
+  <div class="stat-card" data-card="enrolled" onclick="window.location.href='my-courses.html'">
+    <h3>Enrolled Courses</h3>
+    <p>View all your currently enrolled programs.</p>
+    <div class="progress-track">
+      <div class="progress-fill" style="width:0%"></div>
+    </div>
+    <button>View My Courses</button>
   </div>
 
+  <div class="stat-card" data-card="completed" onclick="window.location.href='my-courses.html#completed'">
+    <h3>Completed Courses</h3>
+    <p>Review successfully completed programs.</p>
+    <div class="progress-track">
+      <div class="progress-fill" style="width:0%"></div>
+    </div>
+    <button>View Completed</button>
+  </div>
 
-  <!-- RIGHT SEARCH -->
-  <div class="sub-right">
+  <div class="stat-card" data-card="certificates" onclick="window.location.href='certificates.html'">
+    <h3>Certificates</h3>
+    <p>Access your verified course certificates.</p>
+    <div class="progress-track">
+      <div class="progress-fill" style="width:0%"></div>
+    </div>
+    <button>View Certificates</button>
+  </div>
 
-    <input
-      type="text"
-      placeholder="Search courses..."
-    >
-
+  <div class="stat-card highlight" data-card="next-step" onclick="window.location.href='courses.html'">
+    <h3>Explore Courses</h3>
+    <p>Discover trending and newly added courses.</p>
+    <div class="progress-track">
+      <div class="progress-fill" style="width:0%"></div>
+    </div>
+    <button>Browse Catalog</button>
   </div>
 
 </section>
 
 
+<!-- RUNNING COURSES -->
+<section class="trending">
+  <h2 id="runningCoursesHeading">Running Courses</h2>
 
-
-
-<!-- ================= ONGOING ================= -->
-
-<section class="course-section">
-
-<h2 class="section-title">Ongoing Courses</h2>
-
-<div class="course-card-horizontal">
-
-  <div class="course-thumb">
-    <img src="assets/GEN AI.jpg">
+  <div id="runningCourses" class="course-grid">
+    <p style="text-align: center; color: #999; padding: 40px; grid-column: 1/-1;">Loading your enrolled courses...</p>
   </div>
+</section>
 
-  <div class="course-details">
-    <h3>GENEREATIVE AI</h3>
-    <p class="institute">NPTEL •</p>
-    <p class="meta">12 Weeks • Jan–Apr 2026</p>
+<!-- COMPLETED COURSES -->
+<section class="trending">
+  <h2 id="completedCoursesHeading">Completed Courses</h2>
 
-    <div class="progress-bar">
-      <div class="progress-fill" style="width:70%"></div>
+  <div id="completedCourses" class="course-grid">
+    <p style="text-align: center; color: #999; padding: 40px; grid-column: 1/-1;">No completed courses yet</p>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="main-footer">
+  <div class="footer-grid">
+    <div>
+      <h4>Platform</h4>
+      <p>About Us</p>
+      <p>Careers</p>
+      <p>Partners</p>
     </div>
 
-    <span class="progress-text">70% Completed</span>
-  </div>
-
-  <div class="course-action">
-    <a href="course-player.html"><button class="continue-btn">Go to Course</button></a>
-    <a href="assignments.html"><button class="continue-btn">Assignments</button></a>
-    <a href="certificates.html"><button class="continue-btn">Certificates</button></a>
-  </div>
-
-</div>
-
-</section>
-
-
-
-<!-- ================= COMPLETED ================= -->
-
-<section class="course-section">
-
-<h2 class="section-title">Completed Courses</h2>
-
-<div class="course-card-horizontal">
-
-  <div class="course-thumb">
-    <img src="assets/ML.jpg">
-  </div>
-
-  <div class="course-details">
-    <h3>Machine Learning</h3>
-    <p class="institute">NPTEL • IIT Madras</p>
-    <p class="meta">Completed • 2025</p>
-
-    <div class="progress-bar">
-      <div class="progress-fill" style="width:100%"></div>
+    <div>
+      <h4>Support</h4>
+      <p>Help Center</p>
+      <p>Contact</p>
+      <p>FAQs</p>
     </div>
 
-    <span class="progress-text">100% Completed</span>
+    <div>
+      <h4>Legal</h4>
+      <p>Privacy Policy</p>
+      <p>Terms & Conditions</p>
+    </div>
   </div>
-
-  <div class="course-action">
-    <span class="cert-badge">Certified</span>
-    <a href="certificates.html"><button class="continue-btn">View Certificate</button></a>
-  </div>
-
-</div>
-
-</section>
-
-
-
-<!-- ================= CERTIFICATIONS ================= -->
-
-<section class="cert-section">
-
-<h2 class="section-title">Certifications</h2>
-
-<div class="cert-grid">
-
-  <div class="cert-card">
-    <h4>Machine Learning</h4>
-    <p>IIT Madras • NPTEL</p>
-  </div>
-
-</div>
-
-</section>
-
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer class="footer">
-
-<div class="footer-grid">
-
-  <div>
-    <h4>Help Centre</h4>
-    <p>Support</p>
-    <p>FAQs</p>
-    <p>Contact</p>
-  </div>
-
-  <div>
-    <h4>Policy</h4>
-    <p>Privacy Policy</p>
-    <p>Terms</p>
-    <p>Refund</p>
-  </div>
-
-  <div>
-    <h4>Platform</h4>
-    <p>About</p>
-    <p>Careers</p>
-    <p>Partners</p>
-  </div>
-
-</div>
-
 </footer>
 
+<script src="js/lms-data.js"></script>
+<script src="js/my-courses.js"></script>
 <script>
 function logout() {
+  if (window.LMSDemo && LMSDemo.clearSession) {
+    LMSDemo.clearSession();
+  } else {
+    localStorage.removeItem("token");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("user");
+  }
   window.location.href = "index.html";
 }
+
+(function () {
+  var menuToggle = document.getElementById("menuToggle");
+  var sidebar = document.getElementById("sidebar");
+  if (!menuToggle || !sidebar) return;
+
+  var overlay = document.createElement("div");
+  overlay.className = "mobile-sidebar-overlay";
+  document.body.appendChild(overlay);
+
+  menuToggle.onclick = function () {
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.classList.toggle("mobile-nav-open");
+  };
+
+  overlay.onclick = function () {
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("mobile-nav-open");
+  };
+})();
 </script>
 
 </body>
-</html>
+</html> 

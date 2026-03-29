@@ -1,136 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Profile</title>
-
-  <link rel="stylesheet" href="css/student.css">
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Profile | Vaaradhi LMS</title>
+<link rel="stylesheet" href="css/profile.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
-
 <header class="header">
-
-  <div class="menu-toggle" id="menuToggle">☰</div>
-
-  <h2 class="logo">VIDHYA VAARADHI</h2>
-
-  <nav class="nav-links">
-
-  <a href="student-dashboard.html">Home</a>
-
-  <!-- COURSES DROPDOWN -->
-  <div class="dropdown">
-
-    <a class="dropbtn">Courses ▾</a>
-
-    <div class="dropdown-content">
-
-      <a href="student-dashboard.html">Top Courses</a>
-      <a href="my-courses.html">My Courses</a>
-      <a href="register-course.html">Register</a>
-      <a href="completed.html">Completed</a>
-      <a href="certificates.html">Certificates</a>
-
-    </div>
-
+  <div class="menu-toggle" id="menuToggle">&#9776;</div>
+  <div class="brand-mark">
+    <img src="assets/crr logo.jpg" alt="Vaaradhi logo">
+    <h2 class="logo">VIDHYA VAARADHI</h2>
   </div>
-
-  <a href="#">Institutions</a>
-  <a href="#">Community</a>
-  <a href="profile.html">Profile</a>
-  <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600;">Logout</a>
-
-</nav>
-
+  <nav class="nav-links">
+    <a href="student.html">Home</a>
+    <a href="my-courses.html">My Learning</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="quiz.html">Quizzes</a>
+    <a href="certificates.html">Certificates</a>
+    <a href="profile.html" class="active">Profile</a>
+    <a href="index.html" class="logout" onclick="logout()">Logout</a>
+  </nav>
 </header>
 
-<!-- ================= MOBILE SIDEBAR ================= -->
-
 <aside class="mobile-sidebar" id="sidebar">
-
-  <a href="student-dashboard.html">Home</a>
+  <a href="student.html">Home</a>
   <a href="my-courses.html">Courses</a>
-  <a href="#">Institutions</a>
-  <a href="#">Community</a>
+  <a href="assignments.html">Assignments</a>
+  <a href="quiz.html">Quizzes</a>
+  <a href="certificates.html">Certificates</a>
   <a href="profile.html">Profile</a>
-  <a href="index.html">Logout</a>
-
+  <a href="index.html" onclick="logout()">Logout</a>
 </aside>
 
-<!-- ================= MAIN ================= -->
+<section class="profile-hero">
+  <div class="profile-hero-copy">
+    <span class="profile-chip">Student Profile</span>
+    <h1>Manage your learner identity, progress visibility, and academic profile</h1>
+    <p>Keep your personal details, course summary, certificate readiness, and student activity organized in one profile workspace.</p>
+  </div>
+</section>
 
-<main class="main">
+<main class="profile-container">
 
-  <section class="profile-section">
+<section class="profile-header">
+  <div class="avatar-wrapper">
+    <img id="profileImage" src="assets/TESTIMONIAL PROFILE.jpg" alt="Profile">
+    <input type="file" id="imageUpload" hidden>
+    <button class="upload-btn" onclick="triggerUpload()">Change Photo</button>
+  </div>
 
-    <h2>Your Profile</h2>
-    <p>Manage your account settings and information.</p>
+  <div class="student-info">
+    <h1 id="studentName">Bharath A</h1>
+    <p>CSE | Reg No: 21VVCS1012</p>
+  </div>
 
-  </section>
+  <div class="profile-actions">
+    <button class="secondary-btn" onclick="downloadTranscript()">Download Transcript</button>
+    <button class="edit-btn" onclick="openEditModal()">Edit Profile</button>
+  </div>
+</section>
+
+<section class="profile-info-nav">
+  <div class="info-nav-card active">
+      <h3>Profile Info</h3>
+      <p>View and manage personal details</p>
+  </div>
+
+  <div class="info-nav-card">
+      <h3>Academic</h3>
+      <p>Performance, progress, and learner summary</p>
+  </div>
+
+  <div class="info-nav-card" onclick="openEditModal()">
+      <h3>Edit Profile</h3>
+      <p>Update information and personal settings</p>
+  </div>
+</section>
+
+<section class="glass-academic">
+  <div class="glass-stat-card">
+      <div class="stat-top">
+          <h4>Courses Enrolled</h4>
+          <span>6</span>
+      </div>
+      <div class="stat-progress">
+          <div style="width:75%"></div>
+      </div>
+      <button onclick="goTo('my-courses.html')">View</button>
+  </div>
+
+  <div class="glass-stat-card">
+      <div class="stat-top">
+          <h4>Assignments Pending</h4>
+          <span>3</span>
+      </div>
+      <div class="stat-progress">
+          <div style="width:40%"></div>
+      </div>
+      <button onclick="goTo('assignments.html')">View</button>
+  </div>
+
+  <div class="glass-stat-card">
+      <div class="stat-top">
+          <h4>Quizzes Ready</h4>
+          <span>5</span>
+      </div>
+      <div class="stat-progress">
+          <div style="width:85%"></div>
+      </div>
+      <button onclick="goTo('quiz.html')">View</button>
+  </div>
+
+  <div class="glass-stat-card">
+      <div class="stat-top">
+          <h4>Certificates Earned</h4>
+          <span>4</span>
+      </div>
+      <div class="stat-progress">
+          <div style="width:90%"></div>
+      </div>
+      <button onclick="goTo('certificates.html')">View</button>
+  </div>
+</section>
+
+<section class="info-bars">
+  <div class="info-row">
+      <span>Email</span>
+      <input type="text" id="emailField" value="bharath@email.com">
+  </div>
+
+  <div class="info-row">
+      <span>Phone</span>
+      <input type="text" id="phoneField" value="+91 9876543210">
+  </div>
+</section>
+
+<section class="premium-certificates">
+  <h2>Completion Reflection</h2>
+
+  <div class="certificate-card">
+    <div>
+      <h3>Machine Learning Certification</h3>
+      <p>Issued by Vidhya Vaaradhi LMS</p>
+
+      <div class="certificate-requirements">
+        <strong>Requirements:</strong>
+        <ul>
+          <li>Complete all modules</li>
+          <li>Minimum 70% assignment average</li>
+          <li>Pass final exam</li>
+        </ul>
+      </div>
+
+      <div class="certificate-status completed">
+        Eligible and Certified
+      </div>
+    </div>
+
+    <div>
+      <button class="primary-btn" onclick="goTo('certificates.html')">View Certificate</button>
+    </div>
+  </div>
+</section>
+
+<section class="profile-notifications">
+  <h2>Your Notifications</h2>
+
+  <div class="profile-notification urgent">
+    ML Assignment 3 due tomorrow.
+  </div>
+
+  <div class="profile-notification info">
+    New DevOps module released.
+  </div>
+
+  <div class="profile-notification success">
+    Quiz evaluated successfully.
+  </div>
+</section>
 
 </main>
 
-<!-- ================= FOOTER ================= -->
-
-<footer class="footer">
-
-  <div class="footer-container">
-
-    <!-- BRAND -->
-
-    <div class="footer-brand">
-
-      <div class="brand-header">
-        <img src="assets/crr logo.jpg">
-        <h2>VIDHYA VAARADHI</h2>
-      </div>
-
-      <p class="tagline">
-        A Platform of Education
-      </p>
-
-    </div>
-
-    <!-- LINKS -->
-
-    <div class="footer-links">
-
-      <div>
-        <h4>Community</h4>
-        <p>Forums</p>
-        <p>Events</p>
-        <p>Discussions</p>
-      </div>
-
-      <div>
-        <h4>Quick Links</h4>
-        <p>About</p>
-        <p>Courses</p>
-        <p>Support</p>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="copyright">
-    © 2026 Vidhya Vaaradhi • All Rights Reserved
-  </div>
-
+<footer class="profile-footer">
+  &copy; 2026 Vidhya Vaaradhi LMS | Academic Portal
 </footer>
 
-<script src="js/student.js"></script>
+<div class="edit-modal" id="editModal">
+  <div class="modal-content">
+    <h2>Edit Profile</h2>
+
+    <label>Full Name</label>
+    <input type="text" id="editName">
+
+    <label>Email</label>
+    <input type="text" id="editEmail">
+
+    <label>Phone</label>
+    <input type="text" id="editPhone">
+
+    <div class="modal-buttons">
+        <button class="save-btn" onclick="saveProfile()">Save</button>
+        <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/lms-data.js"></script>
+<script src="js/profile.js"></script>
 
 <script>
 function logout() {
+  if (window.LMSDemo && LMSDemo.clearSession) {
+    LMSDemo.clearSession();
+  } else {
+    localStorage.removeItem("token");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("user");
+  }
   window.location.href = "index.html";
 }
+
+(function () {
+  var menuToggle = document.getElementById("menuToggle");
+  var sidebar = document.getElementById("sidebar");
+  if (!menuToggle || !sidebar) return;
+
+  var overlay = document.createElement("div");
+  overlay.className = "mobile-sidebar-overlay";
+  document.body.appendChild(overlay);
+
+  menuToggle.onclick = function () {
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.classList.toggle("mobile-nav-open");
+  };
+
+  overlay.onclick = function () {
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("mobile-nav-open");
+  };
+})();
 </script>
 
 </body>

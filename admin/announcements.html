@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Announcements Admin</title>
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/announcements.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="admin-header">
+  <div class="header-left">
+    <img src="../assets/crr logo.jpg" class="logo" alt="Logo">
+    <h2>VIDHYA VAARADHI</h2>
+  </div>
+  <nav class="header-center">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="students.html">Students</a>
+    <a href="courses.html">Courses</a>
+    <a href="lessons.html">Lessons</a>
+    <a href="notes.html">Notes</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="quizzes.html">Quizzes</a>
+    <a href="projects.html">Projects</a>
+    <a href="certificates.html">Certificates</a>
+    <a href="announcements.html" class="active">Announcements</a>
+    <a href="reports.html">Reports</a>
+    <a href="#" onclick="adminLogout()">Logout</a>
+  </nav>
+  <img src="../assets/TESTIMONIAL PROFILE.jpg" class="profile" alt="Admin">
+</header>
+<section class="admin-body">
+  <aside class="admin-sidebar">
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="students.html">Students</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="assignments.html">Assignments</a></li>
+      <li><a href="quizzes.html">Quizzes</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="certificates.html">Certificates</a></li>
+      <li class="active"><a href="announcements.html">Announcements</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="#" onclick="adminLogout()">Logout</a></li>
+    </ul>
+  </aside>
+  <main class="admin-main">
+    <section class="page-head">
+      <div>
+        <h1>Announcements</h1>
+        <p>Publish academic notices, operational updates, and learner-facing communication in a structured notice-board workflow.</p>
+      </div>
+    </section>
+    <section class="panel-grid">
+      <div class="form-card">
+        <h3>Create Announcement</h3>
+        <form id="announcementForm" class="form-stack">
+          <input type="hidden" id="announcementId">
+          <div class="form-grid">
+            <input id="announcementTitle" type="text" placeholder="Announcement Title" required>
+            <input id="announcementCategory" type="text" placeholder="Category / Type" required>
+            <input id="announcementDate" type="date" required>
+            <input id="announcementAudience" type="text" placeholder="Audience (e.g. All Students)">
+          </div>
+          <textarea id="announcementContent" placeholder="Announcement content / description" required></textarea>
+          <div class="action-row">
+            <button type="submit">Publish Announcement</button>
+            <button type="button" class="btn btn-secondary" id="announcementReset">Clear</button>
+          </div>
+        </form>
+      </div>
+      <div class="panel">
+        <h3>Notice Guidelines</h3>
+        <ul class="list-stack">
+          <li>Use short, descriptive titles so urgent updates are easy to scan.</li>
+          <li>Set clear categories such as Exams, Academic Notice, Schedule, or Platform Update.</li>
+          <li>Published announcements appear in the admin dashboard activity stream immediately.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="table-card">
+      <h3>Published Notices</h3>
+      <table class="admin-table">
+        <thead>
+          <tr><th>Title</th><th>Category</th><th>Audience</th><th>Publish Date</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="announcementsTable"></tbody>
+      </table>
+    </section>
+  </main>
+</section>
+<footer class="admin-footer">
+  <p>Help Centre</p>
+  <p>Policy</p>
+  <p>&copy; 2026 Vidhya Vaaradhi LMS</p>
+</footer>
+<script src="../js/lms-data.js"></script>
+<script src="js/admin-data.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/announcements.js"></script>
+</body>
+</html>

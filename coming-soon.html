@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon - Vaaradhi LMS</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coming-soon-container {
+      text-align: center;
+      background: white;
+      padding: 60px 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+    }
+
+    .coming-soon-container h1 {
+      font-size: 48px;
+      color: #333;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .coming-soon-container p {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .coming-soon-container .emoji {
+      font-size: 80px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .coming-soon-container .back-btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: #667eea;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .coming-soon-container .back-btn:hover {
+      background: #764ba2;
+    }
+
+    .features {
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid #eee;
+      text-align: left;
+    }
+
+    .features h3 {
+      color: #333;
+      margin-bottom: 15px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .features ul {
+      list-style: none;
+      text-align: center;
+    }
+
+    .features ul li {
+      padding: 8px 0;
+      color: #666;
+      font-size: 16px;
+    }
+
+    .features ul li:before {
+      content: "✓ ";
+      color: #28a745;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="coming-soon-container">
+  <span class="emoji">🚀</span>
+  <h1>Coming Soon!</h1>
+  <p>
+    This feature is currently under development. We're working hard to bring you an amazing experience.
+  </p>
+
+  <button class="back-btn" onclick="goBack()">Go Back</button>
+
+  <div class="features">
+    <h3>What's Next?</h3>
+    <ul>
+      <li>New exciting features</li>
+      <li>Improved user experience</li>
+      <li>Advanced learning tools</li>
+      <li>Community interactions</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+
+</body>
+</html>

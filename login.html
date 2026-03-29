@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Vaaradhi LMS</title>
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="login-page">
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+
+<div class="login-shell">
+  <section class="login-visual">
+    <div class="login-visual-copy">
+      <span class="eyebrow">Vaaradhi LMS</span>
+      <h1>Continue your learning journey</h1>
+      <p>Sign in to resume courses, track progress, and stay connected to your learning.</p>
+      <div class="login-visual-points">
+        <span>Resume your courses</span>
+        <span>Track your progress</span>
+        <span>Stay focused and on track</span>
+      </div>
+    </div>
+    <div class="login-visual-stage">
+      <div class="visual-quote">
+        <strong>"Pick up where you left off and keep moving forward."</strong>
+        <p>Everything you need to continue learning is right here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="login-options">
+    <div class="auth-switch">
+      <button class="switch-btn active" type="button">Login</button>
+      <a class="switch-btn" href="auth.html">Signup</a>
+    </div>
+
+    <div class="options-heading">
+      <h2>Login options</h2>
+      <p>Choose how you want to continue.</p>
+    </div>
+
+    <div class="login-option-card">
+      <div class="option-head">
+        <span class="option-tag">Student Login</span>
+        <h3>Student login</h3>
+      </div>
+
+      <form id="loginForm" class="form active-form" onsubmit="event.preventDefault(); loginUser()">
+        <div class="input-group">
+          <label for="loginEmail">Email Address</label>
+          <input type="email" id="loginEmail" placeholder="student@gmail.com" required>
+        </div>
+
+        <div class="input-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter your password" required>
+        </div>
+
+        <div class="auth-helper split">
+          <span>Demo student: student@gmail.com / pass1234</span>
+          <a href="auth.html">Need an account?</a>
+        </div>
+
+        <button type="submit" class="primary-auth-btn">Login as Student</button>
+      </form>
+
+      <a class="back-home-link" href="index.html">Back to Home</a>
+    </div>
+
+    <div class="admin-portal-actions admin-inline-action">
+      <a class="secondary-auth-btn" href="admin/admin-login.html">Login as Admin</a>
+    </div>
+
+    <a class="back-home-link" href="index.html">Back to Home</a>
+  </section>
+</div>
+
+</body>
+</html>

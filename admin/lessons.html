@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lessons Management</title>
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/lessons.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="admin-header">
+  <div class="header-left">
+    <img src="../assets/crr logo.jpg" class="logo" alt="Logo">
+    <h2>VIDHYA VAARADHI</h2>
+  </div>
+  <nav class="header-center">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="students.html">Students</a>
+    <a href="courses.html">Courses</a>
+    <a href="lessons.html" class="active">Lessons</a>
+    <a href="notes.html">Notes</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="quizzes.html">Quizzes</a>
+    <a href="projects.html">Projects</a>
+    <a href="certificates.html">Certificates</a>
+    <a href="announcements.html">Announcements</a>
+    <a href="reports.html">Reports</a>
+    <a href="#" onclick="adminLogout()">Logout</a>
+  </nav>
+  <img src="../assets/TESTIMONIAL PROFILE.jpg" class="profile" alt="Admin">
+</header>
+<section class="admin-body">
+  <aside class="admin-sidebar">
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="students.html">Students</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li class="active"><a href="lessons.html">Lessons</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="assignments.html">Assignments</a></li>
+      <li><a href="quizzes.html">Quizzes</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="certificates.html">Certificates</a></li>
+      <li><a href="announcements.html">Announcements</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="#" onclick="adminLogout()">Logout</a></li>
+    </ul>
+  </aside>
+  <main class="admin-main">
+    <section class="page-head">
+      <div>
+        <h1>Lessons Management</h1>
+        <p>Create lesson-level content for courses so newly added learning units can appear in the student course player and course detail flow.</p>
+      </div>
+    </section>
+    <section class="panel-grid content-layout">
+      <div class="form-card">
+        <h3>Create or Update Lesson</h3>
+        <form id="lessonForm" class="form-stack">
+          <input type="hidden" id="lessonId">
+          <div class="form-grid">
+            <input id="lessonTitle" type="text" placeholder="Lesson Title" required>
+            <select id="lessonCourse" required></select>
+            <select id="lessonModule"></select>
+            <input id="lessonCustomModule" type="text" placeholder="Module / Unit Name">
+            <input id="lessonPosition" type="number" placeholder="Lesson Order" required>
+            <input id="lessonDuration" type="text" placeholder="Duration (e.g. 20 min)" required>
+          </div>
+          <div class="form-grid">
+            <div class="upload-field">
+              <label for="lessonImageFile">Lesson Image</label>
+              <input id="lessonImageFile" type="file" accept="image/*">
+              <div id="lessonImageMeta" class="upload-meta">Optional lesson cover for the student course player.</div>
+              <img id="lessonImagePreview" class="preview-thumb" alt="Lesson image preview" hidden>
+            </div>
+            <div class="upload-field">
+              <label for="lessonVideoFile">Lesson Video</label>
+              <input id="lessonVideoFile" type="file" accept="video/*">
+              <div id="lessonVideoMeta" class="upload-meta">Upload local lesson media for the student course player.</div>
+              <video id="lessonVideoPreview" class="preview-video" controls hidden></video>
+            </div>
+          </div>
+          <div class="upload-field">
+            <label for="lessonResourceFile">Lesson Resource</label>
+            <input id="lessonResourceFile" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.zip,image/*,video/*">
+            <div id="lessonResourceMeta" class="upload-meta">Optional supporting file or resource linked to this lesson.</div>
+          </div>
+          <textarea id="lessonDescription" placeholder="Short lesson description" required></textarea>
+          <textarea id="lessonContent" placeholder="Detailed lesson content / explanation" required></textarea>
+          <div class="action-row">
+            <button type="submit">Save Lesson</button>
+            <button type="button" class="btn btn-secondary" id="lessonReset">Clear</button>
+          </div>
+        </form>
+      </div>
+      <div class="panel">
+        <h3>Content Notes</h3>
+        <ul class="list-stack">
+          <li>Lessons should only contain the fields needed for player flow, learning sequence, and media delivery.</li>
+          <li>Uploaded video or image files now connect directly to the student course player experience.</li>
+          <li>Review a lesson record before publishing to confirm module order and media setup.</li>
+        </ul>
+        <div class="form-grid compact-controls">
+          <input id="lessonSearch" type="text" placeholder="Search lessons by title, module, or course">
+          <select id="lessonSort">
+            <option value="recent">Sort by Recent</option>
+            <option value="course">Sort by Course</option>
+            <option value="module">Sort by Module</option>
+            <option value="order">Sort by Lesson Order</option>
+          </select>
+        </div>
+      </div>
+    </section>
+    <section class="table-card">
+      <h3>Lesson Library</h3>
+      <table class="admin-table">
+        <thead>
+          <tr><th>Lesson</th><th>Course</th><th>Module</th><th>Order</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="lessonsTable"></tbody>
+      </table>
+    </section>
+  </main>
+</section>
+<footer class="admin-footer">
+  <p>Help Centre</p>
+  <p>Policy</p>
+  <p>&copy; 2026 Vidhya Vaaradhi LMS</p>
+</footer>
+<script src="../js/lms-data.js"></script>
+<script src="js/admin-data.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/lessons.js"></script>
+</body>
+</html>

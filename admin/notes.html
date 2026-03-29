@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notes Management</title>
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/notes.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="admin-header">
+  <div class="header-left">
+    <img src="../assets/crr logo.jpg" class="logo" alt="Logo">
+    <h2>VIDHYA VAARADHI</h2>
+  </div>
+  <nav class="header-center">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="students.html">Students</a>
+    <a href="courses.html">Courses</a>
+    <a href="lessons.html">Lessons</a>
+    <a href="notes.html" class="active">Notes</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="quizzes.html">Quizzes</a>
+    <a href="projects.html">Projects</a>
+    <a href="certificates.html">Certificates</a>
+    <a href="announcements.html">Announcements</a>
+    <a href="reports.html">Reports</a>
+    <a href="#" onclick="adminLogout()">Logout</a>
+  </nav>
+  <img src="../assets/TESTIMONIAL PROFILE.jpg" class="profile" alt="Admin">
+</header>
+<section class="admin-body">
+  <aside class="admin-sidebar">
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="students.html">Students</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="lessons.html">Lessons</a></li>
+      <li class="active"><a href="notes.html">Notes</a></li>
+      <li><a href="assignments.html">Assignments</a></li>
+      <li><a href="quizzes.html">Quizzes</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="certificates.html">Certificates</a></li>
+      <li><a href="announcements.html">Announcements</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="#" onclick="adminLogout()">Logout</a></li>
+    </ul>
+  </aside>
+  <main class="admin-main">
+    <section class="page-head">
+      <div>
+        <h1>Notes Management</h1>
+        <p>Create structured course-linked notes that appear directly in the student notes experience and support revision by course and module.</p>
+      </div>
+    </section>
+    <section class="panel-grid content-layout">
+      <div class="form-card">
+        <h3>Create or Update Note</h3>
+        <form id="noteForm" class="form-stack">
+          <input type="hidden" id="noteId">
+          <div class="form-grid">
+            <input id="noteTitle" type="text" placeholder="Note Title" required>
+            <select id="noteCourse" required></select>
+            <select id="noteModule"></select>
+            <select id="noteType" required>
+              <option value="">Select Note Type</option>
+              <option value="Study Notes">Study Notes</option>
+              <option value="Revision Sheet">Revision Sheet</option>
+              <option value="Reference Material">Reference Material</option>
+            </select>
+          </div>
+          <textarea id="noteSummary" placeholder="Short summary" required></textarea>
+          <textarea id="noteContent" placeholder="Detailed note content / study material" required></textarea>
+          <div class="upload-field">
+            <label for="noteResourceFile">Note Resource File</label>
+            <input id="noteResourceFile" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.zip,image/*">
+            <div id="noteResourceMeta" class="upload-meta">Upload PDF, study material, or academic note file for students.</div>
+          </div>
+          <div class="action-row">
+            <button type="submit">Save Note</button>
+            <button type="button" class="btn btn-secondary" id="noteReset">Clear</button>
+          </div>
+        </form>
+      </div>
+      <div class="panel">
+        <h3>Publishing Notes</h3>
+        <ul class="list-stack">
+          <li>Attach notes to the correct course and module so the student notes workspace stays organized.</li>
+          <li>Uploaded files now reflect into the student note experience as actual downloadable resources.</li>
+          <li>Keep notes simple: title, summary, study content, and one useful attached resource.</li>
+        </ul>
+        <div class="form-grid compact-controls">
+          <input id="noteSearch" type="text" placeholder="Search notes by title, category, or course">
+          <select id="noteCategoryFilter">
+            <option value="all">All Categories</option>
+          </select>
+        </div>
+      </div>
+    </section>
+    <section class="table-card">
+      <h3>Published Notes</h3>
+      <table class="admin-table">
+        <thead>
+          <tr><th>Note</th><th>Course</th><th>Module</th><th>Type</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="notesTable"></tbody>
+      </table>
+    </section>
+  </main>
+</section>
+<footer class="admin-footer">
+  <p>Help Centre</p>
+  <p>Policy</p>
+  <p>&copy; 2026 Vidhya Vaaradhi LMS</p>
+</footer>
+<script src="../js/lms-data.js"></script>
+<script src="js/admin-data.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/notes.js"></script>
+</body>
+</html>

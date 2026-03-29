@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Interface</title>
+<link rel="stylesheet" href="css/exam.css">
+</head>
+
+<body>
+
+<header class="exam-header">
+  <div>
+    <h3 id="examTitle">Course Quiz</h3>
+    <p id="examMeta">Assessment loading...</p>
+  </div>
+  <div class="timer-wrap">
+    <span class="timer-label">Time Left</span>
+    <div class="timer"><span id="time">00:00</span></div>
+  </div>
+</header>
+
+<div class="exam-body">
+  <section class="question-area">
+    <div class="question-number" id="questionNumber">Question</div>
+    <div class="question-box" id="questionBox">Loading question...</div>
+    <div class="options" id="optionsContainer"></div>
+    <div class="action-buttons">
+      <button id="prevBtn">Previous</button>
+      <button id="clearBtn">Clear</button>
+      <button id="nextBtn" class="primary">Save & Next</button>
+    </div>
+    <div class="result-panel" id="resultPanel"></div>
+  </section>
+
+  <aside class="palette">
+    <h4>Question Palette</h4>
+    <div class="grid" id="questionPalette"></div>
+    <div class="exam-actions">
+      <a href="quiz.html" class="back-link">Back to Quizzes</a>
+      <button class="submit-btn" id="submitExamBtn">Submit Exam</button>
+    </div>
+  </aside>
+</div>
+
+<script src="js/lms-data.js"></script>
+<script src="js/exam.js"></script>
+
+</body>
+</html>

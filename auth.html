@@ -2,105 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>UNIVLEARN Auth</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CSS -->
+  <title>Student Signup - Vaaradhi LMS</title>
   <link rel="stylesheet" href="css/auth.css">
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+<body class="auth-page">
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
 
-<body>
+<div class="page-wrapper">
+  <div class="auth-shell">
+    <section class="auth-visual">
+      <div class="auth-visual-copy">
+        <span class="eyebrow">Student Access</span>
+        <h1>Create your learning account</h1>
+        <p>Join the student learning experience built for guided academic progress, structured evaluation, and meaningful course completion.</p>
+        <div class="auth-points">
+          <span>Structured academic learning paths with clear progress visibility</span>
+          <span>Assignments, quizzes, and projects connected to real course flow</span>
+          <span>Certificate-ready completion journeys for committed learners</span>
+        </div>
+      </div>
+      <div class="auth-visual-frame">
+        <div class="visual-badge">"A student account is the starting point for a more organized, trackable, and confident learning journey."</div>
+      </div>
+    </section>
 
-<div class="auth-container">
-
-  <!-- LEFT SIDE -->
-  <div class="auth-left">
-
-    <h1>Welcome to VIDHYA VAARADHI</h1>
-    <p>
-      A LEARNING platform beyond classrooms.
-      Access courses, certifications, and collaborative learning.
-    </p>
-
-  </div>
-
-  <!-- RIGHT SIDE -->
-  <div class="auth-right">
-
-    <!-- Toggle Tabs -->
-    <div class="auth-tabs">
-      <button id="loginTab" class="active">Login</button>
-      <button id="signupTab">Signup</button>
-    </div>
-
-    <!-- LOGIN FORM -->
-    <form id="loginForm" class="auth-form active">
-
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Password" required>
-
-      <div class="remember">
-        <label><input type="checkbox"> Remember me</label>
-        <a href="#">Forgot password?</a>
+    <section class="auth-panel">
+      <div class="auth-switch">
+        <a class="switch-btn" href="login.html">Login</a>
+        <button class="switch-btn active" type="button">Signup</button>
       </div>
 
-      <button class="auth-btn">Login</button>
+      <div class="auth-heading">
+        <h2>Student signup</h2>
+        <p>Create a student account to get started.</p>
+      </div>
 
-      <!-- Divider -->
-      <div class="divider">OR</div>
+      <form id="signupForm" class="form active-form" onsubmit="event.preventDefault(); registerUser()">
+        <div class="input-group">
+          <label for="signupName">Full Name</label>
+          <input type="text" id="signupName" placeholder="Enter your full name" required>
+        </div>
 
-      <!-- Google -->
-      <button type="button" class="google-btn">
-        Continue with Google
-      </button>
+        <div class="input-group">
+          <label for="signupEmail">Email Address</label>
+          <input type="email" id="signupEmail" placeholder="Enter your email address" required>
+        </div>
 
-      <!-- Phone -->
-      <button type="button" class="phone-btn">
-        Continue with Phone Number
-      </button>
+        <div class="input-group">
+          <label for="signupPassword">Password</label>
+          <input type="password" id="signupPassword" placeholder="Create a secure password" required>
+        </div>
 
-    </form>
+        <button type="submit" class="primary-auth-btn">Create Student Account</button>
 
-    <!-- SIGNUP FORM -->
-    <form id="signupForm" class="auth-form">
+        <div class="auth-helper">
+          Already have an account?
+          <a href="login.html">Go to Login</a>
+        </div>
 
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Password" required>
-      <input type="password" placeholder="Confirm Password" required>
-
-      <select required>
-        <option value="">Select Branch</option>
-        <option>CSE</option>
-        <option>ECE</option>
-        <option>EEE</option>
-        <option>MECH</option>
-      </select>
-
-      <button class="auth-btn">Create Account</button>
-
-      <!-- Divider -->
-      <div class="divider">OR</div>
-
-      <button type="button" class="google-btn">
-        Continue with Google
-      </button>
-
-      <button type="button" class="phone-btn">
-        Continue with Phone Number
-      </button>
-
-    </form>
-
+        <a class="back-home-link" href="index.html">Back to Home</a>
+      </form>
+    </section>
   </div>
-
 </div>
-
-<!-- JS -->
-<script src="js/auth.js"></script>
 
 </body>
 </html>

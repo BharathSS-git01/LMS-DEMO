@@ -2,224 +2,227 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Vidhya Vaaradhi</title>
+  <title>Student Dashboard | Vaaradhi LMS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="css/student.css">
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
 <!-- ================= HEADER ================= -->
-
 <header class="header">
-
-  <div class="menu-toggle" id="menuToggle">☰</div>
-
-  <h2 class="logo">VIDHYA VAARADHI</h2>
-
-  <nav class="nav-links">
-
-  <a>Home</a>
-
-  <!-- COURSES DROPDOWN -->
-  <div class="dropdown">
-
-    <a class="dropbtn">Courses ▾</a>
-
-    <div class="dropdown-content">
-
-      <a>Top Courses</a>
-      <a>My Courses</a>
-      <a>Register</a>
-      <a>Completed</a>
-      <a>Certificates</a>
-
-    </div>
-
+  <div class="menu-toggle" id="menuToggle">&#9776;</div>
+  <div class="brand-mark">
+    <img src="assets/crr logo.jpg" alt="Vaaradhi logo">
+    <h2 class="logo">VIDHYA VAARADHI</h2>
   </div>
-
-  <a>Institutions</a>
-  <a>Community</a>
-  <a>Profile</a>
-
+  <nav class="nav-links">
+  <a href="student.html">Home</a>
+  <a href="my-courses.html">My Learning</a>
+  <a href="assignments.html">Assignments</a>
+  <a href="quiz.html">Quizzes</a>
+  <a href="certificates.html">Certificates</a>
+  <a href="profile.html">Profile</a>
+  <a href="index.html" onclick="logout()" style="color: #ff6b6b; font-weight: 600;">Logout</a>
 </nav>
-
-
 </header>
-
 <!-- ================= MOBILE SIDEBAR ================= -->
-
 <aside class="mobile-sidebar" id="sidebar">
-
-  <a>Home</a>
-  <a>Courses</a>
-  <a>Institutions</a>
-  <a>Community</a>
-  <a>Profile</a>
-  <a>Logout</a>
-
+  <a href="student.html">Home</a>
+  <a href="my-courses.html">Courses</a>
+  <a href="assignments.html">Assignments</a>
+  <a href="quiz.html">Quizzes</a>
+  <a href="certificates.html">Certificates</a>
+  <a href="profile.html">Profile</a>
+  <a href="index.html" onclick="logout()">Logout</a>
 </aside>
-
 <!-- ================= MAIN ================= -->
-
 <main class="main">
+  <section class="student-hero">
+    <div class="hero-copy">
+      <span class="hero-chip">Student Workspace</span>
+      <h1 id="dashboardWelcomeTitle">Welcome back to your learning dashboard</h1>
+      <p id="dashboardWelcomeText">Continue your learning journey, stay on track this week, and move smoothly through lessons, assignments, quizzes, and certificates.</p>
+      <div class="hero-actions">
+        <a href="my-courses.html" class="primary-hero-link">Open My Learning</a>
+        <a href="courses.html" class="secondary-hero-link">Explore Courses</a>
+      </div>
+    </div>
+    <div class="hero-summary">
+      <div class="hero-summary-card">
+        <strong>Current Focus</strong>
+        <span>Structured lessons and guided module progression</span>
+      </div>
+      <div class="hero-summary-card">
+        <strong>Assessment Flow</strong>
+        <span>Assignments, quizzes, and certificates connected to real progress</span>
+      </div>
+    </div>
+  </section>
 
+  <!-- DASHBOARD STATS -->
+  <section class="dashboard-stats">
+    <div class="dashboard-stats-grid">
+      <div class="dashboard-stat-card">
+        <div class="stat-value">
+          <span data-stat="enrolled">0</span>
+        </div>
+        <div class="stat-label">Courses Enrolled</div>
+      </div>
+      <div class="dashboard-stat-card">
+        <div class="stat-value">
+          <span data-stat="completed">0</span>
+        </div>
+        <div class="stat-label">Courses Completed</div>
+      </div>
+      <div class="dashboard-stat-card">
+        <div class="stat-value">
+          <span data-stat="running">0</span>
+        </div>
+        <div class="stat-label">Pending Assignments</div>
+      </div>
+      <div class="dashboard-stat-card">
+        <div class="stat-value">
+          <span data-stat="quiz">0</span>
+        </div>
+        <div class="stat-label">Quiz Activity</div>
+      </div>
+    </div>
+  </section>
   <!-- INSTITUTIONS -->
-
   <section class="institutions">
-
-    <h2>Partnered Institutions</h2>
-
+    <h2>Learning Snapshot</h2>
     <div class="institution-logos">
-      <img src="assets/jntuk logo.png">
-    
-      <img src="assets/jntuA logo.jpg">
-      
-      <img src="assets/jntuV logo.jpg">
-      
+      <div class="snapshot-card">
+        <h3>Preparing snapshot...</h3>
+        <p>Your current learning summary will appear here.</p>
+        <span>Progress, pending work, and certificate readiness are loaded from your student state.</span>
+      </div>
     </div>
-
   </section>
-
   <!-- WHY VAARADHI -->
-
   <section class="why">
-
-    <h2>Why Vidhya Vaaradhi?</h2>
-
+    <h2>What Needs Your Attention</h2>
     <div class="why-vertical">
-
       <div class="why-card">
-        <h3>Top University Courses</h3>
-        <p>
-          Access high-quality courses curated from premier
-          institutions like IITs and IISc, aligned to academic
-          and industry standards.
-        </p>
+        <h3>Learning Momentum</h3>
+        <p>Your dashboard will highlight the best course to continue based on your current progress.</p>
       </div>
-
       <div class="why-card">
-        <h3>Recognized Certifications</h3>
-        <p>
-          Earn certificates that strengthen your resume and
-          improve placement opportunities across industries.
-        </p>
+        <h3>Pending Academic Work</h3>
+        <p>Assignments and quizzes connected to your enrolled courses will appear here with useful next steps.</p>
       </div>
-
       <div class="why-card">
-        <h3>Flexible Learning</h3>
-        <p>
-          Structured modules, assignments, and assessments
-          help you learn anytime at your pace.
-        </p>
+        <h3>Achievement Visibility</h3>
+        <p>Certificate readiness and completion milestones stay visible as you progress through courses.</p>
       </div>
-
     </div>
-
   </section>
-
   <!-- SEARCH -->
-
   <section class="search-section">
-
     <input
       type="text"
       placeholder="Search Courses, Certifications, Institutions..."
     >
-
+  </section>
+  <!-- POPULAR COURSES -->
+  <section class="popular">
+    <div class="section-head">
+      <div>
+        <span class="section-chip">Continue Learning</span>
+        <h2>Continue Learning</h2>
+        <p id="dashboardCourseIntro">Your active learning path will appear here.</p>
+      </div>
+      <a class="section-link" href="courses.html">View Catalog</a>
+    </div>
+    <div class="course-grid" id="dashboardCourseGrid">
+      <div class="dashboard-empty-state">
+        <h3>Loading your learning dashboard...</h3>
+        <p>Your active enrollments and next lessons will appear here.</p>
+      </div>
+    </div>
   </section>
 
-  <!-- POPULAR COURSES -->
-
-  <section class="popular">
-
-    <h2>Popular Courses</h2>
-
-    <div class="course-grid">
-
-      <div class="course-card">
-        <img src="assets/DEVOPS.jpg">
-        <h4>DEVOPS</h4>
-        
+  <section class="student-dashboard-panels">
+    <div class="dashboard-panel">
+      <div class="panel-head">
+        <span class="section-chip">Assignments</span>
+        <h3>Upcoming Work</h3>
       </div>
-
-      <div class="course-card">
-        <img src="assets/GEN AI.jpg">
-        <h4>GENERATIVE AI</h4>
-        
+      <div id="dashboardAssignmentsList" class="dashboard-list">
+        <div class="dashboard-list-item">
+          <strong>Loading assignments...</strong>
+          <span>Your upcoming work will appear here.</span>
+        </div>
       </div>
-
-      <div class="course-card">
-        <img src="assets/ML.jpg">
-        <h4>MACHINE LEARNING </h4>
-        
-      </div>
-
-      <div class="course-card">
-        <img src="assets/QC.jpg">
-        <h4>QUANTUM COMPUTING</h4>
-        
-      </div>
-
     </div>
 
+    <div class="dashboard-panel">
+      <div class="panel-head">
+        <span class="section-chip">Achievements</span>
+        <h3>Progress and Certificates</h3>
+      </div>
+      <div id="dashboardAchievementPanel" class="achievement-panel">
+        <div class="achievement-card">
+          <strong>Preparing your learner summary...</strong>
+          <span>Course progress and certificate visibility will appear here.</span>
+        </div>
+      </div>
+    </div>
   </section>
-
 </main>
-
+<aside class="notification-panel">
+  <div class="notification-header">
+    <h3>Notifications</h3>
+    <a href="my-courses.html" class="view-all">View All</a>
+  </div>
+  <div class="notification-list">
+    <div class="notification-item info">
+      <div class="notification-text">
+        Loading your learning alerts...
+      </div>
+      <span class="notification-time">Now</span>
+    </div>
+  </div>
+</aside>
 <!-- ================= FOOTER ================= -->
-
 <footer class="footer">
-
   <div class="footer-container">
-
     <!-- BRAND -->
-
     <div class="footer-brand">
-
       <div class="brand-header">
         <img src="assets/crr logo.jpg">
         <h2>VIDHYA VAARADHI</h2>
       </div>
-
       <p class="tagline">
         A Platform of Education
       </p>
-
     </div>
-
     <!-- LINKS -->
-
     <div class="footer-links">
-
       <div>
         <h4>Community</h4>
         <p>Forums</p>
         <p>Events</p>
         <p>Discussions</p>
       </div>
-
       <div>
         <h4>Quick Links</h4>
         <p>About</p>
         <p>Courses</p>
         <p>Support</p>
       </div>
-
     </div>
-
   </div>
-
-  <div class="copyright">
-    © 2026 Vidhya Vaaradhi • All Rights Reserved
-  </div>
-
 </footer>
-
+<script src="js/lms-data.js"></script>
 <script src="js/student.js"></script>
-
+<script>
+function logout() {
+  if (window.LMSDemo && LMSDemo.clearSession) {
+    LMSDemo.clearSession();
+  }
+  window.location.href = "index.html";
+}
+</script>
 </body>
 </html>

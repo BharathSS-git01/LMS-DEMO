@@ -1,173 +1,253 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>College LMS</title>
+  <title>Vaaradhi LMS | Digital Learning Platform</title>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
-
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
 <nav class="navbar">
-
   <div class="nav-left">
     <img src="assets/crr logo.jpg" alt="College Logo">
     <div class="site-name">VIDHYA VARADHI</div>
   </div>
 
-  <!-- SEARCH -->
-  <div class="nav-search">
-    <input type="text" placeholder="Search courses...">
-    <button>Search</button>
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation">
+    &#9776;
+  </button>
+
+  <div class="nav-mobile-shell" id="navMobileShell">
+    <div class="nav-search">
+      <input type="text" placeholder="Search courses...">
+      <button>Search</button>
+    </div>
+
+    <div class="nav-center">
+      <div class="nav-item">Home</div>
+      <div class="nav-item" onclick="window.location.href='courses.html'">Courses</div>
+      <div class="nav-item" onclick="window.location.href='about.html'">About</div>
+      <div class="nav-item" onclick="window.location.href='community.html'">Community</div>
+    </div>
+
+    <div class="nav-right">
+      <a href="login.html"><button class="login-btn">Login</button></a>
+      <a href="auth.html"><button class="signup-btn">Signup</button></a>
+    </div>
   </div>
-
-  <div class="nav-center">
-    <div class="nav-item">Home</div>
-    <div class="nav-item">Courses</div>
-    <div class="nav-item">About</div>
-    <div class="nav-item">Community</div>
-  </div>
-
-  <div class="nav-right">
-    <a href="student-login.html">
-  <button class="login-btn">Student Login</button>
-</a>
-
-<a href="admin/admin-login.html">
-  <button class="signup-btn">Admin Login</button>
-</a>
-
-  </div>
-
 </nav>
 
-<!-- ================= HERO ================= -->
+<div class="nav-overlay" id="navOverlay"></div>
+
 <section class="hero">
-  <h1>Empowering Education Beyond Classrooms</h1>
-  <p>
-    A dedicated LMS platform inspired by NPTEL & SWAYAM — providing structured courses,
-    certifications, assignments, and collaborative learning.
-  </p>
+  <span class="section-kicker">Job-ready learning for modern students</span>
+  <h1>Empowering education beyond classrooms</h1>
+  <p>Build in-demand skills, learn with flexibility, and move forward with a platform designed to help you grow with confidence.</p>
+  <div class="hero-actions">
+    <a href="courses.html"><button class="signup-btn">Explore Courses</button></a>
+    <a href="auth.html"><button class="login-btn">Join Free</button></a>
+  </div>
+  <div class="hero-metrics">
+    <div class="hero-metric">
+      <strong>4+</strong>
+      <span>career tracks</span>
+    </div>
+    <div class="hero-metric">
+      <strong>Project based</strong>
+      <span>applied learning</span>
+    </div>
+    <div class="hero-metric">
+      <strong>Certificates</strong>
+      <span>for completed paths</span>
+    </div>
+    <div class="hero-metric">
+      <strong>Flexible</strong>
+      <span>learn anytime</span>
+    </div>
+  </div>
 </section>
 
-<!-- ================= PLATFORM STATS ================= -->
 <section class="stats">
-
+  <div class="stats-head">
+    <span class="section-kicker">Why learners choose us</span>
+    <h2>Everything you need to start, stay consistent, and finish strong</h2>
+    <p>A public landing page should feel quick to scan, so here’s the short version.</p>
+  </div>
   <div class="stats-grid">
-
     <div class="stat-card">
-      <h2>1M+</h2>
-      <p>Students Enrolled</p>
-      <button>Explore</button>
+      <div class="stat-icon">1</div>
+      <h2>Top Skill Paths</h2>
+      <p>Choose from focused programs in AI, ML, DevOps, and emerging tech.</p>
+      <span class="stat-meta">Start with the path that matches your goals.</span>
+      <a class="stat-link" href="courses.html">Explore Courses</a>
     </div>
 
     <div class="stat-card">
-      <h2>500+</h2>
-      <p>Courses Available</p>
-      <button>Explore</button>
+      <div class="stat-icon">2</div>
+      <h2>Learn by Doing</h2>
+      <p>Work through quizzes, assignments, and projects instead of just reading pages.</p>
+      <span class="stat-meta">Practice is built into the learning flow.</span>
+      <a class="stat-link" href="about.html">See Platform</a>
     </div>
 
     <div class="stat-card">
-      <h2>120+</h2>
-      <p>Colleges Connected</p>
-      <button>Explore</button>
+      <div class="stat-icon">3</div>
+      <h2>Clear Progress</h2>
+      <p>Know what’s completed, what’s next, and how far you are from the finish line.</p>
+      <span class="stat-meta">Stay motivated with visible momentum.</span>
+      <a class="stat-link" href="login.html">View Dashboard</a>
     </div>
 
     <div class="stat-card">
-      <h2>50K+</h2>
-      <p>Certificates Issued</p>
-      <button>Explore</button>
+      <div class="stat-icon">4</div>
+      <h2>Career-Ready Outcomes</h2>
+      <p>Finish with stronger skills, sharper confidence, and completion credentials that matter.</p>
+      <span class="stat-meta">Built for real learners, not just demo copy.</span>
+      <a class="stat-link" href="certificates.html">View Certificates</a>
     </div>
-
   </div>
-
 </section>
 
-<!-- ================= CONNECTED COLLEGES ================= -->
+<section class="landing-extension reveal">
+  <div class="discovery-shell">
+    <div class="discovery-copy">
+      <span class="section-kicker">Find your direction</span>
+      <h2>Search by goal, topic, or the skill you want to grow next</h2>
+      <p>Inspired by marketplace learning pages like Coursera, this section focuses on discovery first so visitors can quickly decide where to begin.</p>
+      <div class="discovery-search">
+        <input type="text" placeholder="Search AI, DevOps, Machine Learning..." aria-label="Search courses">
+        <a href="courses.html" class="search-link-btn">Search Courses</a>
+      </div>
+      <div class="topic-pills">
+        <a href="courses.html" class="topic-pill">Artificial Intelligence</a>
+        <a href="courses.html" class="topic-pill">Machine Learning</a>
+        <a href="courses.html" class="topic-pill">Cloud & DevOps</a>
+        <a href="courses.html" class="topic-pill">Emerging Tech</a>
+      </div>
+    </div>
+    <div class="discovery-stack">
+      <div class="goal-card">
+        <span class="preview-label">Goal 01</span>
+        <h3>Start my career</h3>
+        <p>Begin with structured foundations, practical assignments, and guided progress.</p>
+      </div>
+      <div class="goal-card">
+        <span class="preview-label">Goal 02</span>
+        <h3>Grow in my current role</h3>
+        <p>Choose shorter upskilling paths that fit around your schedule and keep momentum high.</p>
+      </div>
+      <div class="goal-card notification-card">
+        <span class="preview-label">Learner Updates</span>
+        <h3>Stay on track</h3>
+        <ul class="notification-list">
+          <li>Course reminders and progress updates in one dashboard</li>
+          <li>Assignment and quiz readiness cues when action is needed</li>
+          <li>Certificate milestones once completion requirements are met</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="colleges">
-  <div class="section-title">Connected Colleges & Universities</div>
-
+  <div class="colleges-head">
+    <span class="section-kicker">Trusted learning ecosystem</span>
+    <div class="section-title">Built for institutions and students who want visible outcomes</div>
+    <p>Strong academic structure, cleaner navigation, and a more modern learning journey.</p>
+  </div>
   <div class="college-logos">
-    <img src="assets/jntuk logo.png">
-    <img src="assets/jntuA logo.jpg">
-    <img src="assets/jntuV logo.jpg">
+    <div class="college-card">
+      <img src="assets/jntuk logo.png" alt="JNTUK">
+      <strong>JNTUK</strong>
+      <span>University partner network</span>
+    </div>
+    <div class="college-card">
+      <img src="assets/jntuA logo.jpg" alt="JNTUA">
+      <strong>JNTUA</strong>
+      <span>Academic collaboration</span>
+    </div>
+    <div class="college-card">
+      <img src="assets/jntuV logo.jpg" alt="JNTUV">
+      <strong>JNTUV</strong>
+      <span>Digital learning support</span>
+    </div>
   </div>
 </section>
-<!-- ================= TESTIMONIALS ================= -->
+
+<section class="landing-extension reveal">
+  <div class="journey-shell">
+    <div class="journey-copy">
+      <span class="section-kicker">How it works</span>
+      <h2>Pick a course, build momentum, earn your finish</h2>
+      <p>The homepage now focuses on action, while the About page can carry the full platform story.</p>
+    </div>
+    <div class="journey-flow compact">
+      <div class="journey-step">
+        <div class="journey-icon">01</div>
+        <h3>Browse</h3>
+        <p>Compare courses and choose the path that fits your goals.</p>
+      </div>
+      <div class="journey-step">
+        <div class="journey-icon">02</div>
+        <h3>Learn</h3>
+        <p>Move through lessons, notes, and guided progress tracking.</p>
+      </div>
+      <div class="journey-step">
+        <div class="journey-icon">03</div>
+        <h3>Earn</h3>
+        <p>Complete projects and assessments to unlock achievement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="testimonials reveal">
-
-  <div class="section-title">Testimonials</div>
-
+  <div class="section-title">What learners say</div>
   <div class="testimonial-grid">
-
-    <!-- Student 1 -->
     <div class="testimonial-card">
-
       <img src="assets/TESTIMONIAL PROFILE.jpg" alt="Student">
-
-      <h3>Rakesh Kumar</h3>
-      <h4>CSE Student</h4>
-
-      <p>
-        “UNIVLEARN helped me understand Operating Systems
-        and DBMS with structured content and assignments.”
-      </p>
-
+      <h3>Bharath</h3>
+      <h4>Student</h4>
+      <p>"The course flow is simple, clean, and easy to stay consistent with."</p>
       <div class="stars">★★★★★</div>
-
     </div>
 
-    <!-- Student 2 -->
     <div class="testimonial-card">
-
       <img src="assets/TESTIMONIAL PROFILE.jpg" alt="Student">
-
-      <h3>Sneha Reddy</h3>
-      <h4>ECE Student</h4>
-
-      <p>
-        “Certification courses and labs improved my placement
-        preparation a lot.”
-      </p>
-
+      <h3>Pavan</h3>
+      <h4>Student</h4>
+      <p>"I liked seeing progress, deadlines, and projects in one single place."</p>
       <div class="stars">★★★★★</div>
-
     </div>
 
-    <!-- Student 3 -->
     <div class="testimonial-card">
-
       <img src="assets/TESTIMONIAL PROFILE.jpg" alt="Student">
-
-      <h3>Arjun Varma</h3>
-      <h4>EEE Student</h4>
-
-      <p>
-        “Branch-aligned syllabus and course structure made
-        exam preparation easier.”
-      </p>
-
+      <h3>Vijay</h3>
+      <h4>Student</h4>
+      <p>"It feels closer to a real public learning platform than a basic college portal."</p>
       <div class="stars">★★★★★</div>
-
     </div>
-
   </div>
-
 </section>
 
+<section class="landing-extension final-cta reveal">
+  <div class="cta-shell">
+    <h2>Start learning with a homepage built to convert, not over-explain</h2>
+    <p>Browse the catalog, search by goal, and create your account when you’re ready to begin.</p>
+    <div class="cta-actions">
+      <a href="courses.html"><button class="login-btn">Explore Courses</button></a>
+      <a href="login.html"><button class="signup-btn">Login</button></a>
+      <a href="auth.html"><button class="login-btn">Get Started</button></a>
+    </div>
+  </div>
+</section>
 
-<!-- ================= FOOTER ================= -->
 <footer>
-
   <div class="footer-grid">
-
     <div>
       <h4>Platform</h4>
       <p>About</p>
@@ -188,16 +268,13 @@
       <p>Contact</p>
       <p>Feedback</p>
     </div>
-
   </div>
 
   <div class="copyright">
-    © 2026 College LMS Platform • All Rights Reserved
+    &copy; 2026 Vaaradhi LMS Platform • All Rights Reserved
   </div>
-
 </footer>
 
-<!-- JS -->
 <script src="js/script.js"></script>
 
 </body>

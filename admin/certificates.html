@@ -1,181 +1,128 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Certificate Management</title>
-
-<!-- SHARED ADMIN CSS -->
-
 <link rel="stylesheet" href="css/admin.css">
-
-<!-- PAGE CSS -->
-
 <link rel="stylesheet" href="css/certificates.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
-
-<!-- ================= HEADER ================= -->
-
 <header class="admin-header">
-
   <div class="header-left">
-    <img src="../assets/logo.png" class="logo">
+    <img src="../assets/crr logo.jpg" class="logo" alt="Logo">
     <h2>VIDHYA VAARADHI</h2>
   </div>
-
   <nav class="header-center">
-    <a onclick="go('dashboard.html')">Dashboard</a>
-    <a onclick="go('students.html')">Students</a>
-    <a onclick="go('courses.html')">Courses</a>
-    <a onclick="go('assignments.html')">Assignments</a>
-    <a onclick="go('quizzes.html')">Quizzes</a>
-    <a class="active">Certificates</a>
-    <a onclick="go('../index.html')">Logout</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="students.html">Students</a>
+    <a href="courses.html">Courses</a>
+    <a href="lessons.html">Lessons</a>
+    <a href="notes.html">Notes</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="quizzes.html">Quizzes</a>
+    <a href="projects.html">Projects</a>
+    <a href="certificates.html" class="active">Certificates</a>
+    <a href="announcements.html">Announcements</a>
+    <a href="reports.html">Reports</a>
+    <a href="#" onclick="adminLogout()">Logout</a>
   </nav>
-
-  <div class="header-right">
-    <img src="../assets/profile.jpg" class="profile">
-  </div>
-
+  <img src="../assets/TESTIMONIAL PROFILE.jpg" class="profile" alt="Admin">
 </header>
-
-<!-- ================= BODY ================= -->
-
 <section class="admin-body">
-
-  <!-- SIDEBAR -->
-
   <aside class="admin-sidebar">
-
-```
-<ul>
-
-  <li onclick="go('dashboard.html')">Dashboard</li>
-  <li onclick="go('students.html')">Students</li>
-  <li onclick="go('courses.html')">Courses</li>
-  <li onclick="go('assignments.html')">Assignments</li>
-  <li onclick="go('quizzes.html')">Quizzes</li>
-  <li class="active">Certificates</li>
-  <li onclick="go('../index.html')">Logout</li>
-
-</ul>
-```
-
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="students.html">Students</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="assignments.html">Assignments</a></li>
+      <li><a href="quizzes.html">Quizzes</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li class="active"><a href="certificates.html">Certificates</a></li>
+      <li><a href="announcements.html">Announcements</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="#" onclick="adminLogout()">Logout</a></li>
+    </ul>
   </aside>
-
-  <!-- ================= MAIN ================= -->
-
   <main class="admin-main">
-
-```
-<h2>Certificate Management</h2>
-
-
-
-<!-- ===== TEMPLATE SETTINGS ===== -->
-
-<div class="certificate-card">
-
-  <h3>Certificate Template</h3>
-
-  <input type="file">
-
-  <input type="text"
-         placeholder="Authorized Signatory Name">
-
-  <input type="text"
-         placeholder="Designation">
-
-  <button>Save Template</button>
-
-</div>
-
-
-
-<!-- ===== ISSUANCE RULES ===== -->
-
-<div class="certificate-card">
-
-  <h3>Issuance Rules</h3>
-
-  <input type="number"
-         placeholder="Minimum Completion %">
-
-  <input type="number"
-         placeholder="Minimum Quiz Pass %">
-
-  <select>
-    <option>Project Required?</option>
-    <option>Yes</option>
-    <option>No</option>
-  </select>
-
-  <button>Update Rules</button>
-
-</div>
-
-
-
-<!-- ===== ISSUED CERTIFICATES ===== -->
-
-<div class="certificate-table-card">
-
-  <h3>Issued Certificates</h3>
-
-  <table class="admin-table">
-
-    <thead>
-      <tr>
-        <th>Student</th>
-        <th>Course</th>
-        <th>Date</th>
-        <th>Certificate ID</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-
-    <tbody>
-
-      <tr>
-        <td>Rahul Sharma</td>
-        <td>Machine Learning</td>
-        <td>12 Feb 2026</td>
-        <td>VV-ML-1021</td>
-        <td>
-          <button class="view-btn">Download</button>
-          <button class="delete-btn">Revoke</button>
-        </td>
-      </tr>
-
-    </tbody>
-
-  </table>
-
-</div>
-```
-
+    <section class="page-head">
+      <div>
+        <h1>Certificate Management</h1>
+        <p>Review issued certificates, keep visibility under control, and maintain a clear record of learner completion output.</p>
+      </div>
+    </section>
+    <section class="panel-grid">
+      <div class="form-card">
+        <h3>Update Certificate Record</h3>
+        <form id="certificateForm" class="form-stack">
+          <input type="hidden" id="certificateId">
+          <div class="form-grid">
+            <select id="certificateStudent" required></select>
+            <select id="certificateCourse" required></select>
+            <input id="certificateDate" type="date" required>
+            <select id="certificateStatus">
+              <option value="verified">Verified</option>
+              <option value="pending">Pending</option>
+              <option value="revoked">Revoked</option>
+            </select>
+            <select id="certificateVisible">
+              <option value="true">Visible to Student</option>
+              <option value="false">Hidden from Student</option>
+            </select>
+            <select id="certificateRule">
+              <option value="course-completion">Issue On Course Completion</option>
+              <option value="completion-and-pass">Completion + Passing Score</option>
+              <option value="manual-review">Manual Review Approval</option>
+            </select>
+            <select id="certificateTemplate">
+              <option value="classic-premium">Classic Premium</option>
+              <option value="modern-academic">Modern Academic</option>
+              <option value="skill-achievement">Skill Achievement</option>
+            </select>
+          </div>
+          <div class="upload-field">
+            <label for="certificateTemplateFile">Certificate Template Image</label>
+            <input id="certificateTemplateFile" type="file" accept="image/*">
+            <div id="certificateTemplateMeta" class="upload-meta">Upload the certificate background/template reflected in the student certificates page.</div>
+            <img id="certificateTemplatePreview" class="preview-thumb" alt="Certificate template preview" hidden>
+          </div>
+          <div class="action-row">
+            <button type="submit">Save Certificate</button>
+            <button type="button" class="btn btn-secondary" id="certificateReset">Clear</button>
+          </div>
+        </form>
+      </div>
+      <div class="panel">
+        <h3>Certificate Rules</h3>
+        <ul class="list-stack">
+          <li>Certificates should map to a real student, a real course, and a clear issue rule.</li>
+          <li>Template uploads now give the student certificate page a meaningful visual record to show.</li>
+          <li>Hidden records stay in admin history but do not appear in the learner certificate area.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="table-card">
+      <h3>Issued Certificates</h3>
+      <table class="admin-table">
+        <thead>
+          <tr><th>Student</th><th>Course</th><th>Issue Date</th><th>Rule</th><th>Status</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="certificatesTable"></tbody>
+      </table>
+    </section>
   </main>
-
 </section>
-
-<!-- ================= FOOTER ================= -->
-
 <footer class="admin-footer">
-
   <p>Help Centre</p>
   <p>Policy</p>
-  <p>© 2026 Vidhya Vaaradhi LMS</p>
-
+  <p>&copy; 2026 Vidhya Vaaradhi LMS</p>
 </footer>
-
+<script src="../js/lms-data.js"></script>
+<script src="js/admin-data.js"></script>
 <script src="js/admin.js"></script>
-
+<script src="js/certificates.js"></script>
 </body>
 </html>
