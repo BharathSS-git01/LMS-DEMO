@@ -3,7 +3,7 @@
 This project is prepared for split deployment:
 
 - Frontend: static HTML/CSS/JS from the repository root on Netlify
-- Backend: Node.js + Express from [`backend/`](./backend/) on Render
+- Backend: Node.js + Express from [`backend/`](./backend/) on Railway
 
 ## Project Structure
 
@@ -15,20 +15,21 @@ This project is prepared for split deployment:
 
 ## Backend Deployment
 
-Deploy [`backend/`](./backend/) to Render.
+Deploy [`backend/`](./backend/) to Railway.
 
-- Entry point: [`backend/server.js`](./backend/server.js)
+- Entry point: [`backend/src/server.js`](./backend/src/server.js)
 - Start script: `npm start`
 - Environment template: [`backend/.env.example`](./backend/.env.example)
-- Optional Render blueprint: [`backend/render.yaml`](./backend/render.yaml)
 
 Required backend environment variables:
 
 - `PORT`
 - `DB_HOST`
+- `DB_PORT`
 - `DB_USER`
 - `DB_PASSWORD`
 - `DB_NAME`
+- `DB_SSL`
 - `JWT_SECRET`
 - `FRONTEND_URL`
 - `ALLOWED_ORIGINS`
@@ -43,7 +44,7 @@ Deploy the repository root to Netlify.
 Before production, replace the placeholder backend URL in [`js/config.js`](./js/config.js):
 
 ```js
-var DEFAULT_API_BASE = "https://YOUR-RENDER-BACKEND.onrender.com";
+var DEFAULT_API_BASE = "https://YOUR-RAILWAY-BACKEND.up.railway.app";
 ```
 
 For local frontend-to-backend testing in the browser:

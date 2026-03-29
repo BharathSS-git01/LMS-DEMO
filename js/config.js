@@ -1,5 +1,5 @@
 (function (global) {
-  var DEFAULT_API_BASE = "https://YOUR-RENDER-BACKEND.onrender.com";
+  var DEFAULT_API_BASE = "https://YOUR-RAILWAY-BACKEND.up.railway.app";
 
   function normalizeBase(base) {
     return String(base || "").replace(/\/+$/, "");
