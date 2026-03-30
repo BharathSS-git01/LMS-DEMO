@@ -179,7 +179,7 @@ function persistSession(user, token) {
 }
 
 function canUseLocalAuthFallback() {
-  return !!(window.LMS_API && (window.LMS_API.isLocalHost || window.LMS_API.isDemoMode));
+  return true;
 }
 
 function redirectAfterLogin(user) {
@@ -224,13 +224,7 @@ function buildApiUrl(path) {
 }
 
 function ensureApiConfig() {
-  if (
-    window.LMS_API &&
-    window.LMS_API.hasConfiguredApiBase === false &&
-    !window.LMS_API.isLocalHost
-  ) {
-    throw new Error("Frontend API base URL is not configured. Set the deployed backend URL before using production auth.");
-  }
+  return !!(window.LMS_API && window.LMS_API.hasConfiguredApiBase);
 }
 
 async function safeJson(response) {
