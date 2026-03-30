@@ -115,12 +115,13 @@ async function loginViaApi(email, password) {
     })
   });
 
+  var payload = await safeJson(res);
+
   if (!res.ok) {
-    var errorData = await safeJson(res);
-    throw new Error((errorData && errorData.error) || "Login failed");
+    throw new Error(getApiErrorMessage(payload, "Login failed"));
   }
 
-  return safeJson(res);
+  return normalizeAuthResponse(payload, "Login failed");
 }
 
 async function registerViaApi(name, email, password) {
@@ -138,12 +139,13 @@ async function registerViaApi(name, email, password) {
     })
   });
 
+  var payload = await safeJson(res);
+
   if (!res.ok) {
-    var errorData = await safeJson(res);
-    throw new Error((errorData && errorData.error) || "Registration failed");
+    throw new Error(getApiErrorMessage(payload, "Registration failed"));
   }
 
-  return safeJson(res);
+  return normalizeAuthResponse(payload, "Registration failed");
 }
 
 function authenticateLocalUser(email, password) {
@@ -224,7 +226,9 @@ function buildApiUrl(path) {
 }
 
 function ensureApiConfig() {
-  return !!(window.LMS_API && window.LMS_API.hasConfiguredApiBase);
+  if (!window.LMS_API || !window.LMS_API.hasConfiguredApiBase) {
+    throw new Error("Frontend API base URL is not configured.");
+  }
 }
 
 async function safeJson(response) {
@@ -233,4 +237,30 @@ async function safeJson(response) {
   } catch (error) {
     return null;
   }
+}
+
+function normalizeAuthResponse(payload, fallbackMessage) {
+  var data = payload && payload.data ? payload.data : payload;
+  var user = data && data.user ? data.user : null;
+  var token =
+    (data && (data.token || data.accessToken || data.access_token)) ||
+    (payload && (payload.token || payload.accessToken || payload.access_token)) ||
+    "";
+
+  if (!user || !token) {
+    throw new Error(getApiErrorMessage(payload, fallbackMessage));
+  }
+
+  return {
+    user: user,
+    token: token
+  };
+}
+
+function getApiErrorMessage(payload, fallbackMessage) {
+  return (
+    (payload && (payload.error || payload.message)) ||
+    (payload && payload.data && (payload.data.error || payload.data.message)) ||
+    fallbackMessage
+  );
 }
