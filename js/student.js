@@ -173,9 +173,10 @@ function renderContinueLearning(enrolledCourses) {
     var actionHref = course.status === "completed"
       ? "certificates.html?course=" + course.id
       : "course-player.html?course=" + course.id;
+    var nextLessonLabel = course.nextLesson && course.nextLesson.title ? course.nextLesson.title : "Course roadmap available soon";
     var statusText = course.status === "completed"
       ? "Completed | Certificate unlocked"
-      : "In Progress | Next: " + course.nextLesson.title;
+      : "In Progress | Next: " + nextLessonLabel;
     var assignmentText = course.assignments.length
       ? course.submittedAssignments + "/" + course.assignments.length + " assignments submitted"
       : "No pending assignments";
@@ -307,10 +308,10 @@ function renderSnapshotSection(summary, assignments, quizzes, enrolledCourses, c
   }
 
   container.innerHTML = `
-    <div class="snapshot-card">
-      <h3>Continue Learning</h3>
+      <div class="snapshot-card">
+        <h3>Continue Learning</h3>
       <p>${summary.continueCourse ? summary.continueCourse.title : "No active course"}</p>
-      <span>${summary.continueCourse ? summary.continueCourse.nextLesson.title : "Enroll to begin your first learning path"}</span>
+      <span>${summary.continueCourse ? ((summary.continueCourse.nextLesson && summary.continueCourse.nextLesson.title) || "Course roadmap available soon") : "Enroll to begin your first learning path"}</span>
     </div>
     <div class="snapshot-card">
       <h3>Pending Work</h3>

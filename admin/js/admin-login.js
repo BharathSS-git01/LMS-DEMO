@@ -7,26 +7,16 @@ document.addEventListener('DOMContentLoaded', function () {
 async function loginAdmin() {
   var adminId = document.getElementById('adminId').value.trim();
   var password = document.getElementById('password').value.trim();
+  var authError = null;
 
   if (!adminId || !password) {
     alert('Enter both admin ID and password.');
     return;
   }
 
-  if (window.AdminLMS && AdminLMS.authenticate(adminId, password)) {
-    var localAdmin = AdminLMS.getAdminByEmail(adminId);
-    localStorage.setItem('admin_session', JSON.stringify({
-      adminId: adminId,
-      name: localAdmin ? localAdmin.name : adminId,
-      email: localAdmin ? localAdmin.email : adminId,
-      role: 'admin',
-      loggedInAt: new Date().toISOString()
-    }));
-    window.location.href = 'dashboard.html';
-    return;
-  }
-
   try {
+    ensureApiConfig();
+
     var res = await fetch(buildApiUrl('/api/auth/login'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -49,9 +39,25 @@ async function loginAdmin() {
       loggedInAt: new Date().toISOString()
     }));
     window.location.href = 'dashboard.html';
+    return;
   } catch (error) {
-    alert('Use the demo admin credentials shown below the form.');
+    authError = error;
   }
+
+  if (canUseLocalAdminFallback() && window.AdminLMS && AdminLMS.authenticate(adminId, password)) {
+    var localAdmin = AdminLMS.getAdminByEmail(adminId);
+    localStorage.setItem('admin_session', JSON.stringify({
+      adminId: adminId,
+      name: localAdmin ? localAdmin.name : adminId,
+      email: localAdmin ? localAdmin.email : adminId,
+      role: 'admin',
+      loggedInAt: new Date().toISOString()
+    }));
+    window.location.href = 'dashboard.html';
+    return;
+  }
+
+  alert(authError ? authError.message : 'Admin credentials are invalid.');
 }
 
 function buildApiUrl(path) {
@@ -60,4 +66,18 @@ function buildApiUrl(path) {
   }
 
   return path;
+}
+
+function canUseLocalAdminFallback() {
+  return !!(window.LMS_API && (window.LMS_API.isLocalHost || window.LMS_API.isDemoMode));
+}
+
+function ensureApiConfig() {
+  if (
+    window.LMS_API &&
+    window.LMS_API.hasConfiguredApiBase === false &&
+    !window.LMS_API.isLocalHost
+  ) {
+    throw new Error('Frontend API base URL is not configured. Set the deployed backend URL before using production admin auth.');
+  }
 }

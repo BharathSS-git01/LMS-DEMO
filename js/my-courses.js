@@ -117,10 +117,13 @@ function updateStatCards(enrolledCourses, runningCourses, completedCourses, summ
 
   if (nextStepCard) {
     if (runningCourses[0]) {
+      var nextLessonLabel = runningCourses[0].nextLesson && runningCourses[0].nextLesson.title
+        ? runningCourses[0].nextLesson.title
+        : "Course roadmap available soon";
       setCardCopy(
         nextStepCard,
         "Continue " + runningCourses[0].title,
-        "Next lesson: " + runningCourses[0].nextLesson.title + ". " + summary.pendingAssignmentsCount + " assignment(s) pending and " + quizzes.filter(function (quiz) { return !quiz.completed; }).length + " quiz(es) available.",
+        "Next lesson: " + nextLessonLabel + ". " + summary.pendingAssignmentsCount + " assignment(s) pending and " + quizzes.filter(function (quiz) { return !quiz.completed; }).length + " quiz(es) available.",
         Math.max(runningCourses[0].progress, assignments.length ? Math.round((assignments.filter(function (assignment) { return assignment.submitted; }).length / assignments.length) * 100) : 12) + "%",
         runningCourses[0].status === "completed" ? "Review Course" : "Continue Learning"
       );
@@ -179,6 +182,9 @@ function renderCourses(elementId, courses, emptyState) {
         ? "certificates.html?course=" + course.id
         : "course-player.html?course=" + course.id;
     var statusLabel = course.status === "completed" ? "Completed" : "In Progress";
+    var nextLessonLabel = course.nextLesson && course.nextLesson.title
+      ? course.nextLesson.title
+      : "Course roadmap available soon";
 
     var card = document.createElement("div");
     card.className = "course-card";
@@ -198,7 +204,7 @@ function renderCourses(elementId, courses, emptyState) {
           ${course.completedLessons}/${course.totalLessons} lessons complete
         </p>
         <p style="margin:8px 0; color:#555; font-size:13px;">
-          ${course.status === "completed" ? "Final lesson completed and certificate unlocked." : "Next lesson: " + course.nextLesson.title}
+          ${course.status === "completed" ? "Final lesson completed and certificate unlocked." : "Next lesson: " + nextLessonLabel}
         </p>
         <a href="${actionHref}" style="display:inline-block;margin-top:8px;background:#2563eb;color:white;padding:10px 16px;border-radius:20px;text-decoration:none;">
           ${actionLabel}

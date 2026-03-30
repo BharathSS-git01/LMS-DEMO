@@ -1,5 +1,13 @@
 var adminNotes = [];
 
+function resolveMediaUrl(path) {
+  if (window.LMSMedia && typeof window.LMSMedia.resolveMediaUrl === 'function') {
+    return window.LMSMedia.resolveMediaUrl(path);
+  }
+
+  return path || '';
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   if (!window.AdminLMS) return;
 
@@ -132,7 +140,7 @@ function reviewNote(noteId) {
   if (!note || !window.AdminUI) return;
 
   var resourceLink = note.resourcePath
-    ? '<a class="inline-link" href="' + escapeHtml(note.resourcePath) + '" target="_blank" rel="noopener">Open uploaded resource</a>'
+    ? '<a class="inline-link" href="' + escapeHtml(resolveMediaUrl(note.resourcePath)) + '" target="_blank" rel="noopener">Open uploaded resource</a>'
     : '<span class="helper-text">No file uploaded.</span>';
 
   AdminUI.openModal({

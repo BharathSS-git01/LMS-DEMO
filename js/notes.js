@@ -29,6 +29,12 @@ function updateNavigation(courseId) {
   }
 }
 
+function getSafeNoteRecord(noteId) {
+  return (window.LMSDemo ? LMSDemo.getNotes() : []).find(function (item) {
+    return item.id === noteId;
+  }) || null;
+}
+
 function renderSidebar(notes, course) {
   var sidebar = document.getElementById("notesSidebar");
   if (!sidebar) return;
@@ -103,7 +109,7 @@ function setActiveFilter(target) {
 }
 
 function viewNote(noteId) {
-  var note = (window.LMSDemo ? LMSDemo.getNotes() : []).find(function (item) { return item.id === noteId; });
+  var note = getSafeNoteRecord(noteId);
   if (note && note.resourcePath) {
     window.open(note.resourcePath, "_blank", "noopener");
     return;
@@ -112,7 +118,7 @@ function viewNote(noteId) {
 }
 
 function downloadNote(noteId) {
-  var note = (window.LMSDemo ? LMSDemo.getNotes() : []).find(function (item) { return item.id === noteId; });
+  var note = getSafeNoteRecord(noteId);
   if (note && note.resourcePath) {
     var link = document.createElement("a");
     link.href = note.resourcePath;

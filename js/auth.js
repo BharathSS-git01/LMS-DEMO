@@ -5,6 +5,7 @@ var DEMO_PASSWORD = "pass1234";
 async function loginUser() {
   var email = document.querySelector("#loginForm input[type='email']").value.trim().toLowerCase();
   var password = document.querySelector("#loginForm input[type='password']").value;
+  var authError = null;
 
   if (!email || !password) {
     alert("Enter both email and password.");
@@ -19,12 +20,17 @@ async function loginUser() {
       return;
     }
   } catch (error) {
-    // Fall back to local demo/static auth when the backend is unavailable.
+    authError = error;
+  }
+
+  if (!canUseLocalAuthFallback()) {
+    alert(authError ? authError.message : "Login failed.");
+    return;
   }
 
   var localUser = authenticateLocalUser(email, password);
   if (!localUser) {
-    alert("Invalid email or password.");
+    alert(authError ? authError.message : "Invalid email or password.");
     return;
   }
 
@@ -36,6 +42,7 @@ async function registerUser() {
   var name = document.querySelector("#signupName").value.trim();
   var email = document.querySelector("#signupEmail").value.trim().toLowerCase();
   var password = document.querySelector("#signupPassword").value;
+  var authError = null;
 
   if (!name || !email || !password) {
     alert("Fill in all signup fields.");
@@ -55,7 +62,12 @@ async function registerUser() {
       return;
     }
   } catch (error) {
-    // Fall back to local registration for static/demo deployments.
+    authError = error;
+  }
+
+  if (!canUseLocalAuthFallback()) {
+    alert(authError ? authError.message : "Registration failed.");
+    return;
   }
 
   var users = loadLocalUsers();
@@ -90,6 +102,8 @@ async function registerUser() {
 }
 
 async function loginViaApi(email, password) {
+  ensureApiConfig();
+
   var res = await fetch(buildApiUrl("/api/auth/login"), {
     method: "POST",
     headers: {
@@ -110,6 +124,8 @@ async function loginViaApi(email, password) {
 }
 
 async function registerViaApi(name, email, password) {
+  ensureApiConfig();
+
   var res = await fetch(buildApiUrl("/api/auth/register"), {
     method: "POST",
     headers: {
@@ -162,6 +178,10 @@ function persistSession(user, token) {
   localStorage.setItem("user", JSON.stringify(cleanUser));
 }
 
+function canUseLocalAuthFallback() {
+  return !!(window.LMS_API && (window.LMS_API.isLocalHost || window.LMS_API.isDemoMode));
+}
+
 function redirectAfterLogin(user) {
   if (user.role === "admin") {
     window.location.href = "admin/dashboard.html";
@@ -201,6 +221,16 @@ function buildApiUrl(path) {
   }
 
   return path;
+}
+
+function ensureApiConfig() {
+  if (
+    window.LMS_API &&
+    window.LMS_API.hasConfiguredApiBase === false &&
+    !window.LMS_API.isLocalHost
+  ) {
+    throw new Error("Frontend API base URL is not configured. Set the deployed backend URL before using production auth.");
+  }
 }
 
 async function safeJson(response) {

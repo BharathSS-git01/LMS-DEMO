@@ -1,5 +1,13 @@
 var adminCourses = [];
 
+function resolveMediaUrl(path) {
+  if (window.LMSMedia && typeof window.LMSMedia.resolveMediaUrl === 'function') {
+    return window.LMSMedia.resolveMediaUrl(path);
+  }
+
+  return path || '';
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   if (!window.AdminLMS) return;
 
@@ -160,8 +168,8 @@ function reviewCourse(courseId) {
         '<div>Student course player inherits this course context and media defaults.</div>' +
       '</div></div>' +
       '<div class="record-detail-section"><h4>Visual Assets</h4>' +
-        (course.image ? '<img class="preview-thumb" src="' + escapeHtml(course.image) + '" alt="' + escapeHtml(course.title) + ' thumbnail">' : '<div class="empty-state">No thumbnail uploaded.</div>') +
-        (course.bannerImage ? '<div style="margin-top:12px;"><img class="preview-thumb" src="' + escapeHtml(course.bannerImage) + '" alt="' + escapeHtml(course.title) + ' banner"></div>' : '') +
+        (course.image ? '<img class="preview-thumb" src="' + escapeHtml(resolveMediaUrl(course.image)) + '" alt="' + escapeHtml(course.title) + ' thumbnail">' : '<div class="empty-state">No thumbnail uploaded.</div>') +
+        (course.bannerImage ? '<div style="margin-top:12px;"><img class="preview-thumb" src="' + escapeHtml(resolveMediaUrl(course.bannerImage)) + '" alt="' + escapeHtml(course.title) + ' banner"></div>' : '') +
       '</div>' +
       '<div class="action-row">' +
         '<button type="button" class="btn btn-primary" onclick="editCourse(\'' + escapeJs(course.id) + '\'); if (window.AdminUI) AdminUI.closeModal();">Edit Course</button>' +
@@ -258,7 +266,7 @@ function setImageUploadState(inputId, previewId, metaId, path, message) {
   meta.textContent = path ? 'Current file connected. Choose a new file to replace it.' : message;
   if (path) {
     preview.hidden = false;
-    preview.src = path;
+    preview.src = resolveMediaUrl(path);
   } else {
     preview.hidden = true;
     preview.removeAttribute('src');

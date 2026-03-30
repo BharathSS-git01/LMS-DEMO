@@ -6,6 +6,14 @@ document.addEventListener('DOMContentLoaded', function () {
   renderCertificates();
 });
 
+function resolveMediaUrl(path) {
+  if (window.LMSMedia && typeof window.LMSMedia.resolveMediaUrl === 'function') {
+    return window.LMSMedia.resolveMediaUrl(path);
+  }
+
+  return path || '';
+}
+
 function bindCertificateEvents() {
   document.getElementById('certificateForm').addEventListener('submit', saveCertificateRecord);
   document.getElementById('certificateReset').onclick = resetCertificateForm;
@@ -112,7 +120,7 @@ function reviewCertificate(certificateId) {
       '</div>' +
       '<div class="record-detail-section"><h4>Certificate Status</h4><div class="record-detail-list"><div>Issue date: ' + escapeHtml(certificate.issueDate || 'Not set') + '</div><div>Visibility: ' + escapeHtml(certificate.visible === false ? 'Hidden from student' : 'Visible to student') + '</div></div></div>' +
       '<div class="record-detail-section"><h4>Student Reflection</h4><div class="record-detail-list"><div>Visible certificate records can be reflected on the student certificates page when the related course is completed.</div></div></div>' +
-      (certificate.templateImage || certificate.image ? '<div class="record-detail-section"><h4>Template Preview</h4><img class="preview-thumb" src="' + escapeHtml(certificate.templateImage || certificate.image) + '" alt="Certificate template preview"></div>' : '') +
+      (certificate.templateImage || certificate.image ? '<div class="record-detail-section"><h4>Template Preview</h4><img class="preview-thumb" src="' + escapeHtml(resolveMediaUrl(certificate.templateImage || certificate.image)) + '" alt="Certificate template preview"></div>' : '') +
       '<div class="action-row">' +
         '<button type="button" class="btn btn-primary" onclick="editCertificate(\'' + escapeJs(certificate.id) + '\'); if (window.AdminUI) AdminUI.closeModal();">Edit Certificate</button>' +
         '<button type="button" class="btn btn-secondary" onclick="window.location.href=\'../certificates.html?course=' + encodeURIComponent(certificate.courseId || '') + '\'">Open Student Certificates</button>' +
@@ -197,7 +205,7 @@ function setImageUploadState(inputId, previewId, metaId, path, message) {
   meta.textContent = path ? 'Current template connected. Choose a new file to replace it.' : message;
   if (path) {
     preview.hidden = false;
-    preview.src = path;
+    preview.src = resolveMediaUrl(path);
   } else {
     preview.hidden = true;
     preview.removeAttribute('src');

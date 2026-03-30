@@ -1,5 +1,13 @@
 var adminLessons = [];
 
+function resolveMediaUrl(path) {
+  if (window.LMSMedia && typeof window.LMSMedia.resolveMediaUrl === 'function') {
+    return window.LMSMedia.resolveMediaUrl(path);
+  }
+
+  return path || '';
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   if (!window.AdminLMS) return;
 
@@ -270,7 +278,7 @@ function setImageUploadState(inputId, previewId, metaId, path, message) {
   meta.textContent = path ? 'Current image connected. Choose a new file to replace it.' : message;
   if (path) {
     preview.hidden = false;
-    preview.src = path;
+    preview.src = resolveMediaUrl(path);
   } else {
     preview.hidden = true;
     preview.removeAttribute('src');
@@ -291,7 +299,7 @@ function setVideoUploadState(inputId, previewId, metaId, path, message) {
   meta.textContent = path ? 'Current video connected. Choose a new file to replace it.' : message;
   if (path) {
     preview.hidden = false;
-    preview.src = path;
+    preview.src = resolveMediaUrl(path);
   } else {
     preview.hidden = true;
     preview.removeAttribute('src');

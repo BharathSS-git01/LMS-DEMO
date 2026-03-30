@@ -25,9 +25,15 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "course-details.html?course=" + courseId;
     return;
   }
+  if (!course.totalLessons) {
+    playerState.course = course;
+    renderEmptyCoursePlayer(course);
+    renderCompleteCourseButton();
+    return;
+  }
 
   playerState.course = course;
-  playerState.selectedLessonId = (course.lastAccessedLesson && course.lastAccessedLesson.id) || course.nextLesson.id;
+  playerState.selectedLessonId = (course.lastAccessedLesson && course.lastAccessedLesson.id) || (course.nextLesson && course.nextLesson.id) || null;
 
   bindTabs();
   refreshPlayer();
@@ -47,6 +53,7 @@ function renderCourseSummary() {
 
   var course = playerState.course;
   var currentLesson = LMSDemo.getLessonById(course.id, playerState.selectedLessonId);
+  var nextLessonTitle = course.nextLesson && course.nextLesson.title ? course.nextLesson.title : "Course roadmap available soon";
 
   summaryPanel.innerHTML = `
     <div class="summary-copy">
@@ -64,7 +71,7 @@ function renderCourseSummary() {
       </div>
       <div class="summary-metric">
         <strong>Next lesson</strong>
-        <span>${course.nextLesson.title}</span>
+        <span>${nextLessonTitle}</span>
       </div>
       <div class="summary-metric">
         <strong>Assignments</strong>
@@ -154,6 +161,11 @@ function getLessonContext(course, lesson) {
 }
 
 function renderSelectedLesson() {
+  if (!playerState.selectedLessonId) {
+    renderEmptyCoursePlayer(playerState.course);
+    return;
+  }
+
   var lesson = LMSDemo.getLessonById(playerState.course.id, playerState.selectedLessonId);
   var course = LMSDemo.getCourseView(playerState.course.id);
   if (!lesson || !course) return;
@@ -226,7 +238,7 @@ function renderSelectedLesson() {
       </div>
       <div class="meta-card">
         <strong>Next Up</strong>
-        <span>${course.nextLesson.title}</span>
+        <span>${course.nextLesson && course.nextLesson.title ? course.nextLesson.title : "Course roadmap available soon"}</span>
       </div>
     `;
   }
@@ -285,6 +297,77 @@ function renderSelectedLesson() {
         </div>
       `
       : "<div class=\"lesson-panel\"><h3>Assignments</h3><p>No assignments linked to this lesson yet.</p>" + (quizzes.length ? "<p><strong>Quiz status:</strong> " + quizzes.map(function (quiz) { return quiz.title + " - " + quiz.status; }).join(", ") + "</p>" : "") + "</div>";
+  }
+}
+
+function renderEmptyCoursePlayer(course) {
+  var curriculum = document.querySelector(".curriculum");
+  var lessonTitle = document.getElementById("lessonTitle");
+  var playerMeta = document.getElementById("playerMeta");
+  var lessonControls = document.getElementById("lessonControls");
+  var tabContent = document.getElementById("tabContent");
+  var lessonMediaShell = document.getElementById("lessonMediaShell");
+  var mediaBadge = document.getElementById("mediaBadge");
+  var mediaMeta = document.getElementById("mediaMeta");
+  var lessonMediaImage = document.getElementById("lessonMediaImage");
+  var videoPlayer = document.getElementById("videoPlayer");
+
+  if (curriculum) {
+    curriculum.innerHTML = "<h3>" + course.title + " Curriculum</h3><p>No lessons are published for this course yet.</p>";
+  }
+
+  if (lessonTitle) {
+    lessonTitle.innerText = course.title;
+  }
+
+  if (videoPlayer) {
+    videoPlayer.pause();
+    videoPlayer.removeAttribute("src");
+    videoPlayer.load();
+  }
+
+  if (lessonMediaImage) {
+    lessonMediaImage.src = course.image || "assets/DEVOPS.jpg";
+    lessonMediaImage.alt = course.title;
+  }
+
+  if (lessonMediaShell) {
+    lessonMediaShell.classList.remove("video-active");
+    lessonMediaShell.classList.add("image-active");
+  }
+
+  if (mediaBadge) {
+    mediaBadge.innerText = "Course Preview";
+  }
+
+  if (mediaMeta) {
+    mediaMeta.innerText = "Lessons will appear here after publishing";
+  }
+
+  if (playerMeta) {
+    playerMeta.innerHTML = `
+      <div class="meta-card">
+        <strong>${course.title}</strong>
+        <span>${course.progress}% complete</span>
+      </div>
+      <div class="meta-card">
+        <strong>Status</strong>
+        <span>No lessons published yet</span>
+      </div>
+    `;
+  }
+
+  if (lessonControls) {
+    lessonControls.innerHTML = "";
+  }
+
+  if (tabContent) {
+    tabContent.innerHTML = `
+      <div class="lesson-panel">
+        <h3>Course Content Pending</h3>
+        <p>This course is enrolled and available in your workspace, but lesson content has not been published yet.</p>
+      </div>
+    `;
   }
 }
 
@@ -405,6 +488,9 @@ function renderCompleteCourseButton() {
 
   if (playerState.course.progress >= 100) {
     completeButton.innerText = "Course Completed";
+    completeButton.disabled = true;
+  } else if (!playerState.course.totalLessons) {
+    completeButton.innerText = "No Lessons Yet";
     completeButton.disabled = true;
   } else {
     completeButton.innerText = "Mark Course as Completed";

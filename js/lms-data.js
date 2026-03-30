@@ -505,7 +505,7 @@
       rating: 4.6,
       learners: 1680,
       startDate: "June 03, 2026",
-      image: "assets/VLSI.JPG",
+      image: "assets/VLSI.jpg",
       video: "assets/videos/vlsi.mp4",
       certificateImage: "assets/Machine Learning Certificate.jpg",
       description:
@@ -559,6 +559,66 @@
 
   function safeClone(value) {
     return JSON.parse(JSON.stringify(value));
+  }
+
+  function resolveMediaUrl(path) {
+    var value = String(path || "");
+    var apiHelper = window.LMS_API && typeof window.LMS_API.buildAssetUrl === "function"
+      ? window.LMS_API.buildAssetUrl
+      : null;
+
+    if (!value) return "";
+    if (apiHelper) {
+      return apiHelper(value);
+    }
+
+    if (/^(https?:|data:|blob:)/i.test(value)) {
+      return value;
+    }
+
+    value = value.replace(/\\/g, "/");
+
+    if (/^\/?uploads\//i.test(value)) {
+      return value.charAt(0) === "/" ? value : "/" + value;
+    }
+
+    if (/^(\.\.\/)+assets\//i.test(value) || /^assets\//i.test(value)) {
+      return "/" + value.replace(/^(\.\.\/)+/, "").replace(/^\/+/, "");
+    }
+
+    return value;
+  }
+
+  function normalizeLessonMedia(lesson) {
+    return Object.assign({}, lesson, {
+      image: resolveMediaUrl(lesson.image || ""),
+      video: resolveMediaUrl(lesson.video || ""),
+      videoUrl: resolveMediaUrl(lesson.videoUrl || ""),
+      videoSrc: resolveMediaUrl(lesson.videoSrc || ""),
+      resourcePath: resolveMediaUrl(lesson.resourcePath || ""),
+      referencePath: resolveMediaUrl(lesson.referencePath || "")
+    });
+  }
+
+  function normalizeCourseMedia(course) {
+    return Object.assign({}, course, {
+      image: resolveMediaUrl(course.image || ""),
+      bannerImage: resolveMediaUrl(course.bannerImage || ""),
+      certificateImage: resolveMediaUrl(course.certificateImage || ""),
+      video: resolveMediaUrl(course.video || ""),
+      videoUrl: resolveMediaUrl(course.videoUrl || ""),
+      videoSrc: resolveMediaUrl(course.videoSrc || ""),
+      modules: (Array.isArray(course.modules) ? course.modules : []).map(function (module) {
+        return Object.assign({}, module, {
+          lessons: (Array.isArray(module.lessons) ? module.lessons : []).map(normalizeLessonMedia)
+        });
+      }),
+      notes: (Array.isArray(course.notes) ? course.notes : []).map(function (note) {
+        return Object.assign({}, note, {
+          resourcePath: resolveMediaUrl(note.resourcePath || note.filePath || "")
+        });
+      })
+    });
   }
 
   function createEmptyAdminContent() {
@@ -1335,12 +1395,12 @@
       semester: state.meta.semester || sessionStudent.semester,
       institution: state.meta.institution || sessionStudent.institution,
       joinedOn: state.meta.joinedOn || sessionStudent.joinedOn,
-      image: state.profileImage || sessionStudent.image || demoStudent.image
+      image: resolveMediaUrl(state.profileImage || sessionStudent.image || demoStudent.image)
     };
   }
 
   function getCourses() {
-    return buildMergedCourses();
+    return buildMergedCourses().map(normalizeCourseMedia);
   }
 
   function getCourseById(courseId) {
@@ -1406,7 +1466,11 @@
     var completedLessons = getCompletedLessonIds(courseId).length;
     var progress = totalLessons ? Math.round((completedLessons / totalLessons) * 100) : 0;
     var status = progress >= 100 ? "completed" : completedLessons > 0 ? "in-progress" : "not-started";
-    var nextLesson = getNextLesson(courseId);
+    var nextLesson = getNextLesson(courseId) || {
+      id: null,
+      title: totalLessons ? "Continue course" : "Course content will be available soon",
+      moduleTitle: course.modules[0] ? course.modules[0].title : "Course Overview"
+    };
     var lastAccessedLessonId = state.lastAccessedLesson[courseId] || (nextLesson && nextLesson.id) || null;
     var lastAccessedLesson = lastAccessedLessonId ? getLessonById(courseId, lastAccessedLessonId) : null;
     var submittedAssignments = course.assignments.filter(function (assignment) {
@@ -2025,6 +2089,10 @@
     updateProfile: updateProfile,
     setProfileImage: setProfileImage,
     clearSession: clearSession
+  };
+
+  window.LMSMedia = {
+    resolveMediaUrl: resolveMediaUrl
   };
 
   if (document.readyState === "loading") {
