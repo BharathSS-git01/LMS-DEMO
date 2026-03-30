@@ -90,7 +90,19 @@ function renderCurriculum() {
   if (!curriculum || !playerState.course) return;
   var completedLessonIds = LMSDemo.getCompletedLessonIds(playerState.course.id);
 
-  curriculum.innerHTML = "<h3>" + playerState.course.title + " Curriculum</h3>";
+  curriculum.innerHTML =
+    "<h3>" + playerState.course.title + " Curriculum</h3>" +
+    "<button class=\"curriculum-toggle\" type=\"button\">Curriculum <span>" + getLessonCountLabel(playerState.course) + "</span></button>" +
+    "<div class=\"curriculum-panel\"></div>";
+
+  var curriculumPanel = curriculum.querySelector(".curriculum-panel");
+  var curriculumToggle = curriculum.querySelector(".curriculum-toggle");
+
+  if (curriculumToggle) {
+    curriculumToggle.onclick = function () {
+      curriculum.classList.toggle("expanded");
+    };
+  }
 
   playerState.course.modules.forEach(function (module) {
     var div = document.createElement("div");
@@ -115,7 +127,9 @@ function renderCurriculum() {
     });
 
     div.appendChild(ul);
-    curriculum.appendChild(div);
+    if (curriculumPanel) {
+      curriculumPanel.appendChild(div);
+    }
   });
 
   var toolsDiv = document.createElement("div");
@@ -123,7 +137,7 @@ function renderCurriculum() {
   toolsDiv.innerHTML = getCourseToolButtons(playerState.course.id);
   curriculum.appendChild(toolsDiv);
 
-  renderMobileCourseTools(playerState.course.id);
+  renderMobileCourseContent(playerState.course);
 }
 
 function getLessonContext(course, lesson) {
@@ -167,6 +181,7 @@ function renderSelectedLesson() {
   if (!lesson || !course) return;
 
   var lessonTitle = document.getElementById("lessonTitle");
+  var mobileCourseTitle = document.getElementById("mobileCourseTitle");
   var videoPlayer = document.getElementById("videoPlayer");
   var lessonMediaShell = document.getElementById("lessonMediaShell");
   var lessonMediaImage = document.getElementById("lessonMediaImage");
@@ -196,6 +211,10 @@ function renderSelectedLesson() {
 
   if (lessonTitle) {
     lessonTitle.innerText = lesson.title;
+  }
+
+  if (mobileCourseTitle) {
+    mobileCourseTitle.innerText = course.title;
   }
 
   updateLessonMedia(course, lesson, {
@@ -299,6 +318,7 @@ function renderSelectedLesson() {
 function renderEmptyCoursePlayer(course) {
   var curriculum = document.querySelector(".curriculum");
   var lessonTitle = document.getElementById("lessonTitle");
+  var mobileCourseTitle = document.getElementById("mobileCourseTitle");
   var playerMeta = document.getElementById("playerMeta");
   var lessonControls = document.getElementById("lessonControls");
   var tabContent = document.getElementById("tabContent");
@@ -309,13 +329,27 @@ function renderEmptyCoursePlayer(course) {
   var videoPlayer = document.getElementById("videoPlayer");
 
   if (curriculum) {
-    curriculum.innerHTML = "<h3>" + course.title + " Curriculum</h3><p>No lessons are published for this course yet.</p>";
+    curriculum.innerHTML =
+      "<h3>" + course.title + " Curriculum</h3>" +
+      "<button class=\"curriculum-toggle\" type=\"button\">Curriculum <span>No lessons yet</span></button>" +
+      "<div class=\"curriculum-panel\"><p>No lessons are published for this course yet.</p></div>";
+
+    var curriculumToggle = curriculum.querySelector(".curriculum-toggle");
+    if (curriculumToggle) {
+      curriculumToggle.onclick = function () {
+        curriculum.classList.toggle("expanded");
+      };
+    }
   }
 
-  renderMobileCourseTools(course.id);
+  renderMobileCourseContent(course);
 
   if (lessonTitle) {
     lessonTitle.innerText = course.title;
+  }
+
+  if (mobileCourseTitle) {
+    mobileCourseTitle.innerText = course.title;
   }
 
   if (videoPlayer) {
@@ -496,11 +530,29 @@ function renderCompleteCourseButton() {
   }
 }
 
-function renderMobileCourseTools(courseId) {
-  var mobileTools = document.getElementById("mobileCourseTools");
-  if (!mobileTools) return;
+function renderMobileCourseContent(course) {
+  var curriculum = document.querySelector(".curriculum");
+  if (!curriculum || !course) return;
 
-  mobileTools.innerHTML = getCourseToolButtons(courseId);
+  var existingDescription = curriculum.querySelector(".mobile-course-description");
+  if (existingDescription) {
+    existingDescription.remove();
+  }
+
+  var existingTools = curriculum.querySelector(".mobile-course-tools");
+  if (existingTools) {
+    existingTools.remove();
+  }
+
+  var mobileDescription = document.createElement("div");
+  mobileDescription.className = "mobile-course-description";
+  mobileDescription.innerHTML = "<p>" + getMinimalCourseDescription(course.description) + "</p>";
+  curriculum.appendChild(mobileDescription);
+
+  var mobileTools = document.createElement("div");
+  mobileTools.className = "mobile-course-tools";
+  mobileTools.innerHTML = getCourseToolButtons(course.id);
+  curriculum.appendChild(mobileTools);
 }
 
 function getCourseToolButtons(courseId) {
@@ -511,6 +563,25 @@ function getCourseToolButtons(courseId) {
     <button class="tool-btn" onclick="window.location.href='notes.html?course=${courseId}'">Notes</button>
     <button class="tool-btn" onclick="window.location.href='certificates.html?course=${courseId}'">Certificates</button>
   `;
+}
+
+function getMinimalCourseDescription(description) {
+  if (!description) return "A short guided course path with lessons, progress tracking, and learning support.";
+
+  var normalized = String(description).trim().replace(/\s+/g, " ");
+  if (normalized.length <= 110) return normalized;
+
+  return normalized.slice(0, 107).trim() + "...";
+}
+
+function getLessonCountLabel(course) {
+  var count = 0;
+
+  course.modules.forEach(function (module) {
+    count += module.lessons.length;
+  });
+
+  return count + " lessons";
 }
 
 function bindTabs() {
