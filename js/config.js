@@ -1,5 +1,5 @@
 (function (global) {
-  var DEFAULT_API_BASE = "";
+  var DEFAULT_API_BASE = "https://lms-demo-production.up.railway.app";
   var PLACEHOLDER_API_BASE = "https://YOUR-RAILWAY-BACKEND.up.railway.app";
   var KNOWN_STATIC_ASSETS = {
     "assets/crr logo.jpg": "/assets/crr logo.jpg",
