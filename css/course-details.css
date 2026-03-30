@@ -8,10 +8,6 @@ body {
   overflow-x: hidden;
 }
 
-body.mobile-nav-open {
-  overflow: hidden;
-}
-
 /* ================= TOP STRIP ================= */
 
 .top-strip {
@@ -35,24 +31,8 @@ body.mobile-nav-open {
   box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 }
 
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
 .logo {
   height: 50px;
-}
-
-.menu-toggle {
-  display: none;
-  border: none;
-  background: transparent;
-  color: #1e293b;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 6px;
 }
 
 .subtitle {
@@ -87,47 +67,6 @@ body.mobile-nav-open {
 
 .header-nav a:hover {
   color: #0b3a75;
-}
-
-.mobile-nav {
-  position: fixed;
-  top: 0;
-  left: -260px;
-  width: 240px;
-  height: 100vh;
-  padding: 88px 20px 24px;
-  background: #0b3a75;
-  box-shadow: 12px 0 30px rgba(15, 23, 42, 0.18);
-  transition: left 0.25s ease;
-  z-index: 120;
-}
-
-.mobile-nav a {
-  display: block;
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
-}
-
-.mobile-nav.active {
-  left: 0;
-}
-
-.mobile-nav-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.42);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.25s ease;
-  z-index: 110;
-}
-
-.mobile-nav-overlay.active {
-  opacity: 1;
-  visibility: visible;
 }
 
 /* ================= HERO SECTION ================= */
@@ -174,20 +113,6 @@ body.mobile-nav-open {
 .badge.open {
   background: #16a34a;
   color: white;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 14px;
-  margin-top: 28px;
-  flex-wrap: wrap;
-}
-
-.hero-primary-btn,
-.hero-secondary-btn {
-  width: auto;
-  min-width: 180px;
-  margin-top: 0;
 }
 
 .hero-image img {
@@ -246,13 +171,6 @@ body.mobile-nav-open {
   gap: 18px;
   margin-top: 15px;
   font-size: 14px;
-}
-
-.highlight-grid div {
-  padding: 14px 16px;
-  background: #f8fbff;
-  border: 1px solid #dbe7f5;
-  border-radius: 12px;
 }
 
 /* ================= SYLLABUS ================= */
@@ -385,17 +303,18 @@ body.mobile-nav-open {
   }
 
   .main-header {
+    flex-wrap: wrap;
     gap: 16px;
   }
 
   .header-nav {
-    display: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 18px;
   }
 
-  .menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  .header-nav a {
+    margin: 0;
   }
 }
 
@@ -418,20 +337,6 @@ body.mobile-nav-open {
     font-size: 28px;
   }
 
-  .hero-desc {
-    font-size: 14px;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-  }
-
-  .hero-primary-btn,
-  .hero-secondary-btn {
-    width: 100%;
-    min-width: 0;
-  }
-
   .info-card,
   .enroll-card {
     padding: 22px;
@@ -441,9 +346,5 @@ body.mobile-nav-open {
   .detail-row {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .highlight-grid {
-    grid-template-columns: 1fr;
   }
 }

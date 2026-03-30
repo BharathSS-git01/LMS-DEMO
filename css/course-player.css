@@ -66,8 +66,6 @@ body{
 
 .menu-toggle{
   display:none;
-  border:none;
-  background:transparent;
   font-size:22px;
   cursor:pointer;
   color:#334155;
@@ -422,12 +420,6 @@ body.mobile-nav-open{
   margin-top:18px;
 }
 
-.mobile-course-tools{
-  display:none;
-  gap:12px;
-  margin-top:18px;
-}
-
 .complete-course-btn{
   position:fixed;
   right:24px;
@@ -524,13 +516,7 @@ body.mobile-nav-open{
     height:auto;
   }
 
-  .video-area{
-    order:1;
-    padding-top:16px;
-  }
-
   .curriculum{
-    order:2;
     border-right:none;
     border-bottom:1px solid #dde6f4;
   }
@@ -557,13 +543,11 @@ body.mobile-nav-open{
   }
 
   .lesson-controls,
-  .player-tabs,
-  .mobile-course-tools{
+  .player-tabs{
     flex-wrap:wrap;
   }
 
   .lesson-controls .tool-btn,
-  .mobile-course-tools .tool-btn,
   .player-tabs .tab{
     flex:1 1 140px;
   }
@@ -585,14 +569,6 @@ body.mobile-nav-open{
     display:none;
   }
 
-  .mobile-course-tools{
-    display:flex;
-  }
-
-  .sidebar-tools{
-    display:none;
-  }
-
   .course-summary-panel,
   .video-player,
   .meta-card,
@@ -602,9 +578,5 @@ body.mobile-nav-open{
 
   .summary-copy h1{
     font-size:24px;
-  }
-
-  .player-tabs{
-    gap:12px;
   }
 }

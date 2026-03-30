@@ -20,9 +20,6 @@
 
 <!-- ================= HEADER ================= -->
 <header class="main-header">
-  <button class="menu-toggle" id="detailsMenuToggle" aria-label="Open navigation" aria-expanded="false">
-    &#9776;
-  </button>
 
   <div class="header-left">
     <img src="assets/crr logo.jpg" class="logo">
@@ -39,12 +36,6 @@
   </nav>
 
 </header>
-
-<aside class="mobile-nav" id="detailsMobileNav">
-  <a href="student.html">Home</a>
-  <a href="courses.html">Explore Courses</a>
-  <a href="my-courses.html">My Learning</a>
-</aside>
 
 
 <!-- ================= HERO SECTION ================= -->
@@ -71,16 +62,6 @@
       <span class="badge open">Enrollment Open</span>
     </div>
 
-    <div class="hero-actions">
-      <button class="enroll-btn hero-primary-btn">
-        Enroll Now
-      </button>
-
-      <button class="secondary-btn hero-secondary-btn">
-        View Syllabus
-      </button>
-    </div>
-
   </div>
 
   <div class="hero-image">
@@ -99,10 +80,12 @@
     <div class="info-card">
       <h2>Course Highlights</h2>
       <div class="highlight-grid">
-        <div>Capstone project</div>
-        <div>Case studies</div>
-        <div>Weekly assessments</div>
-        <div>Verified certificate</div>
+        <div>Included: Capstone Industry Project</div>
+        <div>Included: Real-world Case Studies</div>
+        <div>Included: Weekly Assessments</div>
+        <div>Included: Interview Preparation</div>
+        <div>Included: Deployment Workflows</div>
+        <div>Included: Verified Certificate</div>
       </div>
     </div>
 
@@ -111,7 +94,15 @@
     <div class="info-card">
       <h2>About This Course</h2>
       <p>
-        This course gives you a clear learning path with core concepts, guided practice, and progress milestones.
+        This comprehensive Machine Learning course provides a structured
+        foundation in supervised and unsupervised learning techniques.
+        Students will work with regression, classification, neural networks,
+        model evaluation strategies and production-level deployment workflows.
+      </p>
+
+      <p style="margin-top:12px;">
+        By the end of this program, you will be capable of building,
+        evaluating and deploying ML models in real-world environments.
       </p>
     </div>
 
@@ -140,7 +131,8 @@
         <div>
           <h4>Dr. A. Kumar</h4>
           <p>
-            Experienced faculty mentor with practical industry and academic training experience.
+            15+ years of experience in Artificial Intelligence research,
+            production-grade ML systems and industry consulting.
           </p>
         </div>
       </div>
@@ -207,44 +199,6 @@
     &copy; 2026 Vaaradhi LMS. All rights reserved.
   </div>
 </footer>
-
-<script>
-(function () {
-  var menuToggle = document.getElementById("detailsMenuToggle");
-  var mobileNav = document.getElementById("detailsMobileNav");
-  if (!menuToggle || !mobileNav) return;
-
-  var overlay = document.createElement("div");
-  overlay.className = "mobile-nav-overlay";
-  document.body.appendChild(overlay);
-
-  function closeMenu() {
-    mobileNav.classList.remove("active");
-    overlay.classList.remove("active");
-    document.body.classList.remove("mobile-nav-open");
-    menuToggle.setAttribute("aria-expanded", "false");
-  }
-
-  menuToggle.onclick = function () {
-    var isActive = mobileNav.classList.toggle("active");
-    overlay.classList.toggle("active", isActive);
-    document.body.classList.toggle("mobile-nav-open", isActive);
-    menuToggle.setAttribute("aria-expanded", isActive ? "true" : "false");
-  };
-
-  overlay.onclick = closeMenu;
-
-  mobileNav.querySelectorAll("a").forEach(function (link) {
-    link.addEventListener("click", closeMenu);
-  });
-
-  window.addEventListener("resize", function () {
-    if (window.innerWidth > 900) {
-      closeMenu();
-    }
-  });
-})();
-</script>
 
 </body>
 </html>
