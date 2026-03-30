@@ -6,41 +6,15 @@ const path = require("path");
 
 const app = express();
 const uploadsDir = path.join(process.cwd(), "uploads");
-const allowedOrigins = new Set(
-  [
-    process.env.FRONTEND_URL,
-    ...(process.env.ALLOWED_ORIGINS || "")
-      .split(",")
-      .map((origin) => origin.trim())
-      .filter(Boolean),
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:4173",
-    "http://127.0.0.1:4173",
-    "http://localhost:5000",
-    "http://127.0.0.1:5000",
-    "http://localhost:5500",
-    "http://127.0.0.1:5500",
-    "http://localhost:8080",
-    "http://127.0.0.1:8080"
-  ].filter(Boolean)
-);
 
 fs.mkdirSync(uploadsDir, { recursive: true });
 
-const corsOptions = {
-  origin(origin, callback) {
-    if (!origin || allowedOrigins.has(origin)) {
-      return callback(null, true);
-    }
-
-    return callback(new Error("Origin not allowed by CORS"));
-  },
-  credentials: true
-};
-
 // Middleware
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 app.use(express.json());
 
 // Static uploads folder
