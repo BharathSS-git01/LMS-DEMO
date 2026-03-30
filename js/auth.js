@@ -121,7 +121,7 @@ async function loginViaApi(email, password) {
     throw new Error(getApiErrorMessage(payload, "Login failed"));
   }
 
-  return normalizeAuthResponse(payload, "Login failed");
+  return getAuthPayload(payload, "Login failed");
 }
 
 async function registerViaApi(name, email, password) {
@@ -145,7 +145,7 @@ async function registerViaApi(name, email, password) {
     throw new Error(getApiErrorMessage(payload, "Registration failed"));
   }
 
-  return normalizeAuthResponse(payload, "Registration failed");
+  return getAuthPayload(payload, "Registration failed");
 }
 
 function authenticateLocalUser(email, password) {
@@ -226,9 +226,7 @@ function buildApiUrl(path) {
 }
 
 function ensureApiConfig() {
-  if (!window.LMS_API || !window.LMS_API.hasConfiguredApiBase) {
-    throw new Error("Frontend API base URL is not configured.");
-  }
+  return !!(window.LMS_API && window.LMS_API.hasConfiguredApiBase);
 }
 
 async function safeJson(response) {
@@ -239,7 +237,7 @@ async function safeJson(response) {
   }
 }
 
-function normalizeAuthResponse(payload, fallbackMessage) {
+function getAuthPayload(payload, fallbackMessage) {
   var data = payload && payload.data ? payload.data : payload;
   var user = data && data.user ? data.user : null;
   var token =
