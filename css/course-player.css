@@ -145,6 +145,14 @@ body.mobile-nav-open{
   margin-bottom:18px;
 }
 
+.curriculum-toggle{
+  display:none;
+}
+
+.curriculum-panel{
+  display:block;
+}
+
 
 
 /* MODULE */
@@ -253,10 +261,6 @@ body.mobile-nav-open{
   font-weight:700;
   text-transform:uppercase;
   letter-spacing:.06em;
-}
-
-.mobile-player-flow{
-  display:none;
 }
 
 .course-summary-panel{
@@ -458,7 +462,7 @@ body.mobile-nav-open{
   box-shadow:0 14px 30px rgba(22,163,74,0.28);
   cursor:pointer;
   transition:.25s;
-  margin:24px 0 0 auto;
+  margin:24px 30px 0 auto;
 }
 
 .complete-course-btn:hover{
@@ -568,6 +572,10 @@ body.mobile-nav-open{
     padding:20px 24px;
   }
 
+  .complete-course-btn{
+    margin-right:20px;
+  }
+
   .video-area{
     padding:20px;
   }
@@ -583,6 +591,15 @@ body.mobile-nav-open{
   .player-tabs .tab{
     flex:1 1 140px;
   }
+}
+
+@media (max-width: 480px){
+  .header,
+  .curriculum,
+  .video-area{
+    padding-left:16px;
+    padding-right:16px;
+  }
 
   .menu-toggle{
     display:block;
@@ -592,33 +609,25 @@ body.mobile-nav-open{
     display:none;
   }
 
-  .header,
-  .video-area{
-    padding-left:16px;
-    padding-right:16px;
-  }
-
-  .curriculum{
-    display:none;
-  }
-
   .sidebar-tools{
     display:none;
   }
 
   .mobile-course-title{
     display:block;
-    margin-bottom:6px;
   }
 
-  .mobile-player-flow{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-    margin-top:18px;
+  .curriculum{
+    padding-top:0;
+    background:#f8faff;
+    border-bottom:none;
   }
 
-  .mobile-curriculum-toggle{
+  .curriculum h3{
+    display:none;
+  }
+
+  .curriculum-toggle{
     width:100%;
     display:flex;
     align-items:center;
@@ -635,33 +644,33 @@ body.mobile-nav-open{
     cursor:pointer;
   }
 
-  .mobile-curriculum-toggle span{
+  .curriculum-toggle span{
     color:#64748b;
     font-size:12px;
     font-weight:600;
   }
 
-  .mobile-curriculum-toggle::after{
+  .curriculum-toggle::after{
     content:"+";
     font-size:20px;
     color:#2563eb;
     line-height:1;
   }
 
-  .mobile-player-flow.expanded .mobile-curriculum-toggle::after{
+  .curriculum.expanded .curriculum-toggle::after{
     content:"-";
   }
 
-  .mobile-curriculum-panel{
+  .curriculum-panel{
     display:none;
+    margin-top:12px;
     padding:16px;
     background:white;
     border:1px solid #dde6f4;
     border-radius:16px;
-    width:100%;
   }
 
-  .mobile-player-flow.expanded .mobile-curriculum-panel{
+  .curriculum.expanded .curriculum-panel{
     display:block;
   }
 
@@ -675,6 +684,7 @@ body.mobile-nav-open{
 
   .mobile-course-description{
     display:block;
+    margin-top:16px;
     padding:16px;
     background:white;
     border:1px solid #dde6f4;
@@ -686,9 +696,9 @@ body.mobile-nav-open{
 
   .mobile-course-tools{
     display:flex;
-    width:100%;
     flex-wrap:wrap;
     gap:12px;
+    margin-top:16px;
   }
 
   .mobile-course-tools .tool-btn{
@@ -709,6 +719,7 @@ body.mobile-nav-open{
     display:none;
   }
 
+  .course-summary-panel,
   .video-player,
   .meta-card,
   .lesson-panel{
