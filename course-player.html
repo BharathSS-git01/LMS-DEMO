@@ -60,6 +60,16 @@
       </div>
     </div>
 
+    <div class="mobile-player-flow" id="mobilePlayerFlow">
+      <button class="mobile-curriculum-toggle" id="mobileCurriculumToggle" type="button">
+        Curriculum
+        <span id="mobileCurriculumCount">0 lessons</span>
+      </button>
+      <div class="mobile-curriculum-panel" id="mobileCurriculumPanel"></div>
+      <div class="mobile-course-description" id="mobileCourseDescription"></div>
+      <div class="mobile-course-tools" id="mobileCourseTools"></div>
+    </div>
+
     <div class="player-meta" id="playerMeta"></div>
     <div class="lesson-controls" id="lessonControls"></div>
     <div class="course-summary-panel" id="courseSummaryPanel"></div>
@@ -74,12 +84,12 @@
     <div class="tab-content" id="tabContent">
       <p>Lesson details appear here.</p>
     </div>
+
+    <button class="complete-course-btn" id="completeCourseBtn" onclick="completeEntireCourse()">
+      Mark Course as Completed
+    </button>
   </div>
 </section>
-
-<button class="complete-course-btn" id="completeCourseBtn" onclick="completeEntireCourse()">
-  Mark Course as Completed
-</button>
 
 <footer class="player-footer">
   <p>&copy; 2026 Vaaradhi LMS. All rights reserved.</p>
