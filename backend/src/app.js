@@ -6,15 +6,17 @@ const path = require("path");
 
 const app = express();
 const uploadsDir = path.join(process.cwd(), "uploads");
+const corsOptions = {
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+};
 
 fs.mkdirSync(uploadsDir, { recursive: true });
 
 // Middleware
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(express.json());
 
 // Static uploads folder
