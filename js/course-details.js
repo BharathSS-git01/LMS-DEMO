@@ -101,11 +101,7 @@ function renderAbout(course) {
 
   aboutCard.innerHTML = `
     <h2>About This Course</h2>
-    <p>${course.description}</p>
-    <p style="margin-top:12px;">
-      Instructor ${course.instructor} guides this ${course.difficulty.toLowerCase()} path with a practical,
-      module-based structure that supports learning continuity, weekly assessment, and certificate readiness.
-    </p>
+    <p>${getShortDescription(course.description)}</p>
   `;
 }
 
@@ -139,8 +135,7 @@ function renderInstructor(course) {
       <div>
         <h4>${course.instructor}</h4>
         <p>
-          ${course.instructorTitle} leading ${course.category.toLowerCase()} delivery with real implementation context,
-          learner checkpoints, and completion-focused mentoring.
+          ${course.instructorTitle} with practical guidance, milestone support, and learner-focused delivery.
         </p>
       </div>
     </div>
@@ -211,4 +206,26 @@ function renderEnrollCard(course, authState) {
           : "course-player.html?course=" + course.id;
     };
   }
+
+  var heroPrimaryButton = document.querySelector(".hero-primary-btn");
+  var heroSecondaryButton = document.querySelector(".hero-secondary-btn");
+
+  if (heroPrimaryButton && enrollButton) {
+    heroPrimaryButton.innerText = enrollButton.innerText;
+    heroPrimaryButton.onclick = enrollButton.onclick;
+  }
+
+  if (heroSecondaryButton && secondaryButton) {
+    heroSecondaryButton.innerText = secondaryButton.innerText;
+    heroSecondaryButton.onclick = secondaryButton.onclick;
+  }
+}
+
+function getShortDescription(description) {
+  if (!description) return "A focused course path with lessons, practice, and progress tracking.";
+
+  var normalized = String(description).trim().replace(/\s+/g, " ");
+  if (normalized.length <= 170) return normalized;
+
+  return normalized.slice(0, 167).trim() + "...";
 }

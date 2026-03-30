@@ -12,7 +12,7 @@
 <body>
 
 <header class="header">
-  <div class="menu-toggle" id="menuToggle">&#9776;</div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">&#9776;</button>
   <div class="brand-mark">
     <img src="assets/crr logo.jpg" alt="Vaaradhi logo">
     <h2 class="logo">VIDHYA VAARADHI</h2>
@@ -61,6 +61,7 @@
 
     <div class="player-meta" id="playerMeta"></div>
     <div class="lesson-controls" id="lessonControls"></div>
+    <div class="mobile-course-tools" id="mobileCourseTools"></div>
     <div class="course-summary-panel" id="courseSummaryPanel"></div>
 
     <div class="player-tabs">
@@ -105,17 +106,31 @@ function logout() {
   overlay.className = "mobile-sidebar-overlay";
   document.body.appendChild(overlay);
 
-  menuToggle.onclick = function () {
-    sidebar.classList.toggle("active");
-    overlay.classList.toggle("active");
-    document.body.classList.toggle("mobile-nav-open");
-  };
-
-  overlay.onclick = function () {
+  function closeMenu() {
     sidebar.classList.remove("active");
     overlay.classList.remove("active");
     document.body.classList.remove("mobile-nav-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  }
+
+  menuToggle.onclick = function () {
+    var isActive = sidebar.classList.toggle("active");
+    overlay.classList.toggle("active", isActive);
+    document.body.classList.toggle("mobile-nav-open", isActive);
+    menuToggle.setAttribute("aria-expanded", isActive ? "true" : "false");
   };
+
+  sidebar.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", closeMenu);
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 480) {
+      closeMenu();
+    }
+  });
+
+  overlay.onclick = closeMenu;
 })();
 </script>
 

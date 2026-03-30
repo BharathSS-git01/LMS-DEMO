@@ -120,14 +120,10 @@ function renderCurriculum() {
 
   var toolsDiv = document.createElement("div");
   toolsDiv.className = "sidebar-tools";
-  toolsDiv.innerHTML = `
-    <button class="tool-btn" onclick="window.location.href='assignments.html?course=${playerState.course.id}'">Assignments</button>
-    <button class="tool-btn" onclick="window.location.href='quiz.html?course=${playerState.course.id}'">Quizzes</button>
-    <button class="tool-btn" onclick="window.location.href='project.html?course=${playerState.course.id}'">Project</button>
-    <button class="tool-btn" onclick="window.location.href='notes.html?course=${playerState.course.id}'">Notes</button>
-    <button class="tool-btn" onclick="window.location.href='certificates.html?course=${playerState.course.id}'">Certificates</button>
-  `;
+  toolsDiv.innerHTML = getCourseToolButtons(playerState.course.id);
   curriculum.appendChild(toolsDiv);
+
+  renderMobileCourseTools(playerState.course.id);
 }
 
 function getLessonContext(course, lesson) {
@@ -316,6 +312,8 @@ function renderEmptyCoursePlayer(course) {
     curriculum.innerHTML = "<h3>" + course.title + " Curriculum</h3><p>No lessons are published for this course yet.</p>";
   }
 
+  renderMobileCourseTools(course.id);
+
   if (lessonTitle) {
     lessonTitle.innerText = course.title;
   }
@@ -496,6 +494,23 @@ function renderCompleteCourseButton() {
     completeButton.innerText = "Mark Course as Completed";
     completeButton.disabled = false;
   }
+}
+
+function renderMobileCourseTools(courseId) {
+  var mobileTools = document.getElementById("mobileCourseTools");
+  if (!mobileTools) return;
+
+  mobileTools.innerHTML = getCourseToolButtons(courseId);
+}
+
+function getCourseToolButtons(courseId) {
+  return `
+    <button class="tool-btn" onclick="window.location.href='assignments.html?course=${courseId}'">Assignments</button>
+    <button class="tool-btn" onclick="window.location.href='quiz.html?course=${courseId}'">Quizzes</button>
+    <button class="tool-btn" onclick="window.location.href='project.html?course=${courseId}'">Project</button>
+    <button class="tool-btn" onclick="window.location.href='notes.html?course=${courseId}'">Notes</button>
+    <button class="tool-btn" onclick="window.location.href='certificates.html?course=${courseId}'">Certificates</button>
+  `;
 }
 
 function bindTabs() {
