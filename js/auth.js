@@ -3,8 +3,13 @@ var DEMO_EMAIL = "student@gmail.com";
 var DEMO_PASSWORD = "pass1234";
 
 async function loginUser() {
-  var email = document.querySelector("#loginForm input[type='email']").value.trim().toLowerCase();
-  var password = document.querySelector("#loginForm input[type='password']").value;
+  var form = document.getElementById("loginForm");
+  if (!form) return;
+
+  var emailField = form.querySelector("input[type='email']");
+  var passwordField = form.querySelector("input[type='password']");
+  var email = String(emailField && emailField.value || "").trim().toLowerCase();
+  var password = String(passwordField && passwordField.value || "");
   var authError = null;
 
   if (!email || !password) {
@@ -13,19 +18,14 @@ async function loginUser() {
   }
 
   try {
-    var remote = await loginViaApi(email, password);
-    if (remote) {
-      persistSession(remote.user, remote.token);
-      redirectAfterLogin(remote.user);
+    var remoteSession = await loginViaApi(email, password);
+    if (remoteSession) {
+      persistSession(remoteSession.user, remoteSession.token);
+      redirectAfterLogin(remoteSession.user);
       return;
     }
   } catch (error) {
     authError = error;
-  }
-
-  if (!canUseLocalAuthFallback()) {
-    alert(authError ? authError.message : "Login failed.");
-    return;
   }
 
   var localUser = authenticateLocalUser(email, password);
@@ -39,9 +39,12 @@ async function loginUser() {
 }
 
 async function registerUser() {
-  var name = document.querySelector("#signupName").value.trim();
-  var email = document.querySelector("#signupEmail").value.trim().toLowerCase();
-  var password = document.querySelector("#signupPassword").value;
+  var nameField = document.getElementById("signupName");
+  var emailField = document.getElementById("signupEmail");
+  var passwordField = document.getElementById("signupPassword");
+  var name = String(nameField && nameField.value || "").trim();
+  var email = String(emailField && emailField.value || "").trim().toLowerCase();
+  var password = String(passwordField && passwordField.value || "");
   var authError = null;
 
   if (!name || !email || !password) {
@@ -55,56 +58,37 @@ async function registerUser() {
   }
 
   try {
-    var remote = await registerViaApi(name, email, password);
-    if (remote) {
-      persistSession(remote.user, remote.token);
-      redirectAfterLogin(remote.user);
+    var remoteSession = await registerViaApi(name, email, password);
+    if (remoteSession) {
+      persistSession(remoteSession.user, remoteSession.token);
+      redirectAfterLogin(remoteSession.user);
       return;
     }
   } catch (error) {
     authError = error;
   }
 
-  if (!canUseLocalAuthFallback()) {
-    alert(authError ? authError.message : "Registration failed.");
-    return;
-  }
-
   var users = loadLocalUsers();
   var alreadyExists = users.some(function (user) {
-    return String(user.email || "").toLowerCase() === email;
+    return normalizeEmail(user.email) === email;
   });
 
   if (alreadyExists) {
-    alert("An account with this email already exists.");
+    alert(authError ? authError.message : "An account with this email already exists.");
     return;
   }
 
-  var newUser = {
-    id: "local-" + Date.now(),
-    name: name,
-    email: email,
-    password: password,
-    role: "student",
-    phone: "",
-    registerNo: "VV" + String(Date.now()).slice(-8),
-    department: "Student",
-    institution: "Vidhya Vaaradhi LMS",
-    semester: "Semester 1",
-    joinedOn: new Date().toISOString().split("T")[0],
-    image: "assets/TESTIMONIAL PROFILE.jpg"
-  };
-
+  var newUser = createLocalStudentUser(name, email, password);
   users.push(newUser);
   saveLocalUsers(users);
-  persistSession(stripPassword(newUser), "local-signup-session");
-  window.location.href = "student.html";
+  persistSession(newUser, "local-signup-session");
+  redirectAfterLogin(newUser);
 }
 
 async function loginViaApi(email, password) {
-  ensureApiConfig();
+  if (!hasApiConfig()) return null;
 
-  var res = await fetch(buildApiUrl("/api/auth/login"), {
+  var response = await fetch(buildApiUrl("/api/auth/login"), {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -115,19 +99,19 @@ async function loginViaApi(email, password) {
     })
   });
 
-  var payload = await safeJson(res);
+  var payload = await safeJson(response);
 
-  if (!res.ok) {
+  if (!response.ok) {
     throw new Error(getApiErrorMessage(payload, "Login failed"));
   }
 
-  return getAuthPayload(payload, "Login failed");
+  return normalizeRemoteAuthSession(payload, email, "Login failed");
 }
 
 async function registerViaApi(name, email, password) {
-  ensureApiConfig();
+  if (!hasApiConfig()) return null;
 
-  var res = await fetch(buildApiUrl("/api/auth/register"), {
+  var response = await fetch(buildApiUrl("/api/auth/register"), {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -139,18 +123,18 @@ async function registerViaApi(name, email, password) {
     })
   });
 
-  var payload = await safeJson(res);
+  var payload = await safeJson(response);
 
-  if (!res.ok) {
+  if (!response.ok) {
     throw new Error(getApiErrorMessage(payload, "Registration failed"));
   }
 
-  return getAuthPayload(payload, "Registration failed");
+  return normalizeRemoteAuthSession(payload, email, "Registration failed");
 }
 
 function authenticateLocalUser(email, password) {
   if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
-    return {
+    return normalizeSessionUser({
       id: 101,
       name: "Bharath A",
       email: DEMO_EMAIL,
@@ -162,30 +146,43 @@ function authenticateLocalUser(email, password) {
       semester: "Semester 6",
       joinedOn: "2025-08-12",
       image: "assets/TESTIMONIAL PROFILE.jpg"
-    };
+    });
   }
 
   var localUser = loadLocalUsers().find(function (user) {
-    return String(user.email || "").toLowerCase() === email && user.password === password;
+    return normalizeEmail(user.email) === email && user.password === password;
   });
 
   return localUser ? stripPassword(localUser) : null;
 }
 
+function createLocalStudentUser(name, email, password) {
+  return {
+    id: buildLocalStudentId(email),
+    name: name,
+    email: email,
+    password: password,
+    role: "student",
+    phone: "",
+    registerNo: buildRegisterNumber(email),
+    department: "Student",
+    institution: "Vidhya Vaaradhi LMS",
+    semester: "Semester 1",
+    joinedOn: new Date().toISOString().split("T")[0],
+    image: "assets/TESTIMONIAL PROFILE.jpg"
+  };
+}
+
 function persistSession(user, token) {
-  var cleanUser = stripPassword(user);
+  var cleanUser = normalizeSessionUser(stripPassword(user));
   localStorage.removeItem("admin_session");
   localStorage.setItem("token", token || "");
   localStorage.setItem("currentUser", JSON.stringify(cleanUser));
   localStorage.setItem("user", JSON.stringify(cleanUser));
 }
 
-function canUseLocalAuthFallback() {
-  return true;
-}
-
 function redirectAfterLogin(user) {
-  if (user.role === "admin") {
+  if (user && user.role === "admin") {
     window.location.href = "admin/dashboard.html";
     return;
   }
@@ -208,6 +205,7 @@ function saveLocalUsers(users) {
 
 function stripPassword(user) {
   if (!user) return null;
+
   var cleanUser = {};
   Object.keys(user).forEach(function (key) {
     if (key !== "password") {
@@ -215,6 +213,44 @@ function stripPassword(user) {
     }
   });
   return cleanUser;
+}
+
+function normalizeSessionUser(user, fallbackEmail) {
+  var sessionUser = Object.assign({}, user || {});
+  var normalizedEmail = normalizeEmail(sessionUser.email || fallbackEmail || "");
+  var fallbackId = normalizedEmail ? buildLocalStudentId(normalizedEmail) : "student-demo-user";
+
+  return {
+    id: sessionUser.id !== undefined && sessionUser.id !== null && sessionUser.id !== "" ? sessionUser.id : fallbackId,
+    name: sessionUser.name || "Student",
+    email: normalizedEmail,
+    role: sessionUser.role || "student",
+    phone: sessionUser.phone || "",
+    registerNo: sessionUser.registerNo || buildRegisterNumber(normalizedEmail),
+    department: sessionUser.department || "Student",
+    institution: sessionUser.institution || "Vidhya Vaaradhi LMS",
+    semester: sessionUser.semester || "Semester 1",
+    joinedOn: sessionUser.joinedOn || new Date().toISOString().split("T")[0],
+    image: sessionUser.image || "assets/TESTIMONIAL PROFILE.jpg"
+  };
+}
+
+function normalizeRemoteAuthSession(payload, fallbackEmail, fallbackMessage) {
+  var data = payload && payload.data ? payload.data : payload;
+  var rawUser = data && data.user ? data.user : payload && payload.user ? payload.user : null;
+  var token =
+    (data && (data.accessToken || data.token || data.access_token)) ||
+    (payload && (payload.accessToken || payload.token || payload.access_token)) ||
+    "";
+
+  if (!rawUser || !token) {
+    throw new Error(getApiErrorMessage(payload, fallbackMessage));
+  }
+
+  return {
+    user: normalizeSessionUser(rawUser, fallbackEmail),
+    token: token
+  };
 }
 
 function buildApiUrl(path) {
@@ -225,8 +261,22 @@ function buildApiUrl(path) {
   return path;
 }
 
-function ensureApiConfig() {
+function hasApiConfig() {
   return !!(window.LMS_API && window.LMS_API.hasConfiguredApiBase);
+}
+
+function normalizeEmail(email) {
+  return String(email || "").trim().toLowerCase();
+}
+
+function buildLocalStudentId(email) {
+  var normalized = normalizeEmail(email).replace(/[^a-z0-9]/gi, "");
+  return "student-" + (normalized || Date.now());
+}
+
+function buildRegisterNumber(email) {
+  var normalized = normalizeEmail(email).replace(/[^a-z0-9]/gi, "").toUpperCase();
+  return "VV" + normalized.slice(-8).padStart(8, "0");
 }
 
 async function safeJson(response) {
@@ -235,24 +285,6 @@ async function safeJson(response) {
   } catch (error) {
     return null;
   }
-}
-
-function getAuthPayload(payload, fallbackMessage) {
-  var data = payload && payload.data ? payload.data : payload;
-  var user = data && data.user ? data.user : null;
-  var token =
-    (data && (data.token || data.accessToken || data.access_token)) ||
-    (payload && (payload.token || payload.accessToken || payload.access_token)) ||
-    "";
-
-  if (!user || !token) {
-    throw new Error(getApiErrorMessage(payload, fallbackMessage));
-  }
-
-  return {
-    user: user,
-    token: token
-  };
 }
 
 function getApiErrorMessage(payload, fallbackMessage) {
