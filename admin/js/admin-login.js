@@ -8,6 +8,7 @@ async function loginAdmin() {
   var adminId = document.getElementById('adminId').value.trim();
   var password = document.getElementById('password').value.trim();
   var authError = null;
+  var remoteRejectedCredentials = false;
 
   if (!adminId || !password) {
     alert('Enter both admin ID and password.');
@@ -24,28 +25,30 @@ async function loginAdmin() {
     });
     var data = await res.json();
     if (!res.ok || !data.user || data.user.role !== 'admin') {
-      alert(data.error || 'Admin credentials are invalid.');
+      remoteRejectedCredentials = true;
+    } else {
+      localStorage.setItem('token', data.token);
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('user');
+      localStorage.setItem('admin_session', JSON.stringify({
+        adminId: adminId,
+        name: data.user.name,
+        email: data.user.email,
+        role: 'admin',
+        loggedInAt: new Date().toISOString()
+      }));
+      window.location.href = 'dashboard.html';
       return;
     }
-
-    localStorage.setItem('token', data.token);
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('user');
-    localStorage.setItem('admin_session', JSON.stringify({
-      adminId: adminId,
-      name: data.user.name,
-      email: data.user.email,
-      role: 'admin',
-      loggedInAt: new Date().toISOString()
-    }));
-    window.location.href = 'dashboard.html';
-    return;
   } catch (error) {
     authError = error;
   }
 
-  if (canUseLocalAdminFallback() && window.AdminLMS && AdminLMS.authenticate(adminId, password)) {
+  if (window.AdminLMS && AdminLMS.authenticate(adminId, password)) {
     var localAdmin = AdminLMS.getAdminByEmail(adminId);
+    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('user');
     localStorage.setItem('admin_session', JSON.stringify({
       adminId: adminId,
       name: localAdmin ? localAdmin.name : adminId,
@@ -54,6 +57,11 @@ async function loginAdmin() {
       loggedInAt: new Date().toISOString()
     }));
     window.location.href = 'dashboard.html';
+    return;
+  }
+
+  if (remoteRejectedCredentials) {
+    alert('Admin credentials are invalid.');
     return;
   }
 
@@ -66,10 +74,6 @@ function buildApiUrl(path) {
   }
 
   return path;
-}
-
-function canUseLocalAdminFallback() {
-  return !!(window.LMS_API && (window.LMS_API.isLocalHost || window.LMS_API.isDemoMode));
 }
 
 function ensureApiConfig() {
