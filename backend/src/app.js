@@ -6,13 +6,40 @@ const path = require("path");
 
 const app = express();
 const uploadsDir = path.join(process.cwd(), "uploads");
+
+function parseAllowedOrigins(value) {
+  return String(value || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+}
+
+function isTrustedHostedFrontend(origin) {
+  return /^https:\/\/[a-z0-9-]+(?:--[a-z0-9-]+)?\.(netlify\.app|vercel\.app)$/i.test(origin);
+}
+
+const configuredOrigins = [
+  process.env.FRONTEND_URL,
+  ...parseAllowedOrigins(process.env.ALLOWED_ORIGINS)
+];
+
 const allowedOrigins = new Set([
+  "http://localhost:3000",
+  "http://localhost:4173",
+  "http://localhost:5000",
   "http://localhost:5173",
-  "https://lms-demo-flax.vercel.app"
+  "http://localhost:5500",
+  "http://127.0.0.1:3000",
+  "http://127.0.0.1:4173",
+  "http://127.0.0.1:5000",
+  "http://127.0.0.1:5173",
+  "http://127.0.0.1:5500",
+  ...configuredOrigins
 ]);
+
 const corsOptions = {
   origin(origin, callback) {
-    if (!origin || allowedOrigins.has(origin)) {
+    if (!origin || allowedOrigins.has(origin) || isTrustedHostedFrontend(origin)) {
       return callback(null, true);
     }
 
@@ -26,7 +53,7 @@ fs.mkdirSync(uploadsDir, { recursive: true });
 
 // Middleware
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.options(/.*/, cors(corsOptions));
 app.use(express.json());
 
 // Static uploads folder
